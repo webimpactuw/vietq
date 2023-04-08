@@ -23,7 +23,7 @@ export default function EventCard() {
           src="https://picsum.photos/seed/picsum/900/900"
           className="w-full h-full object-cover"
         /> */}
-        <div className="hover:bg-gray-200 cursor-pointer transition-colors absolute bottom-2 right-2 border-2 border-yellow-600 bg-white text-gray-500 text-xs rounded-full px-4 py-2.5 tracking-tight">
+        <div className="hover:bg-gray-200 cursor-pointer transition-colors absolute bottom-2 right-2 border-2 border-yellow-600 bg-white text-gray-500 text-xs rounded-full px-4 pt-2.5 pb-3 tracking-tight">
           Learn more
         </div>
       </div>

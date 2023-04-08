@@ -9,6 +9,7 @@ export default function RootLayout({
   title = defaultTitle,
   desc = defaultDesc,
   children,
+  navTransparent = false,
 }) {
   return (
     <>
@@ -39,7 +40,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="72x72" href="app-icon.png" />
         <link rel="apple-touch-icon" sizes="114x114" href="app-icon.png" />
       </Head>
-      <Navbar />
+      <Navbar transparent={navTransparent} />
       {children}
       <Footer />
     </>

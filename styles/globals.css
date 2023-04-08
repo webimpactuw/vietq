@@ -8,6 +8,16 @@
   }
 
   .gradient {
-    background: linear-gradient(to right, #1d69d3, #fb2647, #7b59c2, #ffb042);
+    background: linear-gradient(
+      to right,
+      #fb2647,
+      #ff7842,
+      #ffb042,
+      #35e37c,
+      #1d69d3,
+      #7b59c2,
+      #fecbd3,
+      #a1c3f2
+    );
   }
 }

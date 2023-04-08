@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function Home() {
   return (
-    <RootLayout>
+    <RootLayout navTransparent={true}>
       <Hero />
       <Container>
         <Featured />
@@ -19,14 +19,14 @@ export default function Home() {
 function Hero() {
   return (
     <div className="bg-red-300">
-      <div className="bg-gradient-to-b from-blue-900/75 to-blue-900/25">
+      <div className="bg-gradient-to-b from-blue-900/75 to-blue-900/0">
         <Container>
           <div className="py-32 text-center space-y-8 max-w-2xl mx-auto relative z-10">
             <h1 className="text-7xl font-bold tracking-tighter leading-tight text-white">
               Celebrating culture, empowering love
             </h1>
             <div className="space-y-6 flex flex-col items-center justify-start">
-              <p className="text-xl text-gray-300 font-display">
+              <p className="text-xl text-white/50 font-medium font-display">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua
               </p>
@@ -53,7 +53,9 @@ function Featured() {
             className={`${
               selected === i
                 ? "z-10 scale-125"
-                : `z-0 scale-95 ${selected > i ? "-rotate-6" : "rotate-6"}`
+                : `z-0 scale-95 hover:scale-100 ${
+                    selected > i ? "-rotate-6" : "rotate-6"
+                  }`
             } cursor-pointer transition-all transform`}
           >
             <EventCard />
