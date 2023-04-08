@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const defaultTitle = "VietQ";
 const defaultDesc = "This is VietQ's website";
@@ -37,7 +39,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="72x72" href="app-icon.png" />
         <link rel="apple-touch-icon" sizes="114x114" href="app-icon.png" />
       </Head>
+      <Navbar />
       {children}
+      <Footer />
     </>
   );
 }
