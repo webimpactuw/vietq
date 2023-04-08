@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  body {
+    @apply bg-champagne text-blue-900;
+  }
+
+  .gradient {
+    background: linear-gradient(to right, #1d69d3, #fb2647, #7b59c2, #ffb042);
+  }
+}

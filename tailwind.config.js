@@ -9,8 +9,20 @@ module.exports = {
   ],
   theme: {
     extend: {
+      letterSpacing: {
+        tightest: "-.075em",
+        widest: ".15em",
+      },
       fontSize: {
         xxs: ".625rem",
+        "9/2xl": "2.75rem",
+      },
+      borderRadius: {
+        "4xl": "2rem",
+      },
+      rotate: {
+        15: "15deg",
+        30: "30deg",
       },
       colors: {
         blue: {
@@ -80,8 +92,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-be-vietnam)", ...defaultTheme.fontFamily.sans],
-        // display: ["var(--font-be-vietnam)", ...defaultTheme.fontFamily.sans],
+        sans: ["var(--font-be-vietnam-text)", ...defaultTheme.fontFamily.sans],
+        display: [
+          "var(--font-be-vietnam-display)",
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
     },
   },

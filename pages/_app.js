@@ -1,76 +1,122 @@
 import "@/styles/globals.css";
 import localFont from "next/font/local";
 
-const beVietnam = localFont({
-  variable: "--font-be-vietnam",
+const beVietnamDisplay = localFont({
+  variable: "--font-be-vietnam-display",
   src: [
     {
-      path: "../fonts/BeVietnam/BeVietnam-Black.ttf",
+      path: "../fonts/BeVietnam-Display/BeVietnam-ExtraBold.ttf",
       weight: "800",
       style: "normal",
     },
     {
-      path: "../fonts/BeVietnam/BeVietnam-BlackItalic.ttf",
+      path: "../fonts/BeVietnam-Display/BeVietnam-ExtraBoldItalic.ttf",
       weight: "800",
       style: "italic",
     },
     {
-      path: "../fonts/BeVietnam/BeVietnam-Bold.ttf",
+      path: "../fonts/BeVietnam-Display/BeVietnam-Bold.ttf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../fonts/BeVietnam/BeVietnam-BoldItalic.ttf",
+      path: "../fonts/BeVietnam-Display/BeVietnam-BoldItalic.ttf",
       weight: "700",
       style: "italic",
     },
     {
-      path: "../fonts/BeVietnam/BeVietnam-SemiBold.ttf",
+      path: "../fonts/BeVietnam-Display/BeVietnam-SemiBold.ttf",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../fonts/BeVietnam/BeVietnam-SemiBoldItalic.ttf",
+      path: "../fonts/BeVietnam-Display/BeVietnam-SemiBoldItalic.ttf",
       weight: "600",
       style: "italic",
     },
     {
-      path: "../fonts/BeVietnam/BeVietnam-Medium.ttf",
+      path: "../fonts/BeVietnam-Display/BeVietnam-Medium.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../fonts/BeVietnam/BeVietnam-MediumItalic.ttf",
+      path: "../fonts/BeVietnam-Display/BeVietnam-MediumItalic.ttf",
       weight: "500",
       style: "italic",
     },
     {
-      path: "../fonts/BeVietnam/BeVietnam-Regular.ttf",
+      path: "../fonts/BeVietnam-Display/BeVietnam-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../fonts/BeVietnam/BeVietnam-Italic.ttf",
+      path: "../fonts/BeVietnam-Display/BeVietnam-Italic.ttf",
       weight: "400",
       style: "italic",
     },
   ],
 });
 
-const cabinetGrotesk = localFont({
+const beVietnamText = localFont({
+  variable: "--font-be-vietnam-text",
   src: [
     {
-      path: "../fonts/CabinetGrotesk/CabinetGrotesk-Variable.ttf",
-      weight: "variable",
+      path: "../fonts/BeVietnam-Text/BeVietnam-ExtraBold.ttf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../fonts/BeVietnam-Text/BeVietnam-ExtraBoldItalic.ttf",
+      weight: "800",
+      style: "italic",
+    },
+    {
+      path: "../fonts/BeVietnam-Text/BeVietnam-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../fonts/BeVietnam-Text/BeVietnam-BoldItalic.ttf",
+      weight: "700",
+      style: "italic",
+    },
+    {
+      path: "../fonts/BeVietnam-Text/BeVietnam-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../fonts/BeVietnam-Text/BeVietnam-SemiBoldItalic.ttf",
+      weight: "600",
+      style: "italic",
+    },
+    {
+      path: "../fonts/BeVietnam-Text/BeVietnam-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../fonts/BeVietnam-Text/BeVietnam-MediumItalic.ttf",
+      weight: "500",
+      style: "italic",
+    },
+    {
+      path: "../fonts/BeVietnam-Text/BeVietnam-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/BeVietnam-Text/BeVietnam-Italic.ttf",
+      weight: "400",
+      style: "italic",
     },
   ],
-  variable: "--font-cabinet-grotesk",
 });
 
 export default function App({ Component, pageProps }) {
   return (
     <div
-      className={`${beVietnam.variable} ${cabinetGrotesk.variable} font-sans`}
+      className={`${beVietnamDisplay.variable} ${beVietnamText.variable} font-sans`}
     >
       <Component {...pageProps} />
     </div>

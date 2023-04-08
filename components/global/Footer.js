@@ -1,9 +1,8 @@
 import Container from "./Container";
 import JoinOurCommunity from "./JoinOurCommunity";
 
-import { navigation } from "@/lib/navigation";
-import Link from "next/link";
 import Image from "next/image";
+import Navigation from "./Navigation";
 
 export default function Footer() {
   return (
@@ -12,21 +11,13 @@ export default function Footer() {
         <div className="divide-y divide-blue-800">
           <div className="space-y-8 pb-8">
             <div className="flex items-center justify-between space-x-32">
-              <h1 className="text-3xl font-bold tracking-tight">VietQ</h1>
-              <div className="flex items-start pt-4 justify-end space-x-8">
-                {navigation.map((item, index) => (
-                  <Link
-                    href={item.href}
-                    key={index}
-                    className="uppercase tracking-widest text-sm hover:text-gray-500 transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
+              <h1 className="text-3xl font-bold tracking-tight font-display">
+                VietQ
+              </h1>
+              <Navigation />
             </div>
             <div className="space-y-4">
-              <h3 className="tracking-tighter text-xl font-semibold">
+              <h3 className="tracking-tighter text-2xl font-semibold font-display">
                 Subscribe to our newsletter
               </h3>
               <JoinOurCommunity footer={true} />
@@ -46,7 +37,7 @@ export default function Footer() {
                 alt="Facebook"
               />
               <SocialIcon
-                href="https://www.instagram.com/vietq.community"
+                href="https://www.instagram.com/vietqseattle"
                 src="/socials/instagram.svg"
                 alt="Instagram"
               />
@@ -59,13 +50,14 @@ export default function Footer() {
           </div>
         </div>
       </Container>
+      <div className="gradient w-full h-2" />
     </footer>
   );
 }
 
 function SocialIcon({ href, src, alt }) {
   return (
-    <div className="hover:opacity-50 transition-opacity">
+    <div className="hover:opacity-75 transition-opacity">
       <a href={href}>
         <Image src={src} alt={alt} className="w-6 h-6" width={24} height={24} />
       </a>
