@@ -12,8 +12,8 @@ export default function Footer() {
     <footer className="bg-blue-900 text-white border-t border-blue-800">
       <Container>
         <div className="divide-y divide-blue-800">
-          <div className="space-y-8 pb-8">
-            <div className="divide-y md:divide-y-0 divide-blue-800 flex md:flex-row flex-col md:items-center md:justify-between md:space-x-32 space-y-4 md:space-y-0">
+          <div className="space-y-8 pb-8 divide-y md:divide-y-0 divide-blue-800 ">
+            <div className="flex md:flex-row flex-col md:items-center md:justify-between md:space-x-32 space-y-8 md:space-y-0">
               <Link href="/">
                 <Image
                   src={vietQWhite}
@@ -25,7 +25,7 @@ export default function Footer() {
               <HorizontalNavigation />
               <VerticalNavigation />
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 md:pt-0 pt-4">
               <h3 className="tracking-tighter text-2xl font-semibold font-display">
                 Subscribe to our newsletter
               </h3>
