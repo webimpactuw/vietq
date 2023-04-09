@@ -7,9 +7,13 @@ import { HorizontalNavigation, VerticalNavigation } from "./Navigation";
 import Link from "next/link";
 import vietQWhite from "../../public/logos/vietq_logo_white.png";
 
-export default function Footer() {
+export default function Footer({ preview = false }) {
   return (
-    <footer className="bg-blue-900 text-white border-t border-blue-800">
+    <footer
+      className={`bg-blue-900 text-white border-t border-blue-800 ${
+        preview ? "pointer-events-none" : ""
+      }`}
+    >
       <Container>
         <div className="divide-y divide-champagne">
           <div className="space-y-8 pb-8 divide-y md:divide-y-0 divide-champagne ">
@@ -50,11 +54,11 @@ export default function Footer() {
                 src="/socials/instagram.svg"
                 alt="Instagram"
               />
-              <SocialIcon
+              {/* <SocialIcon
                 href="https://www.twitter.com/vietq.community"
                 src="/socials/twitter.svg"
                 alt="Twitter"
-              />
+              /> */}
             </div>
           </div>
         </div>

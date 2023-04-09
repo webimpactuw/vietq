@@ -1,41 +1,121 @@
-import Link from "next/link";
+import {
+  FormField,
+  FormSelect,
+  FormTextArea,
+  FormErrorMessage,
+  FormLabel,
+} from "@/components/global/FormComponents";
 
-export default function ContactForm({}) {
-    return (
-        <> <div className="flex flex-col items-start justify-start space-y-4 w-full">
-                <div className="grid grid-cols-2 gap-x-10 gap-y-6">
-                    <InputLink text="First">First Name*</InputLink>
-                    <InputLink text="Last">Last Name*</InputLink>
-                    <InputLink text="email@example.com">Email</InputLink>
-                    <InputLink text="XXX-XXX-XXX">Phone Number</InputLink>
-                    <div className="col-span-2 space-y-3 font-display tracking-tighter"> 
-                        <div className="font-bold text-black text-2xl">
-                            Subject Matter
-                        </div>
-                        <select className="text-black bg-white border shadow-sm rounded-full text-sm pb-0.5 px-4 w-full h-10">   
-                            <option value="" selected disabled hidden>
-                                Select subject matter
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div className="flex flex-col w-full space-y-3 tracking-tighter font-display"> 
-                    <div className="font-bold text-black text-2xl">Message*</div>
-                    <textarea placeholder="Your message here" className="text-sm placeholder-gray-600 text-black bg-white border shadow-sm resize-none w-full h-48 rounded-4xl py-4 px-4"/>
-                    <button className="place-self-end bg-black text-white font-extrabold rounded-full py-2 px-4 uppercase w-1/3">send message</button>
-                </div>
+import { Formik } from "formik";
+import * as Yup from "yup";
+
+export default function ContactForm() {
+  return (
+    <Formik
+      initialValues={{
+        firstName: "",
+        lastName: "",
+        email: "",
+        subject: "",
+        message: "",
+      }}
+      validationSchema={Yup.object({
+        firstName: Yup.string()
+          .max(15, "Must be 15 characters or less")
+          .required("This field is required"),
+        lastName: Yup.string()
+          .max(20, "Must be 20 characters or less")
+          .required("This field is required"),
+        email: Yup.string()
+          .email("Invalid email address")
+          .required("This field is required"),
+        subject: Yup.string()
+          .max(20, "Must be 20 characters or less")
+          .required("This field is required"),
+        message: Yup.string()
+          .max(500, "Must be 500 characters or less")
+          .required("This field is required"),
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }}
+    >
+      {(formik) => (
+        <form onSubmit={formik.handleSubmit}>
+          <div className="md:grid grid-cols-2 gap-4 md:space-y-0 space-y-8">
+            <div className="space-y-2">
+              <FormLabel htmlFor="firstName">First name</FormLabel>
+              <FormField
+                id="firstName"
+                name="firstName"
+                autoComplete="given-name"
+                placeholder="John"
+              />
+              <FormErrorMessage name="firstName" />
             </div>
-        </>
-    );Y
+            <div className="space-y-2">
+              <FormLabel htmlFor="lastName">Last name</FormLabel>
+              <FormField
+                id="lastName"
+                name="lastName"
+                autoComplete="family-name"
+                placeholder="Doe"
+              />
+              <FormErrorMessage name="lastName" />
+            </div>
+            <div className="space-y-2">
+              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormField
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                placeholder="Enter your email"
+              />
+              <FormErrorMessage name="email" />
+            </div>
+            <div className="space-y-2">
+              <FormLabel htmlFor="subject">Subject</FormLabel>
+              <FormSelect id="subject" name="subject">
+                <option value="" disabled selected>
+                  Choose a country
+                </option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+              </FormSelect>
+              <FormErrorMessage name="subject" />
+            </div>
+            <div className="col-span-2 space-y-2">
+              <FormLabel htmlFor="message">Message</FormLabel>
+              <FormTextArea
+                id="message"
+                name="message"
+                placeholder="Enter a message!"
+              />
+              <FormErrorMessage name="message" />
+            </div>
+          </div>
+          <button
+            type="submit"
+            className={`${
+              formik.values.firstName == "" ||
+              formik.values.lastName == "" ||
+              formik.values.email == "" ||
+              formik.values.subject == "" ||
+              formik.values.message == ""
+                ? "opacity-50 cursor-not-allowed"
+                : ""
+            } inline-flex mt-4 float-right text-white bg-blue-600 border-blue-700 focus:outline-blue-800 hover:bg-blue-700 uppercase whitespace-nowrap shadow-xl border text-sm rounded-full py-2.5 px-5 font-semibold tracking-widest transition-colors`}
+          >
+            Submit form
+          </button>
+        </form>
+      )}
+    </Formik>
+  );
 }
-
-function InputLink({children, text}) {
-    return (
-        <div className="flex flex-col space-y-3 tracking-tighter font-display"> 
-            <div className="font-bold text-black text-2xl">
-                {children}
-            </div>
-            <input type="text" placeholder={text} className="placeholder-gray-600 text-black bg-white border shadow-sm rounded-full text-sm py-4 px-4 w-56 h-10"/>
-        </div>
-    );
-  }

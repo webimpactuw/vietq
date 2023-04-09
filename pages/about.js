@@ -1,0 +1,72 @@
+import client from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+import { PreviewSuspense } from "next-sanity/preview";
+import { usePreview } from "@/sanity/lib/preview";
+
+import RootLayout from "@/components/global/RootLayout";
+import Header from "@/components/pages/about/Header";
+import Team from "@/components/pages/about/Team";
+import PreviewLoading from "@/components/sanity/PreviewLoading";
+import ExitPreview from "@/components/sanity/ExitPreview";
+
+const query = groq`*[_type == "aboutPage"][0] {
+  title,
+  teamPicture {
+   ...,
+  "lqip": asset->metadata.lqip,
+  },
+  aboutSection,
+  "members": *[_type == "teamMember"] | order(orderRank) {
+    name,
+    role,
+    bio,
+    image {
+      ...,
+      "lqip": asset->metadata.lqip,
+    },
+  },
+}`;
+
+export const getStaticProps = async ({ preview = false }) => {
+  if (preview) {
+    return { props: { preview } };
+  }
+
+  const data = await client.fetch(query);
+
+  return { props: { preview, data } };
+};
+
+export default function About({ preview, data }) {
+  return (
+    <RootLayout title="About" preview={preview}>
+      {preview ? (
+        <PreviewSuspense fallback={<PreviewLoading />}>
+          <PreviewAboutPage query={query} />
+        </PreviewSuspense>
+      ) : (
+        <AboutPage data={data} />
+      )}
+    </RootLayout>
+  );
+}
+
+function AboutPage({ data }) {
+  return (
+    <>
+      <Header data={data} />
+      <Team data={data.members} />
+    </>
+  );
+}
+
+function PreviewAboutPage({ query }) {
+  const data = usePreview(null, query);
+
+  return (
+    <>
+      <AboutPage data={data} />
+      <ExitPreview />
+    </>
+  );
+}

@@ -23,17 +23,17 @@
 
   .contact-gradient {
     background: radial-gradient(
-      circle at bottom right, 
-      #F3B358, 
-      #F49C4D,
-      #F38448, 
-      #F06B47, 
-      #EB4F4B, 
-      #DC355E, 
-      #BB3078, 
-      #8F3886, 
-      #5B3E87, 
-      #1E3D7A 60% 
+      circle at bottom right,
+      #f3b358,
+      #f49c4d,
+      #f38448,
+      #f06b47,
+      #eb4f4b,
+      #dc355e,
+      #bb3078,
+      #8f3886,
+      #5b3e87,
+      #1e3d7a 60%
     );
   }
 }

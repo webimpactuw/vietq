@@ -1,41 +1,68 @@
 import Container from "@/components/global/Container";
-import JoinOurCommunity from "@/components/global/JoinOurCommunity";
 import RootLayout from "@/components/global/RootLayout";
+
+import Hero from "@/components/pages/home/Hero";
+
+import client from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+import { PreviewSuspense } from "next-sanity/preview";
+import { usePreview } from "@/sanity/lib/preview";
 
 import EventCard from "@/components/cards/EventCard";
 import { useState } from "react";
 
-export default function Home() {
+import ExitPreview from "@/components/sanity/ExitPreview";
+
+import Link from "next/link";
+import PreviewLoading from "@/components/sanity/PreviewLoading";
+
+const query = groq`*[_type == "homePage"][0]{
+  title,
+  description
+}`;
+
+export const getStaticProps = async ({ preview = false }) => {
+  if (preview) {
+    return { props: { preview } };
+  }
+
+  const data = await client.fetch(query);
+
+  return { props: { preview, data } };
+};
+
+export default function Home({ preview, data }) {
   return (
-    <RootLayout navTransparent={true}>
-      <Hero />
-      <Container>
-        <Featured />
-      </Container>
+    <RootLayout navTransparent={true} preview={preview}>
+      {preview ? (
+        <PreviewSuspense fallback={<PreviewLoading />}>
+          <PreviewHomePage query={query} />
+        </PreviewSuspense>
+      ) : (
+        <HomePage data={data} />
+      )}
     </RootLayout>
   );
 }
-
-function Hero() {
+function HomePage({ data }) {
   return (
-    <div className="bg-red-300">
-      <div className="bg-gradient-to-b from-blue-900/75 to-blue-900/0">
-        <Container>
-          <div className="py-32 text-center space-y-8 max-w-2xl mx-auto relative z-10">
-            <h1 className="text-7xl font-bold tracking-tighter leading-tight text-white">
-              Celebrating culture, empowering love
-            </h1>
-            <div className="space-y-6 flex flex-col items-center justify-start">
-              <p className="text-xl text-white/50 font-medium font-display">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua
-              </p>
-              <JoinOurCommunity />
-            </div>
-          </div>
-        </Container>
-      </div>
-    </div>
+    <>
+      <Hero data={data} />
+      <Container>
+        <Featured />
+      </Container>
+    </>
+  );
+}
+
+function PreviewHomePage({ query }) {
+  const data = usePreview(null, query);
+
+  return (
+    <>
+      <HomePage data={data} />
+      <ExitPreview />
+    </>
   );
 }
 
