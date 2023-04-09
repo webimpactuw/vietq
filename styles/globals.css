@@ -20,4 +20,20 @@
       #a1c3f2
     );
   }
+
+  .contact-gradient {
+    background: radial-gradient(
+      circle at bottom right, 
+      #F3B358, 
+      #F49C4D,
+      #F38448, 
+      #F06B47, 
+      #EB4F4B, 
+      #DC355E, 
+      #BB3078, 
+      #8F3886, 
+      #5B3E87, 
+      #1E3D7A 60% 
+    );
+  }
 }
