@@ -1,7 +1,9 @@
 import Head from "next/head";
-import CallToAction from "./CallToAction";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+
+import dynamic from "next/dynamic";
+const Footer = dynamic(() => import("./navigation/Footer"));
+const Navbar = dynamic(() => import("./navigation/Navbar"));
+const CallToAction = dynamic(() => import("./CallToAction"));
 
 const defaultTitle = "VietQ";
 const defaultDesc = "This is VietQ's website";

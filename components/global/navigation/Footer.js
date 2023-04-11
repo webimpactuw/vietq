@@ -1,11 +1,11 @@
-import Container from "./Container";
-import JoinOurCommunity from "./JoinOurCommunity";
+import Container from "../Container";
+import JoinOurCommunity from "../JoinOurCommunity";
 
 import Image from "next/image";
 import { HorizontalNavigation, VerticalNavigation } from "./Navigation";
 
 import Link from "next/link";
-import vietQWhite from "../../public/logos/vietq_logo_white.png";
+import vietQWhite from "../../../public/logos/vietq_logo_white.png";
 
 export default function Footer({ preview = false }) {
   return (

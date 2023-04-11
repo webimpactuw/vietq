@@ -2,11 +2,14 @@ import Link from "next/link";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 
-import { HorizontalNavigation, MobileNavigation } from "./Navigation";
+import { HorizontalNavigation } from "./Navigation";
 import { useScrollData } from "scroll-data-hook";
 
-import vietQWhite from "../../public/logos/vietq_logo_white.png";
-import vietQBlack from "../../public/logos/vietq_logo_black.png";
+import dynamic from "next/dynamic";
+const MobileNavigation = dynamic(() => import("./MobileNavigation"));
+
+import vietQWhite from "../../../public/logos/vietq_logo_white.png";
+import vietQBlack from "../../../public/logos/vietq_logo_black.png";
 
 import { useEffect, useState } from "react";
 
