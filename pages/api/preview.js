@@ -1,18 +1,17 @@
+import { routes } from "@/sanity/lib/routes";
+
 export default function preview(req, res) {
   const { slug } = req.query;
 
   res.setPreviewData({});
-  // if (query.slug === "about") {
-  //   res.writeHead(307, { Location: "/about" });
-  // } else {
-  //   res.writeHead(307, { Location: "/" });
-  // }
-  switch (slug) {
-    case "about":
-      res.writeHead(307, { Location: "/about" });
-      break;
-    default:
-      res.writeHead(307, { Location: "/" });
+
+  const route = routes.filter((route) => route.slug === slug);
+
+  if (route.length > 0) {
+    res.writeHead(307, { Location: route[0].location });
+  } else {
+    res.writeHead(307, { Location: "/" });
   }
+
   res.end();
 }

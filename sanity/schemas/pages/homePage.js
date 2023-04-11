@@ -28,7 +28,7 @@ export default {
     },
     prepare() {
       return {
-        title: "Home Page",
+        title: "Home",
       };
     },
   },

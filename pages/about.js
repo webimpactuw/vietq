@@ -27,15 +27,18 @@ const query = groq`*[_type == "aboutPage"][0] {
   },
 }`;
 
-export const getStaticProps = async ({ preview = false }) => {
+export async function getStaticProps({ preview = false }) {
   if (preview) {
     return { props: { preview } };
   }
 
   const data = await client.fetch(query);
 
-  return { props: { preview, data } };
-};
+  return {
+    props: { preview, data },
+    revalidate: parseInt(process.env.NEXT_PUBLIC_REVALIDATE),
+  };
+}
 
 export default function About({ preview, data }) {
   return (

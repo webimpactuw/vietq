@@ -35,7 +35,7 @@ export default {
     },
     prepare() {
       return {
-        title: "About Page",
+        title: "About",
       };
     },
   },
