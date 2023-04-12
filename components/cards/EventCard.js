@@ -1,6 +1,6 @@
 export default function EventCard() {
   return (
-    <div className="box-border border-2 border-yellow-600 shadow-2xl rounded-4xl w-64 overflow-hidden font-display">
+    <div className="shrink-0 md:hover:scale-110 transition-transform transform box-border border-2 border-yellow-600 shadow-2xl rounded-4xl w-64 overflow-hidden font-display">
       <div
         className="px-4 pb-4 pt-8 bg-yellow-100 text-yellow-800 w-full flex flex-col items-start justify-between space-y-6"
         style={{

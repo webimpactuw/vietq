@@ -7,16 +7,16 @@ export default function Header({ data }) {
   return (
     <>
       <Container>
-        <div className="pt-24 md:pt-32 pb-4 md:pb-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-          <div className="space-y-2">
+        <div className="pt-24 md:pt-32 pb-4 md:pb-16 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-16">
+          <div className="space-y-2 col-span-3">
             <h3 className="text-2xl font-bold tracking-tighter font-display">
               About VietQ
             </h3>
-            <h1 className="text-5xl font-bold tracking-tighter font-display leading-tight">
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter font-display leading-tight">
               {data.title}
             </h1>
           </div>
-          <div className="flex flex-col items-start justify-end">
+          <div className="col-span-2 flex flex-col items-start justify-end">
             <p className="text-lg md:text-xl font-medium text-gray-700">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
               quod, voluptate, quia, voluptates quas voluptatibus quibusdam quae
