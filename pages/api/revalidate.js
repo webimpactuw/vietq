@@ -6,7 +6,7 @@ export default async function revalidate(req, res) {
   try {
     const { isValidSignature, body } = await parseBody(
       req,
-      NEXT_PUBLIC_SANITY_WEBHOOK_SECRET
+      process.env.NEXT_PUBLIC_SANITY_WEBHOOK_SECRET
     );
 
     if (!isValidSignature) {
