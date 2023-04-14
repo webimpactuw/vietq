@@ -51,9 +51,7 @@ function HomePage({ data }) {
   return (
     <>
       <Hero data={data} />
-      <Container>
-        <Featured />
-      </Container>
+      <Container>{/* <Featured /> */}</Container>
     </>
   );
 }
@@ -69,28 +67,28 @@ function PreviewHomePage({ query }) {
   );
 }
 
-function Featured() {
-  const [selected, setSelected] = useState(1);
+// function Featured() {
+//   const [selected, setSelected] = useState(1);
 
-  return (
-    <div className="flex items-end justify-center -space-x-8 py-32">
-      {Array(3)
-        .fill()
-        .map((_, i) => (
-          <div
-            key={i}
-            onClick={() => setSelected(i)}
-            className={`${
-              selected === i
-                ? "z-10 scale-125"
-                : `z-0 scale-95 hover:scale-100 ${
-                    selected > i ? "-rotate-6" : "rotate-6"
-                  }`
-            } cursor-pointer transition-all transform`}
-          >
-            <EventCard />
-          </div>
-        ))}
-    </div>
-  );
-}
+//   return (
+//     <div className="flex items-end justify-center -space-x-8 py-32">
+//       {Array(3)
+//         .fill()
+//         .map((_, i) => (
+//           <div
+//             key={i}
+//             onClick={() => setSelected(i)}
+//             className={`${
+//               selected === i
+//                 ? "z-10 scale-125"
+//                 : `z-0 scale-95 hover:scale-100 ${
+//                     selected > i ? "-rotate-6" : "rotate-6"
+//                   }`
+//             } cursor-pointer transition-all transform`}
+//           >
+//             <EventCard />
+//           </div>
+//         ))}
+//     </div>
+//   );
+// }

@@ -45,7 +45,13 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="114x114" href="app-icon.png" />
       </Head>
       <Navbar transparent={navTransparent} preview={preview} />
-      {children}
+      <div
+        className={
+          process.env.NODE_ENV === "development" ? "debug-screens" : ""
+        }
+      >
+        {children}
+      </div>
       <CallToAction preview={preview} />
       <Footer preview={preview} />
     </>

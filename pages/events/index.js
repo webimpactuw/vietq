@@ -1,12 +1,53 @@
+import client from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+import { PreviewSuspense } from "next-sanity/preview";
+import { usePreview } from "@/sanity/lib/preview";
+
 import EventCard from "@/components/cards/EventCard";
 import Container from "@/components/global/Container";
 import RootLayout from "@/components/global/RootLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import TextTransition, { presets } from "react-text-transition";
+import ColorScheme from "color-scheme";
+import { format } from "date-fns";
 
-export default function Events() {
+const query = groq`*[_type == "event"] | order(date asc) {
+  title,
+  image {
+   ...,
+  "lqip": asset->metadata.lqip,
+  "color": asset->metadata.palette.dominant.background,
+  },
+  date,
+  "slug": slug.current,
+}`;
+
+export async function getStaticProps() {
+  const data = await client.fetch(query);
+
+  return {
+    props: { data },
+    revalidate: parseInt(process.env.NEXT_PUBLIC_REVALIDATE),
+  };
+}
+
+export default function Events({ data }) {
   const [selected, setSelected] = useState({});
+  const [size, setSize] = useState([0, 0]);
+  const [distance, setDistance] = useState(0);
+
+  useEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+
+    const eventHeader = document.getElementById("event-header");
+    setDistance(window.innerWidth - eventHeader.getBoundingClientRect().right);
+
+    return () => window.removeEventListener("resize", updateSize);
+  }, [size]);
 
   return (
     <RootLayout title="Events" navTransparent={true}>
@@ -17,7 +58,10 @@ export default function Events() {
           backgroundColor: selected.bg,
         }}
       >
-        <div className="px-4 max-w-6xl mx-auto space-y-8 h-32">
+        <div
+          className="px-4 max-w-6xl mx-auto space-y-8 h-28 md:h-32"
+          id="event-header"
+        >
           {selected.content ? (
             <div className="space-y-4">
               <div className="flex items-center justify-start space-x-2">
@@ -27,104 +71,90 @@ export default function Events() {
               </div>
               <TextTransition springConfig={presets.slow}>
                 <div className="space-y-1">
-                  <h2 className="text-xl font-bold tracking-tight font-display leading-tight">
-                    Feb {Math.floor(Math.random() * 30) + 1}, 2021
+                  <h2 className="text-lg md:text-xl font-bold tracking-tight font-display leading-tight">
+                    {format(new Date(selected.date), "EEEE, MMMM do, yyyy")}
                   </h2>
 
-                  <h2 className="text-5xl font-bold tracking-tighter font-display leading-tight">
+                  <h2 className="text-4xl md:text-5xl font-bold tracking-tighter font-display leading-tight">
                     {selected.content}
                   </h2>
                 </div>
               </TextTransition>
             </div>
           ) : (
-            <h2 className="text-8xl font-bold tracking-tighter font-display leading-tight">
+            <h2 className="text-6xl md:text-8xl font-bold tracking-tighter font-display leading-tight">
               Upcoming Events
             </h2>
           )}
         </div>
-        <div className="flex items-center justify-start overflow-x-scroll p-8 no-scrollbar pl-[23em]">
-          <div
-            onMouseEnter={() =>
-              setSelected({ bg: "#613800", content: "Spring Forward Workshop" })
-            }
-            onMouseLeave={() => setSelected({})}
-            className="pr-8 last:pr-0"
-          >
-            <EventCard />
-          </div>
-          <div
-            onMouseEnter={() =>
-              setSelected({ bg: "#3F010B", content: "Open Dance Classes" })
-            }
-            onMouseLeave={() => setSelected({})}
-            className="pr-8 last:pr-0"
-          >
-            <RedEventCard />
-          </div>
-          <div
-            onMouseEnter={() =>
-              setSelected({ bg: "#0A264C", content: "QT-Viet Winter Social" })
-            }
-            onMouseLeave={() => setSelected({})}
-            className="pr-8 last:pr-0"
-          >
-            <BlueEventCard />
-          </div>
-          <div
-            onMouseEnter={() =>
-              setSelected({ bg: "#613800", content: "Spring Forward Workshop" })
-            }
-            onMouseLeave={() => setSelected({})}
-            className="pr-8 last:pr-0"
-          >
-            <EventCard />
-          </div>
-          <div
-            onMouseEnter={() =>
-              setSelected({ bg: "#3F010B", content: "Open Dance Classes" })
-            }
-            onMouseLeave={() => setSelected({})}
-            className="pr-8 last:pr-0"
-          >
-            <RedEventCard />
-          </div>
-          <div
-            onMouseEnter={() =>
-              setSelected({ bg: "#0A264C", content: "QT-Viet Winter Social" })
-            }
-            onMouseLeave={() => setSelected({})}
-            className="pr-8 last:pr-0"
-          >
-            <BlueEventCard />
-          </div>
-          <div
-            onMouseEnter={() =>
-              setSelected({ bg: "#0A264C", content: "QT-Viet Winter Social" })
-            }
-            onMouseLeave={() => setSelected({})}
-            className="pr-8 last:pr-0"
-          >
-            <BlueEventCard />
-          </div>
-          <div
-            onMouseEnter={() =>
-              setSelected({ bg: "#0A264C", content: "QT-Viet Winter Social" })
-            }
-            onMouseLeave={() => setSelected({})}
-            className="pr-8 last:pr-0"
-          >
-            <BlueEventCard />
-          </div>
+        <div
+          className={`flex items-center justify-start overflow-x-scroll p-8 no-scrollbar md:pl-0`}
+          style={{
+            paddingLeft: distance,
+          }}
+        >
+          {data.map((event, i) => (
+            <>
+              <CustomEventCard
+                key={i}
+                setSelected={setSelected}
+                i={i}
+                distance={distance}
+                data={event}
+              />
+            </>
+          ))}
         </div>
       </div>
     </RootLayout>
   );
 }
 
+function generateColorScheme(base) {
+  let colors = new ColorScheme()
+    .from_hex(base.replace("#", ""))
+    .scheme("mono")
+    // .variation("hard")
+    .colors();
+
+  return colors.map((color) => {
+    return "#" + color;
+  });
+}
+
+function CustomEventCard({ data, i, setSelected }) {
+  let colors = generateColorScheme(data?.image?.color || "#007aff");
+
+  return (
+    <div
+      onMouseEnter={() =>
+        setSelected({
+          bg: data.image.color,
+          content: data.title,
+          date: data.date,
+        })
+      }
+      id={`event-card-${i}`}
+      onMouseLeave={() => setSelected({})}
+      className="pr-4 md:pr-8 last:pr-0 first:pl-4 md:first:pl-0"
+    >
+      <div className="inline-flex space-x-2 pb-4">
+        {colors.map((color, i) => (
+          <div
+            key={i}
+            className="w-6 h-6 rounded-full"
+            style={{ backgroundColor: color }}
+          ></div>
+        ))}
+      </div>
+      <EventCard data={data} colors={colors} />
+    </div>
+  );
+}
+
 function Pill({ children }) {
   return (
-    <div className="text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest border border-champagne-200 bg-champagne text-champagne-900">
+    <div className="text-xxs md:text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest border border-champagne-200 bg-champagne text-champagne-900">
       {children}
     </div>
   );
@@ -193,68 +223,55 @@ function Header() {
   );
 }
 
-function RedEventCard() {
-  return (
-    <div className="shrink-0 md:hover:scale-110 transition-transform transform box-border border-2 border-red-600 shadow-2xl rounded-4xl w-64 overflow-hidden font-display">
-      <div
-        className="px-4 pb-4 pt-8 bg-red-100 text-red-800 w-full flex flex-col items-start justify-between space-y-6"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      >
-        <div className="space-y-2">
-          <h2 className="font-bold text-9/2xl tracking-tightest">Feb 07</h2>
-          <div className="space-y-1">
-            <h3 className="font-semibold">This is the event name...</h3>
-            <p className="text-sm text-red-600 line-clamp-2">
-              And this is the text that accompanies it.
-            </p>
-          </div>
-        </div>
-        <p className="text-xs font-medium uppercase">2/7/2023 • Seattle, WA</p>
-      </div>
-      <div className="bg-red-400 relative h-56 border-t-2 border-red-600 border-dashed">
-        {/* <img
-          src="https://picsum.photos/seed/picsum/900/900"
-          className="w-full h-full object-cover"
-        /> */}
-        <div className="hover:bg-gray-200 cursor-pointer transition-colors absolute bottom-2 right-2 border-2 border-red-600 bg-white text-gray-500 text-xs rounded-full px-4 pt-2.5 pb-3 tracking-tight">
-          Learn more
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BlueEventCard() {
-  return (
-    <div className="shrink-0 md:hover:scale-110 transition-transform transform box-border border-2 border-blue-600 shadow-2xl rounded-4xl w-64 overflow-hidden font-display">
-      <div
-        className="px-4 pb-4 pt-8 bg-blue-100 text-blue-800 w-full flex flex-col items-start justify-between space-y-6"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      >
-        <div className="space-y-2">
-          <h2 className="font-bold text-9/2xl tracking-tightest">Feb 07</h2>
-          <div className="space-y-1">
-            <h3 className="font-semibold">This is the event name...</h3>
-            <p className="text-sm text-blue-600 line-clamp-2">
-              And this is the text that accompanies it.
-            </p>
-          </div>
-        </div>
-        <p className="text-xs font-medium uppercase">2/7/2023 • Seattle, WA</p>
-      </div>
-      <div className="bg-blue-400 relative h-56 border-t-2 border-blue-600 border-dashed">
-        {/* <img
-          src="https://picsum.photos/seed/picsum/900/900"
-          className="w-full h-full object-cover"
-        /> */}
-        <div className="hover:bg-gray-200 cursor-pointer transition-colors absolute bottom-2 right-2 border-2 border-blue-600 bg-white text-gray-500 text-xs rounded-full px-4 pt-2.5 pb-3 tracking-tight">
-          Learn more
-        </div>
-      </div>
-    </div>
-  );
-}
+const data = {
+  _type: "sanity.imagePalette",
+  darkMuted: {
+    _type: "sanity.imagePaletteSwatch",
+    background: "#4d434c",
+    foreground: "#fff",
+    population: 6.28,
+    title: "#fff",
+  },
+  darkVibrant: {
+    _type: "sanity.imagePaletteSwatch",
+    background: "#084b8e",
+    foreground: "#fff",
+    population: 1.79,
+    title: "#fff",
+  },
+  dominant: {
+    _type: "sanity.imagePaletteSwatch",
+    background: "#405475",
+    foreground: "#fff",
+    population: 6.4,
+    title: "#fff",
+  },
+  lightMuted: {
+    _type: "sanity.imagePaletteSwatch",
+    background: "#c9b4b4",
+    foreground: "#000",
+    population: 0.52,
+    title: "#fff",
+  },
+  lightVibrant: {
+    _type: "sanity.imagePaletteSwatch",
+    background: "#74bcfc",
+    foreground: "#000",
+    population: 0.01,
+    title: "#fff",
+  },
+  muted: {
+    _type: "sanity.imagePaletteSwatch",
+    background: "#405475",
+    foreground: "#fff",
+    population: 6.4,
+    title: "#fff",
+  },
+  vibrant: {
+    _type: "sanity.imagePaletteSwatch",
+    background: "#337ccd",
+    foreground: "#fff",
+    population: 1.94,
+    title: "#fff",
+  },
+};

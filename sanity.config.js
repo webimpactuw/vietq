@@ -16,6 +16,7 @@ const singletonTypes = new Set(routes.map((route) => route.schemaType));
 import Iframe from "sanity-plugin-iframe-pane";
 
 import { routes } from "./sanity/lib/routes";
+import { colorInput } from "@sanity/color-input";
 
 export default defineConfig({
   basePath: "/admin",
@@ -54,11 +55,25 @@ export default defineConfig({
               S,
               context,
             }),
+            S.listItem()
+              .title("Events")
+              .icon(DocumentsIcon)
+              .child(
+                S.documentTypeList("event")
+                  .title("Events")
+                  .child((documentId) =>
+                    S.document()
+                      .documentId(documentId)
+                      .schemaType("event")
+                      .views([S.view.form()])
+                  )
+              ),
           ]);
       },
     }),
     media(),
     visionTool(),
+    colorInput(),
   ],
   schema: {
     types: schemaTypes,

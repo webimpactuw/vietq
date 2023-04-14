@@ -1,3 +1,4 @@
+import event from "./documents/event";
 import teamMember from "./documents/teamMember";
 import aboutPage from "./pages/aboutPage";
 import aboutSection from "./pages/aboutPage/aboutSection";
@@ -12,4 +13,5 @@ export const schemaTypes = [
   communityPage,
   aboutSection,
   teamMember,
+  event,
 ];

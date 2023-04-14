@@ -9,14 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@portabletext/react": "^2.0.2",
+    "@sanity/color-input": "^3.0.2",
     "@sanity/icons": "^2.3.1",
     "@sanity/image-url": "^1.0.2",
     "@sanity/orderable-document-list": "^1.0.4",
     "@sanity/vision": "^3.8.3",
     "aos": "^2.3.4",
     "autoprefixer": "10.4.14",
+    "color-scheme": "^1.0.1",
     "date-fns": "^2.29.3",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
@@ -36,6 +39,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
-    "@tailwindcss/typography": "^0.5.9"
+    "@tailwindcss/typography": "^0.5.9",
+    "tailwindcss-debug-screens": "^2.2.1"
   }
 }

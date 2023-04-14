@@ -16,7 +16,7 @@ export default function CallToAction({ preview = false }) {
         <div className="relative bg-gradient-to-b from-gray-900/90 to-gray-900/25">
           <div
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='37' height='36.5' viewBox='0 0 148 146' opacity='0.025' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.8438 129.285L5.34378 140.285C-15.7637 76.2849 41.7316 -19.2152 141.344 4.78465L129.844 15.7847C79.7363 -3.71509 -1.26373 51.7849 15.8438 129.285Z' fill='%23000000'/%3E%3Cpath d='M130.737 16.2847L142.237 5.28474C163.344 69.2845 105.349 165.285 5.73693 141.285L16.2366 129.785C66.3441 149.285 147.844 93.7845 130.737 16.2847Z' fill='%23000000'/%3E%3Cpath d='M15.8438 129.285L5.34378 140.285C-15.7637 76.2849 41.7316 -19.2152 141.344 4.78465L129.844 15.7847C79.7363 -3.71509 -1.26373 51.7849 15.8438 129.285Z' stroke='%23000000'/%3E%3Cpath d='M130.737 16.2847L142.237 5.28474C163.344 69.2845 105.349 165.285 5.73693 141.285L16.2366 129.785C66.3441 149.285 147.844 93.7845 130.737 16.2847Z' stroke='%23000000'/%3E%3C/svg%3E")`,
             }}
           >
             <div className="rounded-4xl px-4 border-4 py-16 md:py-24 border-black/30 flex flex-col items-center justify-center space-y-8 w-full">
