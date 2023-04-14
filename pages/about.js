@@ -9,6 +9,7 @@ import Section from "@/components/pages/about/Section";
 import Team from "@/components/pages/about/Team";
 import PreviewLoading from "@/components/sanity/PreviewLoading";
 import ExitPreview from "@/components/sanity/ExitPreview";
+import Mission from "@/components/pages/about/Mission";
 
 const query = groq`*[_type == "aboutPage"][0] {
   title,
@@ -59,6 +60,7 @@ function AboutPage({ data }) {
   return (
     <>
       <Header data={data} />
+      <Mission data={data} />
       <Section data={data} />
       <Team data={data.members} />
     </>

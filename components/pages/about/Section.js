@@ -52,12 +52,12 @@ export default function Section({ data }) {
 
 function PartnerCard({ src, href, title, source }) {
   return (
-    <a href={href} className="space-y-4 group">
+    <a href={href} className="space-y-4 group cursor-pointer">
       <div className="border-gray-200 bg-champagne-100 border rounded-2xl overflow-hidden">
         <div className="bg-white h-full w-full px-16 py-12">
           <Image
             src={src}
-            className="w-48 mx-auto h-20 object-contain group-hover:scale-105 transition-transform transform"
+            className="w-48 mx-auto h-20 object-contain group-hover:scale-110 transition-transform transform"
             alt={source}
           />
         </div>
