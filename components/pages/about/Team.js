@@ -6,11 +6,11 @@ export default function Team({ data }) {
   return (
     <Container>
       <div className="pb-16 space-y-8">
-        <div className="space-y-2">
-          <h1 className="text-9/2xl font-bold tracking-tighter font-display leading-tight">
+        <div className="space-y-4">
+          <h1 className="text-5xl font-bold tracking-tighter font-display leading-tight">
             Meet the team
           </h1>
-          <p className="text-base font-medium text-gray-600 max-w-xl">
+          <p className="text-lg font-medium text-gray-600 max-w-xl">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
             quod, voluptate, quia, voluptates quas voluptatibus quibusdam quae
             quidem quos quas voluptatibus quibusdam quae.

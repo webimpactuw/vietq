@@ -5,6 +5,7 @@ import { usePreview } from "@/sanity/lib/preview";
 
 import RootLayout from "@/components/global/RootLayout";
 import Header from "@/components/pages/about/Header";
+import Section from "@/components/pages/about/Section";
 import Team from "@/components/pages/about/Team";
 import PreviewLoading from "@/components/sanity/PreviewLoading";
 import ExitPreview from "@/components/sanity/ExitPreview";
@@ -58,6 +59,7 @@ function AboutPage({ data }) {
   return (
     <>
       <Header data={data} />
+      <Section data={data} />
       <Team data={data.members} />
     </>
   );

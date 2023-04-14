@@ -25,7 +25,6 @@ export default function Header({ data }) {
           </div>
         </div>
       </Container>
-
       <div className="gradient w-full h-4" />
       <div className="relative h-128">
         <Image
@@ -37,18 +36,6 @@ export default function Header({ data }) {
           alt={data.teamPicture.altText}
         />
       </div>
-      <Container>
-        <div className="py-8 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 border-b border-gray-500">
-          <div className="flex flex-col items-start justify-center">
-            <p className="text-lg font-medium text-gray-600">
-              {data.aboutSection.description}
-            </p>
-          </div>
-          <h1 className="text-9/2xl font-bold tracking-tighter font-display leading-tight md:text-right order-first md:order-last">
-            {data.aboutSection.title}
-          </h1>
-        </div>
-      </Container>
     </>
   );
 }
