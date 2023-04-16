@@ -18,10 +18,7 @@ const query = groq`*[_type == "event"] | order(date asc) {
   image {
    ...,
   "lqip": asset->metadata.lqip,
-  "colors": asset->metadata.palette {
-    dominant,
-    vibrant
-    },
+  "colors": asset->metadata.palette,
   },
   date,
   "slug": slug.current,
@@ -57,7 +54,7 @@ export default function Events({ data }) {
     <RootLayout title="Events" navTransparent={true}>
       <Header />
       <div
-        className={`bg-blue-900 space-y-8 pt-24 pb-8 text-champagne overflow-hidden transition-colors`}
+        className={`bg-blue-900 space-y-8 pt-24 text-champagne overflow-hidden transition-colors`}
         style={{
           backgroundColor: selected.bg,
         }}
@@ -92,7 +89,7 @@ export default function Events({ data }) {
           )}
         </div>
         <div
-          className={`flex items-center justify-start overflow-x-scroll p-8 no-scrollbar md:pl-0`}
+          className={`flex items-center justify-start overflow-x-scroll p-8 no-scrollbar md:pl-0 pb-16`}
           style={{
             paddingLeft: distance,
           }}
@@ -113,12 +110,14 @@ export default function Events({ data }) {
 }
 
 function CustomEventCard({ data, i, setSelected }) {
-  let vibrant = hexToRgb(data?.image?.colors.vibrant.background || "#007aff");
-  let dominant = hexToRgb(data?.image?.colors.dominant.background || "#007aff");
+  let secondary = hexToRgb(
+    data?.image?.colors.darkVibrant.background || "#007aff"
+  );
+  let primary = hexToRgb(data?.image?.colors.dominant.background || "#007aff");
 
   let base = colorMixer(
-    [vibrant.r, vibrant.g, vibrant.b],
-    [dominant.r, dominant.g, dominant.b],
+    [secondary.r, secondary.g, secondary.b],
+    [primary.r, primary.g, primary.b],
     0.25
   );
 
@@ -137,14 +136,14 @@ function CustomEventCard({ data, i, setSelected }) {
       onMouseLeave={() => setSelected({})}
       className="pr-4 md:pr-8 last:pr-0 first:pl-4 md:first:pl-0"
     >
-      {process.env.NODE_ENV === "development" && (
+      {/* {process.env.NODE_ENV === "development" && (
         <ColorGrid
           colors={colors}
-          vibrant={vibrant}
-          dominant={dominant}
+          secondary={secondary}
+          primary={primary}
           base={base}
         />
-      )}
+      )} */}
       <EventCard data={data} colors={colors} />
     </div>
   );
@@ -221,14 +220,14 @@ function Header() {
   );
 }
 
-function ColorGrid({ colors, vibrant, dominant, base }) {
+function ColorGrid({ colors, secondary, primary, base }) {
   return (
     <div className="pb-4 space-y-4">
       <div className="inline-flex items-center space-x-2">
         <span className="uppercase text-xs font-medium">Bases</span>
         <div className="inline-flex items-center -space-x-4">
-          <Color hex={rgbToHex(vibrant.r, vibrant.g, vibrant.b)} />
-          <Color hex={rgbToHex(dominant.r, dominant.g, dominant.b)} />
+          <Color hex={rgbToHex(secondary.r, secondary.g, secondary.b)} />
+          <Color hex={rgbToHex(primary.r, primary.g, primary.b)} />
         </div>
         <span className="uppercase text-xs font-medium">Mixed</span>
         <Color hex={base} />
