@@ -9,15 +9,19 @@ import RootLayout from "@/components/global/RootLayout";
 import { useEffect, useState } from "react";
 
 import TextTransition, { presets } from "react-text-transition";
-import ColorScheme from "color-scheme";
+
 import { format } from "date-fns";
+import coloringPalette from "coloring-palette";
 
 const query = groq`*[_type == "event"] | order(date asc) {
   title,
   image {
    ...,
   "lqip": asset->metadata.lqip,
-  "color": asset->metadata.palette.dominant.background,
+  "colors": asset->metadata.palette {
+    dominant,
+    vibrant
+    },
   },
   date,
   "slug": slug.current,
@@ -94,15 +98,13 @@ export default function Events({ data }) {
           }}
         >
           {data.map((event, i) => (
-            <>
-              <CustomEventCard
-                key={i}
-                setSelected={setSelected}
-                i={i}
-                distance={distance}
-                data={event}
-              />
-            </>
+            <CustomEventCard
+              key={i}
+              setSelected={setSelected}
+              i={i}
+              distance={distance}
+              data={event}
+            />
           ))}
         </div>
       </div>
@@ -110,26 +112,23 @@ export default function Events({ data }) {
   );
 }
 
-function generateColorScheme(base) {
-  let colors = new ColorScheme()
-    .from_hex(base.replace("#", ""))
-    .scheme("mono")
-    // .variation("hard")
-    .colors();
-
-  return colors.map((color) => {
-    return "#" + color;
-  });
-}
-
 function CustomEventCard({ data, i, setSelected }) {
-  let colors = generateColorScheme(data?.image?.color || "#007aff");
+  let vibrant = hexToRgb(data?.image?.colors.vibrant.background || "#007aff");
+  let dominant = hexToRgb(data?.image?.colors.dominant.background || "#007aff");
+
+  let base = colorMixer(
+    [vibrant.r, vibrant.g, vibrant.b],
+    [dominant.r, dominant.g, dominant.b],
+    0.25
+  );
+
+  let colors = coloringPalette(base, "hex");
 
   return (
     <div
       onMouseEnter={() =>
         setSelected({
-          bg: data.image.color,
+          bg: colors["900"].color,
           content: data.title,
           date: data.date,
         })
@@ -138,15 +137,14 @@ function CustomEventCard({ data, i, setSelected }) {
       onMouseLeave={() => setSelected({})}
       className="pr-4 md:pr-8 last:pr-0 first:pl-4 md:first:pl-0"
     >
-      <div className="inline-flex space-x-2 pb-4">
-        {colors.map((color, i) => (
-          <div
-            key={i}
-            className="w-6 h-6 rounded-full"
-            style={{ backgroundColor: color }}
-          ></div>
-        ))}
-      </div>
+      {process.env.NODE_ENV === "development" && (
+        <ColorGrid
+          colors={colors}
+          vibrant={vibrant}
+          dominant={dominant}
+          base={base}
+        />
+      )}
       <EventCard data={data} colors={colors} />
     </div>
   );
@@ -223,55 +221,80 @@ function Header() {
   );
 }
 
-const data = {
-  _type: "sanity.imagePalette",
-  darkMuted: {
-    _type: "sanity.imagePaletteSwatch",
-    background: "#4d434c",
-    foreground: "#fff",
-    population: 6.28,
-    title: "#fff",
-  },
-  darkVibrant: {
-    _type: "sanity.imagePaletteSwatch",
-    background: "#084b8e",
-    foreground: "#fff",
-    population: 1.79,
-    title: "#fff",
-  },
-  dominant: {
-    _type: "sanity.imagePaletteSwatch",
-    background: "#405475",
-    foreground: "#fff",
-    population: 6.4,
-    title: "#fff",
-  },
-  lightMuted: {
-    _type: "sanity.imagePaletteSwatch",
-    background: "#c9b4b4",
-    foreground: "#000",
-    population: 0.52,
-    title: "#fff",
-  },
-  lightVibrant: {
-    _type: "sanity.imagePaletteSwatch",
-    background: "#74bcfc",
-    foreground: "#000",
-    population: 0.01,
-    title: "#fff",
-  },
-  muted: {
-    _type: "sanity.imagePaletteSwatch",
-    background: "#405475",
-    foreground: "#fff",
-    population: 6.4,
-    title: "#fff",
-  },
-  vibrant: {
-    _type: "sanity.imagePaletteSwatch",
-    background: "#337ccd",
-    foreground: "#fff",
-    population: 1.94,
-    title: "#fff",
-  },
-};
+function ColorGrid({ colors, vibrant, dominant, base }) {
+  return (
+    <div className="pb-4 space-y-4">
+      <div className="inline-flex items-center space-x-2">
+        <span className="uppercase text-xs font-medium">Bases</span>
+        <div className="inline-flex items-center -space-x-4">
+          <Color hex={rgbToHex(vibrant.r, vibrant.g, vibrant.b)} />
+          <Color hex={rgbToHex(dominant.r, dominant.g, dominant.b)} />
+        </div>
+        <span className="uppercase text-xs font-medium">Mixed</span>
+        <Color hex={base} />
+      </div>
+      <div className="flex-wrap flex gap-4">
+        <Color hex={colors["50"].color} />
+        <Color hex={colors["100"].color} />
+        <Color hex={colors["200"].color} />
+        <Color hex={colors["300"].color} />
+        <Color hex={colors["400"].color} />
+        <Color hex={colors["500"].color} />
+        <Color hex={colors["600"].color} />
+        <Color hex={colors["700"].color} />
+        <Color hex={colors["800"].color} />
+        <Color hex={colors["900"].color} />
+        <Color hex={colors["A100"].color} />
+        <Color hex={colors["A200"].color} />
+        <Color hex={colors["A400"].color} />
+        <Color hex={colors["A700"].color} />
+      </div>
+    </div>
+  );
+
+  function Color({ hex }) {
+    return (
+      <div
+        className="w-6 h-6 rounded-full border border-white/25"
+        style={{ backgroundColor: hex }}
+      ></div>
+    );
+  }
+}
+
+//colorChannelA and colorChannelB are ints ranging from 0 to 255
+function colorChannelMixer(colorChannelA, colorChannelB, amountToMix) {
+  var channelA = colorChannelA * amountToMix;
+  var channelB = colorChannelB * (1 - amountToMix);
+  return parseInt(channelA + channelB);
+}
+//rgbA and rgbB are arrays, amountToMix ranges from 0.0 to 1.0
+//example (red): rgbA = [255,0,0]
+function colorMixer(rgbA, rgbB, amountToMix) {
+  var r = colorChannelMixer(rgbA[0], rgbB[0], amountToMix);
+  var g = colorChannelMixer(rgbA[1], rgbB[1], amountToMix);
+  var b = colorChannelMixer(rgbA[2], rgbB[2], amountToMix);
+  // return "rgb(" + r + "," + g + "," + b + ")";
+
+  return rgbToHex(r, g, b);
+}
+
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}

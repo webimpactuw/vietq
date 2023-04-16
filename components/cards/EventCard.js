@@ -12,14 +12,14 @@ export default function EventCard({ data = null, colors }) {
       <div
         className="shrink-0 md:hover:scale-110 transition-transform transform box-border border-2 shadow-2xl rounded-4xl w-64 overflow-hidden font-display"
         style={{
-          borderColor: colors[1] || "black",
-          backgroundColor: colors[3] || "white",
+          borderColor: colors["800"].color || "black",
+          backgroundColor: colors["200"].color || "white",
         }}
       >
         <div
           className="px-4 pb-4 pt-8 w-full flex flex-col items-start justify-between space-y-6"
           style={{
-            color: colors[1] || "black",
+            color: colors["900"].color || "black",
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")`,
           }}
         >
@@ -34,7 +34,7 @@ export default function EventCard({ data = null, colors }) {
               <p
                 className="text-sm line-clamp-2"
                 style={{
-                  color: colors[1] || "black",
+                  color: colors["700"].color || "black",
                 }}
               >
                 And this is the text that accompanies it.
@@ -49,7 +49,7 @@ export default function EventCard({ data = null, colors }) {
         <div
           className="relative h-56 border-t-2  border-dashed"
           style={{
-            borderColor: colors[1] || "black",
+            borderColor: colors["800"].color || "black",
           }}
         >
           {data?.image && (

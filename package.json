@@ -19,7 +19,7 @@
     "@sanity/vision": "^3.8.3",
     "aos": "^2.3.4",
     "autoprefixer": "10.4.14",
-    "color-scheme": "^1.0.1",
+    "coloring-palette": "^1.0.0",
     "date-fns": "^2.29.3",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
