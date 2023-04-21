@@ -1,6 +1,8 @@
 import "@/styles/globals.css";
 import localFont from "next/font/local";
 
+import { Analytics } from "@vercel/analytics/react";
+
 const beVietnamDisplay = localFont({
   variable: "--font-be-vietnam-display",
   src: [
@@ -115,10 +117,13 @@ const beVietnamText = localFont({
 
 export default function App({ Component, pageProps }) {
   return (
-    <div
-      className={`${beVietnamDisplay.variable} ${beVietnamText.variable} font-sans`}
-    >
-      <Component {...pageProps} />
-    </div>
+    <>
+      <div
+        className={`${beVietnamDisplay.variable} ${beVietnamText.variable} font-sans`}
+      >
+        <Component {...pageProps} />
+      </div>
+      <Analytics />
+    </>
   );
 }
