@@ -5,18 +5,21 @@ import Image from "next/image";
 export default function Team({ data }) {
   return (
     <Container>
-      <div className="py-8 md:py-16  space-y-8">
-        <div className="space-y-4">
+      <div className="py-8 md:py-16 space-y-8">
+        <div className="space-y-4 text-center mx-auto max-w-xl">
           <h1 className="text-5xl font-bold tracking-tighter font-display leading-tight">
-            Meet the team behind VietQ
+            Meet the team
           </h1>
-          <p className="text-lg font-medium text-gray-600 max-w-xl">
+          <p className="text-lg font-medium text-gray-600">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
             quod, voluptate, quia, voluptates quas voluptatibus quibusdam quae
             quidem quos quas voluptatibus quibusdam quae.
           </p>
         </div>
-        <div className="grid md:grid-cols-4 col-span-2 gap-4">
+        <div className="grid md:grid-cols-4 gap-8">
+          {data.map((member, i) => (
+            <TeamMemberCard key={i} member={member} />
+          ))}
           {data.map((member, i) => (
             <TeamMemberCard key={i} member={member} />
           ))}
@@ -29,26 +32,21 @@ export default function Team({ data }) {
 function TeamMemberCard({ member: { name, role, bio, image } }) {
   return (
     <div className="space-y-4">
-      <div className="w-full rounded-2xl overflow-hidden relative border">
-        <Image
-          src={urlFor(image).auto("format").width(1920).height(1280).url()}
-          className="w-full h-full object-cover"
-          width={1920}
-          height={1280}
-          alt={name}
-          loading="lazy"
-          blurDataURL={image.lqip}
-        />
-        <div className="p-4 absolute bottom-0 left-0 bg-gradient-to-b to-gray-900 from-transparent w-full h-full">
-          <div className="flex flex-col space-y-1 items-start justify-end w-full h-full text-white font-semibold">
-            <h3 className="text-xl font-display tracking-tighter font-semibold">
-              {name}
-            </h3>
-            <p className="tracking-widest text-white/75 text-xxs uppercase font-medium">
-              {role}
-            </p>
-          </div>
-        </div>
+      <Image
+        // src={urlFor(image).auto("format").width(1080).height(1080).url()}
+        src="/sample/square.png"
+        className="rounded-2xl shadow-inner border border-champagne-900/10"
+        width={1080}
+        height={1080}
+        alt={name}
+        loading="lazy"
+        blurDataURL={image.lqip}
+      />
+      <div>
+        <h3 className="text-lg font-display tracking-tighter font-semibold">
+          {name}
+        </h3>
+        <p className="text-sm tracking-tighter font-medium">{role}</p>
       </div>
       <p className="text-sm text-gray-600">{bio}</p>
     </div>
