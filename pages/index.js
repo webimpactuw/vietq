@@ -8,12 +8,8 @@ import { groq } from "next-sanity";
 import { PreviewSuspense } from "next-sanity/preview";
 import { usePreview } from "@/sanity/lib/preview";
 
-import EventCard from "@/components/cards/EventCard";
-import { useState } from "react";
-
 import ExitPreview from "@/components/sanity/ExitPreview";
 
-import Link from "next/link";
 import PreviewLoading from "@/components/sanity/PreviewLoading";
 
 const query = groq`*[_type == "homePage"][0]{
@@ -51,7 +47,7 @@ function HomePage({ data }) {
   return (
     <>
       <Hero data={data} />
-      <Container>{/* <Featured /> */}</Container>
+      <Container></Container>
     </>
   );
 }

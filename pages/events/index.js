@@ -136,14 +136,14 @@ function CustomEventCard({ data, i, setSelected }) {
       onMouseLeave={() => setSelected({})}
       className="pr-4 md:pr-8 last:pr-0 first:pl-4 md:first:pl-0"
     >
-      {/* {process.env.NODE_ENV === "development" && (
+      {process.env.NODE_ENV === "development" && (
         <ColorGrid
           colors={colors}
           secondary={secondary}
           primary={primary}
           base={base}
         />
-      )} */}
+      )}
       <EventCard data={data} colors={colors} />
     </div>
   );
@@ -261,19 +261,16 @@ function ColorGrid({ colors, secondary, primary, base }) {
   }
 }
 
-//colorChannelA and colorChannelB are ints ranging from 0 to 255
 function colorChannelMixer(colorChannelA, colorChannelB, amountToMix) {
   var channelA = colorChannelA * amountToMix;
   var channelB = colorChannelB * (1 - amountToMix);
   return parseInt(channelA + channelB);
 }
-//rgbA and rgbB are arrays, amountToMix ranges from 0.0 to 1.0
-//example (red): rgbA = [255,0,0]
+
 function colorMixer(rgbA, rgbB, amountToMix) {
   var r = colorChannelMixer(rgbA[0], rgbB[0], amountToMix);
   var g = colorChannelMixer(rgbA[1], rgbB[1], amountToMix);
   var b = colorChannelMixer(rgbA[2], rgbB[2], amountToMix);
-  // return "rgb(" + r + "," + g + "," + b + ")";
 
   return rgbToHex(r, g, b);
 }

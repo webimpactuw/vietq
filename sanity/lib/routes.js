@@ -5,6 +5,8 @@ import {
   UsersIcon,
 } from "@sanity/icons";
 
+// This is strictly for singleton documents, nothing else
+
 export const routes = [
   {
     title: "Home",
