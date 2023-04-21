@@ -3,20 +3,20 @@ import Container from "@/components/global/Container";
 export default function Mission() {
   return (
     <div
-      className="bg-gray-300 text-gray-700 py-8 md:py-16 "
+      className="bg-blue-900 text-white py-8 md:py-16 "
       style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='37' height='36.5' viewBox='0 0 148 146' opacity='0.025' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.8438 129.285L5.34378 140.285C-15.7637 76.2849 41.7316 -19.2152 141.344 4.78465L129.844 15.7847C79.7363 -3.71509 -1.26373 51.7849 15.8438 129.285Z' fill='%23000000'/%3E%3Cpath d='M130.737 16.2847L142.237 5.28474C163.344 69.2845 105.349 165.285 5.73693 141.285L16.2366 129.785C66.3441 149.285 147.844 93.7845 130.737 16.2847Z' fill='%23000000'/%3E%3Cpath d='M15.8438 129.285L5.34378 140.285C-15.7637 76.2849 41.7316 -19.2152 141.344 4.78465L129.844 15.7847C79.7363 -3.71509 -1.26373 51.7849 15.8438 129.285Z' stroke='%23000000'/%3E%3Cpath d='M130.737 16.2847L142.237 5.28474C163.344 69.2845 105.349 165.285 5.73693 141.285L16.2366 129.785C66.3441 149.285 147.844 93.7845 130.737 16.2847Z' stroke='%23000000'/%3E%3C/svg%3E")`,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='50' height='50' opacity='0.05' viewBox='0 0 290 290' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M159.787 129.128L149.327 140.2C128.3 75.7796 185.576 -20.3481 284.809 3.80952L273.353 14.8818C223.436 -4.74607 142.745 51.1186 159.787 129.128Z' fill='%23FFFFFF'/%3E%3Cpath d='M274.242 15.3852L285.699 4.3129C306.726 68.7332 248.952 165.364 149.719 141.207L160.179 129.631C210.095 149.259 291.285 93.3942 274.242 15.3852Z' fill='%23FFFFFF'/%3E%3Cpath d='M159.787 160.872L149.327 149.8C128.3 214.22 185.576 310.348 284.809 286.19L273.353 275.118C223.436 294.746 142.745 238.881 159.787 160.872Z' fill='%23FFFFFF'/%3E%3Cpath d='M274.242 274.615L285.699 285.687C306.726 221.267 248.952 124.636 149.719 148.793L160.179 160.369C210.095 140.741 291.285 196.606 274.242 274.615Z' fill='%23FFFFFF'/%3E%3Cpath d='M130.213 129.128L140.673 140.2C161.7 75.7796 104.424 -20.3481 5.19099 3.80952L16.6471 14.8818C66.5638 -4.74607 147.255 51.1186 130.213 129.128Z' fill='%23FFFFFF'/%3E%3Cpath d='M15.7578 15.3852L4.30127 4.3129C-16.7258 68.7332 41.0485 165.364 140.281 141.207L129.821 129.631C79.9049 149.259 -1.28451 93.3942 15.7578 15.3852Z' fill='%23FFFFFF'/%3E%3Cpath d='M130.213 160.872L140.673 149.8C161.7 214.22 104.424 310.348 5.19099 286.19L16.6471 275.118C66.5638 294.746 147.255 238.881 130.213 160.872Z' fill='%23FFFFFF'/%3E%3Cpath d='M15.7578 274.615L4.30127 285.687C-16.7258 221.267 41.0485 124.636 140.281 148.793L129.821 160.369C79.9049 140.741 -1.28451 196.606 15.7578 274.615Z' fill='%23FFFFFF'/%3E%3Cpath d='M159.787 129.128L149.327 140.2C128.3 75.7796 185.576 -20.3481 284.809 3.80952L273.353 14.8818C223.436 -4.74607 142.745 51.1186 159.787 129.128Z' stroke='%23FFFFFF'/%3E%3Cpath d='M274.242 15.3852L285.699 4.3129C306.726 68.7332 248.952 165.364 149.719 141.207L160.179 129.631C210.095 149.259 291.285 93.3942 274.242 15.3852Z' stroke='%23FFFFFF'/%3E%3Cpath d='M159.787 160.872L149.327 149.8C128.3 214.22 185.576 310.348 284.809 286.19L273.353 275.118C223.436 294.746 142.745 238.881 159.787 160.872Z' stroke='%23FFFFFF'/%3E%3Cpath d='M274.242 274.615L285.699 285.687C306.726 221.267 248.952 124.636 149.719 148.793L160.179 160.369C210.095 140.741 291.285 196.606 274.242 274.615Z' stroke='%23FFFFFF'/%3E%3Cpath d='M130.213 129.128L140.673 140.2C161.7 75.7796 104.424 -20.3481 5.19099 3.80952L16.6471 14.8818C66.5638 -4.74607 147.255 51.1186 130.213 129.128Z' stroke='%23FFFFFF'/%3E%3Cpath d='M15.7578 15.3852L4.30127 4.3129C-16.7258 68.7332 41.0485 165.364 140.281 141.207L129.821 129.631C79.9049 149.259 -1.28451 93.3942 15.7578 15.3852Z' stroke='%23FFFFFF'/%3E%3Cpath d='M130.213 160.872L140.673 149.8C161.7 214.22 104.424 310.348 5.19099 286.19L16.6471 275.118C66.5638 294.746 147.255 238.881 130.213 160.872Z' stroke='%23FFFFFF'/%3E%3Cpath d='M15.7578 274.615L4.30127 285.687C-16.7258 221.267 41.0485 124.636 140.281 148.793L129.821 160.369C79.9049 140.741 -1.28451 196.606 15.7578 274.615Z' stroke='%23FFFFFF'/%3E%3C/svg%3E")`,
       }}
     >
       <Container>
-        <div className="text-center mx-auto space-y-4">
-          <h3 className="tracking-widest uppercase text-lg font-display font-semibold">
+        <div className="text-left mx-auto space-y-4">
+          <h3 className="tracking-widest uppercase text-xl font-semibold text-white/50">
             Our Mission Statement
           </h3>
-          <h2 className="font-semibold text-5xl leading-tight tracking-tighter italic font-display">
-            "We are a group of folks devoted to celebrating and empowering LGBTQ
+          <h2 className="font-semibold text-5xl leading-tight tracking-tighter font-display">
+            We are a group of folks devoted to celebrating and empowering LGBTQ
             Vietnamese folks in the Pacific Northwest. We do this by raising
-            visibility via awareness campaigns, events, and mentorship."
+            visibility via awareness campaigns, events, and mentorship.
           </h2>
         </div>
       </Container>
