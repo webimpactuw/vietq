@@ -118,7 +118,7 @@ function InteractiveEventCard({ data, i, setSelected }) {
 
 function Pill({ children }) {
   return (
-    <div className="text-xxs md:text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest border border-champagne-200 bg-champagne text-champagne-900">
+    <div className="text-xxs md:text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest border border-champagne/10 bg-champagne text-champagne-900">
       {children}
     </div>
   );

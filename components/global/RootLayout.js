@@ -39,10 +39,10 @@ export default function RootLayout({
           name="apple-mobile-web-app-title"
           content={title != defaultTitle ? title + ` | ${defaultTitle}` : title}
         />
-        <link rel="icon" href="favicon.png" />
-        <link rel="apple-touch-icon" href="app-icon.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="app-icon.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="app-icon.png" />
+        <link rel="icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/app-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/app-icon.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/app-icon.png" />
       </Head>
       <Navbar transparent={navTransparent} preview={preview} />
       <div

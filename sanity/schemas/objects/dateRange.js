@@ -6,12 +6,13 @@ export default {
     {
       name: "start",
       title: "Start",
-      type: "datetime",
+      type: "date",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "end",
       title: "End",
-      type: "datetime",
+      type: "date",
     },
   ],
 };

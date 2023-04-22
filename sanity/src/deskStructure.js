@@ -62,6 +62,19 @@ export default (S, context) => {
                 ),
             ])
         ),
+      S.listItem()
+        .title("Blog Posts")
+        .icon(DocumentsIcon)
+        .child(
+          S.documentTypeList("blogPost")
+            .title("Blog Posts")
+            .child((documentId) =>
+              S.document()
+                .documentId(documentId)
+                .schemaType("blogPost")
+                .views([S.view.form()])
+            )
+        ),
       orderableDocumentListDeskItem({
         type: "teamMember",
         title: "Team Members",

@@ -40,6 +40,7 @@ export default function Home({ preview, data }) {
     </RootLayout>
   );
 }
+
 function HomePage({ data }) {
   return (
     <>

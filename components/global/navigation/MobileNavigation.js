@@ -5,7 +5,7 @@ export default function MobileNavigation({ open }) {
   if (open) {
     return (
       <div className="md:hidden px-4 pb-6 space-y-8 flex flex-col items-center justify-start">
-        {navigationData.slice(1, navigationData.length).map((item, index) => (
+        {navigationData.map((item, index) => (
           <Link
             key={index}
             href={item.href}
