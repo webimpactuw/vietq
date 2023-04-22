@@ -19,10 +19,10 @@ export default function Header() {
               networking events to workshops, we have something for everyone.
             </p>
             <div className="flex items-center justify-start space-x-2">
-              <button className="inline-flex uppercase tracking-widest items-center px-3.5 py-2 border rounded-full bg-blue-50 hover:bg-blue-100 hover:border-blue-100 transition-colors font-semibold text-blue-800 border-blue-50 text-xs">
+              <button className="hover:opacity-75 transition-opacity cursor-pointer border border-blue-100 bg-blue-50 text-blue-800 text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium">
                 Upcoming events
               </button>
-              <button className="inline-flex uppercase tracking-widest items-center px-3.5 py-2 text-blue-50 font-semibold text-xs hover:text-blue-100 transition-colors">
+              <button className="hover:opacity-75 transition-opacity cursor-pointer text-blue-50 text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium">
                 Past events
               </button>
             </div>

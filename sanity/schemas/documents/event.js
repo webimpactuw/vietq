@@ -45,8 +45,8 @@ export default {
       name: "description",
       title: "Description",
       type: "text",
-      validation: (Rule) => Rule.required().max(100),
-      rows: 3,
+      validation: (Rule) => Rule.required(),
+      rows: 6,
     },
     {
       name: "location",

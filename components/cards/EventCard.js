@@ -52,7 +52,8 @@ export default function EventCard({ data = null, colors, date }) {
                   color: colors["800"].color || "black",
                 }}
               >
-                {data.description || "This is the summary of the event"}
+                {data.description ||
+                  "There is no available description for this event."}
               </p>
             </div>
           </div>
@@ -73,7 +74,7 @@ export default function EventCard({ data = null, colors, date }) {
               alt={data?.title}
               width={1000}
               height={1000}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover aspect-square"
               blurDataURL={data.image.lqip}
               placeholder="blur"
             />

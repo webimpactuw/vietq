@@ -13,6 +13,9 @@ export default function JoinOurCommunity({ footer = false }) {
             ? "placeholder-gray-400 text-white bg-gray-800 border-gray-700 focus:outline-blue-700 hover:bg-gray-900"
             : "placeholder-gray-500 text-blue-900 bg-white border-gray-300 focus:outline-blue-700 hover:bg-gray-100"
         } border shadow-xl text-sm rounded-full pt-3.5 px-4 pb-4 md:w-72 h-12 font-display transition-colors`}
+        autoComplete="email"
+        required
+        name="email"
       />
       <button
         type="submit"

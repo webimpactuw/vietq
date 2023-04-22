@@ -25,6 +25,7 @@ function GeneratedImage({ value }) {
       style={{
         aspectRatio: width / height,
       }}
+      alt={value.alt || ""}
     />
   );
 }

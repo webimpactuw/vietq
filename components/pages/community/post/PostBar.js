@@ -6,12 +6,12 @@ export default function PostBar({ data }) {
   const text = `Check out this blog post from VietQ: ${data.title}`;
 
   return (
-    <div className="bg-gray-800 text-white hover:text-white/75 transition-colors border-b pt-24 pb-3 top-0 sticky border-blue-900">
+    <div className="z-10 bg-blue-900 text-white hover:text-white/75 transition-colors border-b pt-24 pb-3 top-0 sticky border-blue-900">
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between space-x-24">
         <Link href="/community">
           <div className="inline-flex items-center text-xs font-semibold uppercase tracking-widest">
             <ChevronLeftIcon className="inline-block w-5 h-t mr-2 shrink-0" />
-            Back to community
+            Back to Community
           </div>
         </Link>
         <div className="space-x-4 flex items-center justify-end">
