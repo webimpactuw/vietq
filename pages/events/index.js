@@ -28,7 +28,7 @@ export async function getStaticProps({ preview = false }) {
     return { props: { preview } };
   }
 
-  const data = await client.fetch(query);
+  const data = null;
 
   return {
     props: { preview, data },
@@ -54,7 +54,7 @@ function EventsPage({ data }) {
   return (
     <>
       <Header />
-      <UpcomingEvents data={data} />
+      <UpcomingEvents />
     </>
   );
 }

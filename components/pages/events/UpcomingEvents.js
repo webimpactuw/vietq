@@ -10,7 +10,13 @@ import { useBreakpoint } from "@/utils/responsive";
 import dynamic from "next/dynamic";
 const EventCard = dynamic(() => import("@/components/cards/EventCard"));
 
-export default function UpcomingEvents({ data }) {
+import useSWR from "swr";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+export default function UpcomingEvents() {
+  const { data, error, isLoading } = useSWR("/api/events/upcoming", fetcher);
+
   const [selected, setSelected] = useState({});
   const [size, setSize] = useState([0, 0]);
   const [distance, setDistance] = useState(0);
@@ -69,16 +75,34 @@ export default function UpcomingEvents({ data }) {
           paddingLeft: distance,
         }}
       >
-        {data.map((event, i) => (
-          <InteractiveEventCard
-            key={i}
-            setSelected={setSelected}
-            i={i}
-            distance={distance}
-            data={event}
-          />
-        ))}
+        {data && !error ? (
+          data.length > 0 ? (
+            data.map((event, i) => (
+              <InteractiveEventCard
+                key={i}
+                setSelected={setSelected}
+                i={i}
+                distance={distance}
+                data={event}
+              />
+            ))
+          ) : (
+            <p>There are no upcoming events.</p>
+          )
+        ) : (
+          Array(8)
+            .fill()
+            .map((_, i) => <SkeletonEventCard key={i} />)
+        )}
       </div>
+    </div>
+  );
+}
+
+function SkeletonEventCard() {
+  return (
+    <div className="pr-4 md:pr-8 last:pr-0 first:pl-4 md:first:pl-0 pointer-events-none">
+      <div className="w-64 h-112 bg-white/5 shrink-0 shadow-2xl rounded-4xl border-2 border-white/5 animate-pulse"></div>
     </div>
   );
 }
