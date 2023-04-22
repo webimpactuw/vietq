@@ -1,4 +1,5 @@
-import { compareAsc, format } from "date-fns";
+import format from "date-fns/format";
+import compareAsc from "date-fns/compareAsc";
 
 function getDaysLeft(date) {
   return Math.round(

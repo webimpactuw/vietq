@@ -1,4 +1,3 @@
-const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
@@ -15,24 +14,15 @@ module.exports = {
       spacing: {
         112: "30rem",
         128: "32rem",
-        144: "36rem",
-        160: "40rem",
-        176: "44rem",
       },
       letterSpacing: {
-        tightest: "-.075em",
         widest: ".15em",
       },
       fontSize: {
-        xxs: ".625rem",
         "9/2xl": "2.75rem",
       },
       borderRadius: {
         "4xl": "2rem",
-      },
-      rotate: {
-        15: "15deg",
-        30: "30deg",
       },
       colors: {
         red: {
@@ -101,19 +91,6 @@ module.exports = {
           700: "#113E7E",
           800: "#0A264C",
           900: "#040D1B",
-        },
-        purple: {
-          DEFAULT: "#543694",
-          50: "#CEC2E9",
-          100: "#C2B3E3",
-          200: "#AA95D8",
-          300: "#9377CD",
-          400: "#7B59C2",
-          500: "#6541B2",
-          600: "#543694",
-          700: "#3D276B",
-          800: "#251842",
-          900: "#0E0919",
         },
         champagne: {
           DEFAULT: "#FBE9D5",
