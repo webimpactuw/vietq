@@ -1,34 +1,8 @@
 import Image from "next/image";
-import { PortableText } from "@portabletext/react";
 import format from "date-fns/format";
 import urlFor from "@/sanity/lib/urlFor";
 
-import { getImageDimensions } from "@sanity/asset-utils";
-
-const portableTextComponents = {
-  types: {
-    image: ({ value }) => <GeneratedImage value={value} />,
-  },
-};
-
-function GeneratedImage({ value }) {
-  const { width, height } = getImageDimensions(value);
-
-  return (
-    <Image
-      src={urlFor(value).fit("max").auto("format").url()}
-      width={width}
-      height={height}
-      placeholder="blur"
-      loading="lazy"
-      blurDataURL={value.lqip}
-      style={{
-        aspectRatio: width / height,
-      }}
-      alt={value.alt || ""}
-    />
-  );
-}
+import PortableBody from "@/components/portableText/PortableBody";
 
 export default function PostBody({ data }) {
   return (
@@ -36,7 +10,7 @@ export default function PostBody({ data }) {
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="space-y-6">
           <div className="space-y-4">
-            <p className="uppercase tracking-widest text-gray-600 text-sm font-semibold">
+            <p className="text-gray-600 font-medium">
               {format(new Date(data.date), "EEEE, MMMM dd, yyyy")}
             </p>
             <h1 className="font-display font-bold text-4xl tracking-tighter">
@@ -58,7 +32,9 @@ export default function PostBody({ data }) {
               <h3 className="font-display font-semibold tracking-tight text-lg">
                 {data.author.name}
               </h3>
-              <p className="text-gray-700 text-sm">{data.author.role}</p>
+              <p className="text-gray-700 text-sm font-medium">
+                {data.author.role}
+              </p>
             </div>
           </div>
         </div>
@@ -71,12 +47,7 @@ export default function PostBody({ data }) {
           placeholder="blur"
           blurDataURL={data.image.lqip}
         />
-        <article className="prose prose-blockquote:border-champagne-500 max-w-none prose-headings:font-display prose-headings:tracking-tighter prose-headings:font-semibold">
-          <PortableText
-            value={data.content}
-            components={portableTextComponents}
-          />
-        </article>
+        <PortableBody content={data.content} />
       </div>
     </div>
   );

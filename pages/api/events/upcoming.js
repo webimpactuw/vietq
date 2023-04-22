@@ -13,6 +13,7 @@ export default async function handler(req, res) {
   location,
   dateRange,
   "slug": slug.current,
+  tags
 }`;
 
   const data = await client.fetch(query);

@@ -9,8 +9,8 @@ export default function PostBar({ data }) {
     <div className="z-10 bg-blue-900 text-white hover:text-white/75 transition-colors border-b pt-24 pb-3 top-0 sticky border-blue-900">
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between space-x-24">
         <Link href="/community">
-          <div className="inline-flex items-center text-xs font-semibold uppercase tracking-widest">
-            <ChevronLeftIcon className="inline-block w-5 h-t mr-2 shrink-0" />
+          <div className="inline-flex items-center text-sm font-medium">
+            <ChevronLeftIcon className="inline-block w-5 h-5 mr-2 shrink-0" />
             Back to Community
           </div>
         </Link>

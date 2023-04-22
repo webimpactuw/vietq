@@ -2,12 +2,27 @@ export default {
   name: "event",
   title: "Event",
   type: "document",
+  groups: [
+    {
+      title: "General",
+      name: "general",
+    },
+    {
+      title: "Information",
+      name: "information",
+    },
+    {
+      title: "Extra",
+      name: "extra",
+    },
+  ],
   fields: [
     {
       name: "title",
       title: "Title",
       type: "string",
       validation: (Rule) => Rule.required(),
+      group: "general",
     },
     {
       name: "dateRange",
@@ -16,6 +31,7 @@ export default {
         "The date range of the event. For events on a single day, use the same date for both start and end.",
       type: "dateRange",
       validation: (Rule) => Rule.required(),
+      group: "general",
     },
     {
       name: "slug",
@@ -31,6 +47,20 @@ export default {
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
+      group: "general",
+    },
+    {
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "eventTag" }],
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+      group: "general",
     },
     {
       name: "image",
@@ -40,12 +70,20 @@ export default {
         hotspot: true,
       },
       validation: (Rule) => Rule.required(),
+      group: "general",
+    },
+    {
+      name: "primaryLink",
+      title: "Primary Link",
+      type: "link",
+      group: "general",
     },
     {
       name: "description",
       title: "Description",
       type: "text",
       validation: (Rule) => Rule.required(),
+      group: "general",
       rows: 6,
     },
     {
@@ -53,6 +91,37 @@ export default {
       title: "Location",
       type: "location",
       validation: (Rule) => Rule.required(),
+      group: "information",
+    },
+    {
+      name: "content",
+      title: "Content",
+      type: "array",
+      of: [
+        {
+          type: "block",
+        },
+        {
+          type: "image",
+          title: "Image",
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+      group: "information",
+    },
+    {
+      name: "relatedLinks",
+      title: "Related Links",
+      type: "array",
+      of: [
+        {
+          type: "link",
+        },
+      ],
+      group: "extra",
     },
   ],
   orderings: [

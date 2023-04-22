@@ -8,6 +8,8 @@ import eventsPage from "./pages/eventsPage";
 import homePage from "./pages/homePage";
 import location from "./objects/location";
 import blogPost from "./documents/blogPost";
+import link from "./objects/link";
+import eventTag from "./documents/eventTag";
 
 export const schemaTypes = [
   homePage,
@@ -20,4 +22,6 @@ export const schemaTypes = [
   dateRange,
   location,
   blogPost,
+  link,
+  eventTag,
 ];

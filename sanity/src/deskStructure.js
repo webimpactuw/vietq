@@ -60,6 +60,19 @@ export default (S, context) => {
                         .views([S.view.form()])
                     )
                 ),
+              S.listItem()
+                .title("All Events")
+                .icon(DocumentsIcon)
+                .child(
+                  S.documentTypeList("event")
+                    .title("All Events")
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType("event")
+                        .views([S.view.form()])
+                    )
+                ),
             ])
         ),
       S.listItem()

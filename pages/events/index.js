@@ -8,7 +8,11 @@ import PreviewLoading from "@/components/sanity/PreviewLoading";
 import RootLayout from "@/components/global/RootLayout";
 
 import Header from "@/components/pages/events/Header";
-import UpcomingEvents from "@/components/pages/events/UpcomingEvents";
+
+import dynamic from "next/dynamic";
+const UpcomingEvents = dynamic(() =>
+  import("@/components/pages/events/UpcomingEvents")
+);
 
 const query = groq`*[_type == "event" ] | order(dateRange.start asc) {
   title,

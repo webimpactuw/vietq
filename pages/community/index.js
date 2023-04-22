@@ -3,7 +3,10 @@ import Container from "@/components/global/Container";
 
 import BlogPostCard from "@/components/cards/BlogPostCard";
 
-export default function Community() {
+import client from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+
+export default function Community({ data }) {
   return (
     <RootLayout title="Community">
       <Container>
@@ -13,13 +16,39 @@ export default function Community() {
             Learn how to grow your business with expert advice
           </p>
         </div>
-        <div className="py-2 grid grid-cols-3 gap-y-12">
-          <BlogPostCard />
-          <BlogPostCard />
-          <BlogPostCard />
-          <BlogPostCard />
+        <div className="grid grid-cols-3 gap-12">
+          {Array(3)
+            .fill()
+            .map((_, i) =>
+              data.map((post) => <BlogPostCard key={post.slug} data={post} />)
+            )}
         </div>
       </Container>
     </RootLayout>
   );
+}
+
+export async function getStaticProps() {
+  const data = await client.fetch(groq`
+    *[_type == "blogPost"] {
+      title,
+      "slug": slug.current,
+      "author": author->{
+        name,
+        image,
+        role
+      },
+      date,
+      image {
+        ...,
+        "lqip": asset->metadata.lqip
+      },
+      content[_type=="block" && style=="normal"]
+    }`);
+
+  return {
+    props: {
+      data,
+    },
+  };
 }

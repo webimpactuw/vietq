@@ -13,7 +13,18 @@ import EventBar from "@/components/pages/events/event/EventBar";
 
 import { generateColors } from "@/utils/colors";
 import { generateDates } from "@/utils/dates";
-import UpcomingEvents from "@/components/pages/events/UpcomingEvents";
+
+import dynamic from "next/dynamic";
+import PortableBody from "@/components/portableText/PortableBody";
+const UpcomingEvents = dynamic(() =>
+  import("@/components/pages/events/UpcomingEvents")
+);
+
+const Virtual = dynamic(() =>
+  import("@/components/pages/events/event/Virtual")
+);
+
+const Map = dynamic(() => import("@/components/pages/events/event/Map"));
 
 const query = groq`*[_type == "event" && slug.current==$slug][0] {
   title,
@@ -26,6 +37,9 @@ const query = groq`*[_type == "event" && slug.current==$slug][0] {
   description,
   location,
   dateRange,
+  content,
+  tags,
+  relatedLinks
 }`;
 
 export async function getStaticProps({ preview = false, params }) {
@@ -79,8 +93,39 @@ function EventPage({ data }) {
     <>
       <EventBar data={data} />
       <Header data={data} colors={colors} date={date} />
-      <Container></Container>
-      <UpcomingEvents />
+      <Container>
+        <div className="grid md:grid-cols-5 gap-4 md:gap-8 pt-4 md:py-8">
+          <div className="col-span-3 divide-y divide-gray-500">
+            <div className="space-y-4 pb-8">
+              <h2 className="text-3xl font-bold font-display tracking-tighter">
+                About this Event
+              </h2>
+              {data.content ? (
+                <PortableBody content={data.content} />
+              ) : (
+                <p>
+                  There is no information on this event. Please check back
+                  later.
+                </p>
+              )}
+            </div>
+            {data.relatedLinks && data.relatedLinks.length > 0 ? (
+              <RelatedLinks links={data.relatedLinks} />
+            ) : null}
+          </div>
+          <div className="col-span-2">
+            {data.location?.virtual ? (
+              <Virtual location={data.location} />
+            ) : data.location ? (
+              <Map location={data.location} />
+            ) : null}
+          </div>
+        </div>
+      </Container>
+      {/* <pre>
+        <code>{JSON.stringify(data, null, 2)}</code>
+      </pre> */}
+      <UpcomingEvents ignore={[data.slug]} />
     </>
   );
 }
@@ -93,5 +138,39 @@ function PreviewEventPage({ query }) {
       <EventPage data={data} />
       <ExitPreview />
     </>
+  );
+}
+
+function RelatedLinks({ links }) {
+  return (
+    <div className="space-y-4 pt-8">
+      <h2 className="text-3xl font-bold font-display tracking-tighter">
+        Related Links
+      </h2>
+      <div className="grid grid-cols-3 gap-4">
+        {links.map((link, i) => (
+          <>
+            <LinkCard key={i} link={link} />
+            <LinkCard key={i} link={link} />
+          </>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function LinkCard({ link }) {
+  return (
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-4 border border-champagne-900/10 rounded-2xl hover:opacity-75 transition-opacity bg-champagne"
+    >
+      <h4 className="text-lg font-bold font-display">{link.title}</h4>
+      <p className="text-sm text-gray-700 underline">
+        {new URL(link.url).hostname.split("www.")[1]}
+      </p>
+    </a>
   );
 }

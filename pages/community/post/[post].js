@@ -83,7 +83,7 @@ function PostPage({ data }) {
       <PostBar data={data} />
       <Container>
         <PostBody data={data} />
-        <RecentPosts />
+        <RecentPosts ignore={[data.slug]} />
       </Container>
     </>
   );

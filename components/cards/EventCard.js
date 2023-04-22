@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import urlFor from "@/sanity/lib/urlFor";
 import Link from "next/link";
+import { VideoCameraIcon } from "@heroicons/react/20/solid";
 
 export default function EventCard({ data = null, colors, date }) {
   return (
@@ -22,18 +23,25 @@ export default function EventCard({ data = null, colors, date }) {
             }' fill-opacity='0.25' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")`,
           }}
         >
-          <div
-            className="absolute right-4 top-4 text-xs px-2 pt-0.5 pb-1 rounded-full"
-            style={{
-              backgroundColor: colors["900"].color || "black",
-              color: colors["200"].color || "white",
-            }}
-          >
-            {date.daysLeft > 0
-              ? `${date.daysLeft} days left`
-              : date.daysLeft == 0
-              ? "Today"
-              : "Past"}
+          <div className="absolute right-4 top-4">
+            <div
+              className="text-xs px-2 py-1 rounded-full inline-flex items-center justify-end space-x-1"
+              style={{
+                backgroundColor: colors["900"].color || "black",
+                color: colors["200"].color || "white",
+              }}
+            >
+              {data.location?.virtual ? (
+                <VideoCameraIcon className="w-4 h-4" />
+              ) : null}
+              <span className="-mt-0.5">
+                {date.daysLeft > 0
+                  ? `${date.daysLeft} days left`
+                  : date.daysLeft == 0
+                  ? "Today"
+                  : "Past"}
+              </span>
+            </div>
           </div>
           <div className="space-y-2">
             <h2 className="font-bold text-9/2xl tracking-tightest">
@@ -59,7 +67,11 @@ export default function EventCard({ data = null, colors, date }) {
           </div>
           <p className="text-xs font-medium uppercase line-clamp-1">
             {date.long}
-            {data?.location?.name ? ` • ${data.location.name}` : ""}
+            {data?.location?.virtual
+              ? " • Virtual"
+              : data?.location?.name
+              ? ` • ${data.location.name}`
+              : ""}
           </p>
         </div>
         <div
