@@ -6,7 +6,7 @@ function getDaysLeft(date) {
   );
 }
 
-export function generateDate(dateRange, date = null) {
+export function generateDates(dateRange, date = null) {
   if (!dateRange) {
     if (date) {
       return {

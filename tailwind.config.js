@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      transitionProperty: {
+        background: "background",
+      },
       spacing: {
         112: "28rem",
         128: "32rem",
