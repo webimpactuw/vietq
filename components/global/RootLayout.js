@@ -52,7 +52,7 @@ export default function RootLayout({
       >
         {children}
       </div>
-      <CallToAction preview={preview} />
+      {/* <CallToAction preview={preview} /> */}
       <Footer preview={preview} />
     </>
   );
