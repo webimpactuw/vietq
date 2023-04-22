@@ -4,7 +4,6 @@ import { deskTool } from "sanity/desk";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
 import { googleMapsInput } from "@sanity/google-maps-input";
-import { colorInput } from "@sanity/color-input";
 import { Logo } from "./sanity/plugins/my-studio-logo/Logo";
 
 import { routes } from "./sanity/lib/routes";
@@ -26,7 +25,6 @@ export default defineConfig({
     }),
     media(),
     visionTool(),
-    colorInput(),
     googleMapsInput({
       apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     }),

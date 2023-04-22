@@ -4,13 +4,18 @@ import { PreviewSuspense } from "next-sanity/preview";
 import { usePreview } from "@/sanity/lib/preview";
 
 import RootLayout from "@/components/global/RootLayout";
-import Header from "@/components/pages/about/Header";
-import Summary from "@/components/pages/about/Summary";
-import Team from "@/components/pages/about/Team";
+// import Header from "@/components/pages/about/Header";
+// import Summary from "@/components/pages/about/Summary";
+// import Team from "@/components/pages/about/Team";
 import PreviewLoading from "@/components/sanity/PreviewLoading";
 import ExitPreview from "@/components/sanity/ExitPreview";
 import Mission from "@/components/pages/about/Mission";
 import News from "@/components/pages/about/News";
+
+import dynamic from "next/dynamic";
+const Team = dynamic(() => import("@/components/pages/about/Team"));
+const Summary = dynamic(() => import("@/components/pages/about/Summary"));
+const Header = dynamic(() => import("@/components/pages/about/Header"));
 
 const query = groq`*[_type == "aboutPage"][0] {
   title,

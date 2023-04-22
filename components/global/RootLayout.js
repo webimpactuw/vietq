@@ -3,7 +3,6 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 const Footer = dynamic(() => import("./navigation/Footer"));
 const Navbar = dynamic(() => import("./navigation/Navbar"));
-const CallToAction = dynamic(() => import("./CallToAction"));
 
 const defaultTitle = "VietQ";
 const defaultDesc = "This is VietQ's website";
@@ -28,7 +27,7 @@ export default function RootLayout({
         <meta name="description" content="{desc}" />
         <meta name="robots" content="index, follow" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://team2714.com/" />
+        <meta property="og:url" content="https://vietq.org/" />
         <meta
           property="og:title"
           content={title != defaultTitle ? title + ` | ${defaultTitle}` : title}
@@ -52,7 +51,6 @@ export default function RootLayout({
       >
         {children}
       </div>
-      {/* <CallToAction preview={preview} /> */}
       <Footer preview={preview} />
     </>
   );
