@@ -8,12 +8,13 @@ import Container from "@/components/global/Container";
 import RootLayout from "@/components/global/RootLayout";
 import { useEffect, useState } from "react";
 
+import { generateDate } from "@/utils/dates";
+
 import TextTransition, { presets } from "react-text-transition";
 
-import { format } from "date-fns";
-import coloringPalette from "coloring-palette";
+import { generateColors } from "@/utils/colors";
 
-const query = groq`*[_type == "event"] | order(date asc) {
+const query = groq`*[_type == "event" ] | order(dateRange.start asc) {
   title,
   image {
    ...,
@@ -21,6 +22,7 @@ const query = groq`*[_type == "event"] | order(date asc) {
   "colors": asset->metadata.palette,
   },
   date,
+  dateRange,
   "slug": slug.current,
 }`;
 
@@ -73,7 +75,9 @@ export default function Events({ data }) {
               <TextTransition springConfig={presets.slow}>
                 <div className="space-y-1">
                   <h2 className="text-lg md:text-xl font-bold tracking-tight font-display leading-tight">
-                    {format(new Date(selected.date), "EEEE, MMMM do, yyyy")}
+                    {/* INSERT DATE{" "}
+                    {format(new Date(selected.date), "EEEE, MMMM do, yyyy")} */}
+                    {selected.date}
                   </h2>
 
                   <h2 className="text-4xl md:text-5xl font-bold tracking-tighter font-display leading-tight">
@@ -110,18 +114,12 @@ export default function Events({ data }) {
 }
 
 function CustomEventCard({ data, i, setSelected }) {
-  let secondary = hexToRgb(
+  let colors = generateColors(
+    data?.image?.colors.dominant.background || "#007aff",
     data?.image?.colors.darkVibrant.background || "#007aff"
   );
-  let primary = hexToRgb(data?.image?.colors.dominant.background || "#007aff");
 
-  let base = colorMixer(
-    [secondary.r, secondary.g, secondary.b],
-    [primary.r, primary.g, primary.b],
-    0.25
-  );
-
-  let colors = coloringPalette(base, "hex");
+  let date = generateDate(data?.dateRange, data?.date);
 
   return (
     <div
@@ -129,22 +127,14 @@ function CustomEventCard({ data, i, setSelected }) {
         setSelected({
           bg: colors["900"].color,
           content: data.title,
-          date: data.date,
+          date: date.longest,
         })
       }
       id={`event-card-${i}`}
       onMouseLeave={() => setSelected({})}
       className="pr-4 md:pr-8 last:pr-0 first:pl-4 md:first:pl-0"
     >
-      {process.env.NODE_ENV === "development" && (
-        <ColorGrid
-          colors={colors}
-          secondary={secondary}
-          primary={primary}
-          base={base}
-        />
-      )}
-      <EventCard data={data} colors={colors} />
+      <EventCard data={data} colors={colors} date={date} />
     </div>
   );
 }
@@ -184,113 +174,9 @@ function Header() {
               </button>
             </div>
           </div>
-          <div className="col-span-3 relative">
-            <div className="left-24 relative">
-              <div className="w-80 h-80 bg-blue-200/50 rounded-full shrink-0 top-12 absolute left-32 blur-3xl" />
-              <img
-                src="/media/team.jpg"
-                alt="Events"
-                className="shrink-0 aspect-square object-cover w-72 absolute -rotate-12 top-0 left-10 rounded-2xl border-2 shadow-xl border-white/10  backdrop-blur-xl"
-              />
-              <img
-                src="/media/team.jpg"
-                alt="Events"
-                className="shrink-0 aspect-square object-cover w-36 absolute top-36 rotate-6 left-0 rounded-2xl border-2 shadow-xl border-white/10  backdrop-blur-xl"
-              />
-              <img
-                src="/media/team.jpg"
-                alt="Events"
-                className="shrink-0 aspect-square object-cover w-64 absolute top-40 left-72 rotate-12 rounded-2xl border-2 shadow-xl border-white/10 backdrop-blur-xl"
-              />
-              <img
-                src="/media/team.jpg"
-                alt="Events"
-                className="shrink-0 aspect-square object-cover w-24 absolute top-60 left-56 -rotate-12 rounded-2xl border-2 shadow-xl border-white/10  backdrop-blur-xl"
-              />
-              <img
-                src="/media/team.jpg"
-                alt="Events"
-                className="shrink-0 aspect-square object-cover w-32 absolute top-20 left-96 rotate-30 rounded-2xl border-2 shadow-xl border-white/10  backdrop-blur-xl"
-              />
-            </div>
-          </div>
+          <div className="col-span-3 relative"></div>
         </div>
       </Container>
     </div>
   );
-}
-
-function ColorGrid({ colors, secondary, primary, base }) {
-  return (
-    <div className="pb-4 space-y-4">
-      <div className="inline-flex items-center space-x-2">
-        <span className="uppercase text-xs font-medium">Bases</span>
-        <div className="inline-flex items-center -space-x-4">
-          <Color hex={rgbToHex(secondary.r, secondary.g, secondary.b)} />
-          <Color hex={rgbToHex(primary.r, primary.g, primary.b)} />
-        </div>
-        <span className="uppercase text-xs font-medium">Mixed</span>
-        <Color hex={base} />
-      </div>
-      <div className="flex-wrap flex gap-4">
-        <Color hex={colors["50"].color} />
-        <Color hex={colors["100"].color} />
-        <Color hex={colors["200"].color} />
-        <Color hex={colors["300"].color} />
-        <Color hex={colors["400"].color} />
-        <Color hex={colors["500"].color} />
-        <Color hex={colors["600"].color} />
-        <Color hex={colors["700"].color} />
-        <Color hex={colors["800"].color} />
-        <Color hex={colors["900"].color} />
-        <Color hex={colors["A100"].color} />
-        <Color hex={colors["A200"].color} />
-        <Color hex={colors["A400"].color} />
-        <Color hex={colors["A700"].color} />
-      </div>
-    </div>
-  );
-
-  function Color({ hex }) {
-    return (
-      <div
-        className="w-6 h-6 rounded-full border border-white/25"
-        style={{ backgroundColor: hex }}
-      ></div>
-    );
-  }
-}
-
-function colorChannelMixer(colorChannelA, colorChannelB, amountToMix) {
-  var channelA = colorChannelA * amountToMix;
-  var channelB = colorChannelB * (1 - amountToMix);
-  return parseInt(channelA + channelB);
-}
-
-function colorMixer(rgbA, rgbB, amountToMix) {
-  var r = colorChannelMixer(rgbA[0], rgbB[0], amountToMix);
-  var g = colorChannelMixer(rgbA[1], rgbB[1], amountToMix);
-  var b = colorChannelMixer(rgbA[2], rgbB[2], amountToMix);
-
-  return rgbToHex(r, g, b);
-}
-
-function componentToHex(c) {
-  var hex = c.toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
-}
-
-function rgbToHex(r, g, b) {
-  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
-
-function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
 }
