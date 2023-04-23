@@ -8,7 +8,7 @@ export default function BlogPostCard({ data }) {
     <Link href={`/community/post/${data.slug}`}>
       <div className="space-y-4 hover:opacity-75 transition-opacity">
         <Image
-          src={urlFor(data.image).width(1920).height(1080).url()}
+          src={urlFor(data.image).width(1920).height(1280).url()}
           width={1920}
           height={1280}
           className="w-full h-full object-cover rounded-2xl border border-champagne-900/10"
@@ -18,7 +18,7 @@ export default function BlogPostCard({ data }) {
         />
 
         <div className="space-y-2">
-          <p className="text-gray-600 text-xs font-medium">
+          <p className="text-gray-600 text-xs font-medium tracking-tight">
             {format(new Date(data.date), "EEEE, MMMM dd, yyyy")}
           </p>
           <h3 className="font-display font-semibold tracking-tight text-lg line-clamp-2">

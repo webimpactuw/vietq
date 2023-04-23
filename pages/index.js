@@ -11,7 +11,8 @@ import Hero from "@/components/pages/home/Hero";
 
 const query = groq`*[_type == "homePage"][0]{
   title,
-  description
+  description,
+  heroImage
 }`;
 
 export async function getStaticProps({ preview = false }) {

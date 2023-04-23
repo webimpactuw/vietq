@@ -21,7 +21,7 @@ export default function Pills({ tags, virtual, bg, text }) {
 function Pill({ children, bg, text }) {
   return (
     <div
-      className="text-sm px-3 py-1.5 font-medium rounded-full inline-flex items-center justify-end space-x-1"
+      className="text-sm px-3 py-1.5 font-medium rounded-full inline-flex items-center justify-end space-x-1 tracking-tight"
       style={{
         backgroundColor: bg,
         color: text,

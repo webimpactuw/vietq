@@ -83,7 +83,14 @@ function PostPage({ data }) {
       <PostBar data={data} />
       <Container>
         <PostBody data={data} />
-        <RecentPosts ignore={[data.slug]} />
+        <div className="border-t border-gray-500 pt-16">
+          <div className="space-y-8">
+            <h2 className="font-display font-bold text-5xl tracking-tighter">
+              Recent blog posts
+            </h2>
+            <RecentPosts ignore={[data.slug]} />
+          </div>
+        </div>
       </Container>
     </>
   );
