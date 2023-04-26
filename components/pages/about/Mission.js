@@ -10,10 +10,10 @@ export default function Mission() {
     >
       <Container>
         <div className="text-left mx-auto space-y-4">
-          <h3 className="tracking-widest uppercase text-xl font-semibold text-white/50">
+          <h3 className="tracking-widest uppercase md:text-xl font-semibold text-white/50">
             Our Mission Statement
           </h3>
-          <h2 className="font-semibold text-5xl leading-tight tracking-tighter font-display">
+          <h2 className="font-semibold text-3xl md:text-5xl leading-tight tracking-tighter font-display">
             We are a group of folks devoted to celebrating and empowering LGBTQ
             Vietnamese folks in the Pacific Northwest. We do this by raising
             visibility via awareness campaigns, events, and mentorship.

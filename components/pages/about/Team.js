@@ -16,7 +16,7 @@ export default function Team({ data }) {
             quidem quos quas voluptatibus quibusdam quae.
           </p>
         </div>
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {data.map((member, i) => (
             <TeamMemberCard key={i} member={member} />
           ))}

@@ -15,7 +15,7 @@ export default function Section({ data }) {
             {data.aboutSection.title}
           </h1>
         </div>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {Array(3)
             .fill()
             .map((_, i) => (
@@ -28,7 +28,7 @@ export default function Section({ data }) {
                   className="rounded-2xl shadow-inner border border-champagne-900/10"
                 />
                 <div className="space-y-2 text-center">
-                  <h3 className="text-xl font-display tracking-tighter font-semibold">
+                  <h3 className="text-2xl font-display tracking-tighter font-semibold">
                     Title
                   </h3>
                   <p className="text-sm text-gray-600">

@@ -14,7 +14,7 @@ export default function Header({ data, colors, date }) {
       }}
     >
       <Container>
-        <div className="pt-8 md:py-8 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-16">
+        <div className="pt-8 md:py-8 md:grid space-y-8 md:space-y-0 md:grid-cols-5 gap-8 md:gap-16">
           <div className="space-y-4 md:space-y-8 col-span-3 flex flex-col w-full items-start justify-center">
             <Pills
               tags={data.tags}

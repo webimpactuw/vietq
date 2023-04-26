@@ -16,6 +16,7 @@ import { generateDates } from "@/utils/dates";
 
 import dynamic from "next/dynamic";
 import PortableBody from "@/components/portableText/PortableBody";
+import { LinkIcon } from "@heroicons/react/24/outline";
 const UpcomingEvents = dynamic(() =>
   import("@/components/pages/events/UpcomingEvents")
 );
@@ -94,7 +95,7 @@ function EventPage({ data }) {
       <EventBar data={data} />
       <Header data={data} colors={colors} date={date} />
       <Container>
-        <div className="grid md:grid-cols-5 gap-4 md:gap-8 pt-4 md:py-8">
+        <div className="md:grid md:grid-cols-5 gap-4 md:gap-8 pt-4 md:py-8">
           <div className="col-span-3 divide-y divide-gray-500">
             <div className="space-y-4 pb-8">
               <h2 className="text-3xl font-bold font-display tracking-tighter">
@@ -113,7 +114,7 @@ function EventPage({ data }) {
               <RelatedLinks links={data.relatedLinks} />
             ) : null}
           </div>
-          <div className="col-span-2">
+          <div className="col-span-2 pt-8">
             {data.location?.virtual ? (
               <Virtual location={data.location} />
             ) : data.location ? (
@@ -147,7 +148,7 @@ function RelatedLinks({ links }) {
       <h2 className="text-3xl font-bold font-display tracking-tighter">
         Related Links
       </h2>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-3 gap-4">
         {links.map((link, i) => (
           <>
             <LinkCard key={i} link={link} />
@@ -165,12 +166,15 @@ function LinkCard({ link }) {
       href={link.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="p-4 border border-champagne-900/10 rounded-2xl hover:opacity-75 transition-opacity bg-champagne"
+      className="p-4 border border-champagne-900/10 rounded-2xl hover:opacity-75 transition-opacity bg-champagne flex items-center space-x-4 justify-start"
     >
-      <h4 className="text-lg font-bold font-display">{link.title}</h4>
-      <p className="text-sm text-gray-700 underline">
-        {new URL(link.url).hostname.split("www.")[1]}
-      </p>
+      <LinkIcon className="w-6 h-6 mb-2" />
+      <div>
+        <h4 className="text-lg font-bold font-display">{link.title}</h4>
+        <p className="text-sm text-gray-700 underline">
+          {new URL(link.url).hostname.split("www.")[1]}
+        </p>
+      </div>
     </a>
   );
 }
