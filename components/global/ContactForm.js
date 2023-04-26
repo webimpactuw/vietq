@@ -110,7 +110,7 @@ export default function ContactForm() {
               formik.values.message == ""
                 ? "opacity-50 cursor-not-allowed"
                 : ""
-            } inline-flex mt-4 float-right text-white bg-blue-600 border-blue-700 focus:outline-blue-800 hover:bg-blue-700 uppercase whitespace-nowrap shadow-xl border text-sm rounded-full py-2.5 px-5 font-semibold tracking-widest transition-colors`}
+            } inline-flex mt-4 float-left text-white bg-blue-600 border-blue-700 focus:outline-blue-800 hover:bg-blue-700 uppercase whitespace-nowrap shadow-xl border text-sm rounded-full py-2.5 px-5 font-semibold tracking-widest transition-colors`}
           >
             Submit form
           </button>

@@ -19,115 +19,62 @@ export default function Contact() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
               <div className="space-y-2">
                 <h3 className="text-2xl font-bold tracking-tighter font-display">
-                  About VietQ
+                  Contact VietQ
                 </h3>
                 <h1 className="text-5xl font-bold tracking-tighter font-display leading-tight">
                   Have a question?
                   <br />
                   Let&apos;s get in touch!
                 </h1>
+                <p>
+                  If you have inquries about our events or organization, please fill out this form and we'll get back to you soon!
+                </p>
               </div>
-              <Socials />
             </div>
           </Container>
+          <div className="gradient w-full h-4" />
         </div>
         <Container>
-          <ContactForm />
-        </Container>
-      </div>
-      {/* <Container>
-        <div className="max-w-4xl mx-auto pt-24 md:pt-32 pb-4 md:pb-16 space-y-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-            <div className="space-y-2">
-              <h3 className="text-2xl font-bold tracking-tighter font-display">
-                Contact Us
-              </h3>
-              <h1 className="text-5xl font-bold tracking-tighter font-display leading-tight">
-                Have a question?
-                <br />
-                Let's get in touch!
-              </h1>
-            </div>
+          <div className="grid grid-cols-2 gap-16">
+            <ContactForm />
             <Socials />
           </div>
-          <hr className="border-blue-900" />
-          <ContactForm />
-        </div>
-      </Container> */}
-      {/* <Container>
-        <div className="pt-28 md:py-32 grid md:grid-cols-2 gap-8 md:gap-20">
-          <div className="w-full space-y-8 contact-gradient pl-8 pr-10 py-8 rounded-4xl text-white">
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tighter font-display">
-                  Contact us
-                </h3>
-                <h1 className="text-5xl font-bold tracking-tighter font-display leading-tight">
-                  Let's get in touch!
-                </h1>
-              </div>
-              <p className="text-lg text-white/75 font-medium">
-                Thank you for your interest in VietQ!
-                <br />
-                If you have any inquiries about our organization, our mission,
-                or any of our initiatives, feel free to leave a message.
-              </p>
-            </div>
-            <div className="flex flex-col space-y-4">
-              <IconLink text="Seattle, WA">
-                <MapPinIcon className="text-white w-6 h-6" />
-              </IconLink>
-              <IconLink
-                text="vietqorganization@gmail.com"
-                href="@mailto:vietqorganization@gmail.com"
-              >
-                <EnvelopeIcon className="text-white w-6 h-6" />
-              </IconLink>
-              <IconLink
-                text="@vietseattle"
-                href="https://www.instagram.com/vietqseattle/?hl=en"
-              >
-                <Image
-                  src="/socials/instagram.svg"
-                  alt="Instagram"
-                  width={24}
-                  height={24}
-                  className="w-6 h-6"
-                />
-              </IconLink>
-            </div>
-          </div>
-          <ContactForm />
-        </div>
-      </Container> */}
+        </Container>
+      </div>
     </RootLayout>
   );
 }
 
 function Socials() {
   return (
-    <div className="flex flex-col items-start md:items-end justify-end space-y-4">
-      <IconLink text="Seattle, WA">
-        <MapPinIcon className="w-6 h-6" />
-      </IconLink>
+    <div className="flex flex-col items-start md:items-start justify-start space-y-4">
+      <h1 className="text-xl font-semibold tracking-tightest">Email Us</h1>
       <IconLink
         text="vietqorganization@gmail.com"
         href="@mailto:vietqorganization@gmail.com"
       >
         <EnvelopeIcon className="w-6 h-6" />
       </IconLink>
-      <IconLink
-        text="@vietseattle"
-        href="https://www.instagram.com/vietqseattle/?hl=en"
-      >
-        <Image
-          src="/socials/instagram.svg"
-          alt="Instagram"
-          width={24}
-          height={24}
-          className="w-6 h-6"
-        />
+      <IconLink text="Seattle, WA">
+        <MapPinIcon className="w-6 h-6" />
       </IconLink>
+      
+      <h1 className="text-xl font-semibold tracking-tightest">Follow Us</h1>
+      <div className="flex flex-row items-start gap-x-2">
+        <h1>f</h1>
+        <IconLink
+          text="@vietqseattle"
+          href="https://www.instagram.com/vietqseattle/?hl=en"
+        >
+          <Image
+            src="/socials/instagram.svg"
+            alt="Instagram"
+            width={24}
+            height={24}
+            className="w-6 h-6"
+          />
+        </IconLink>
+      </div>
     </div>
   );
 }

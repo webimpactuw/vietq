@@ -7,7 +7,7 @@ import { Field, ErrorMessage } from "formik";
 export function FormLabel({ htmlFor, children }) {
   return (
     <label
-      className="tracking-tightest font-semibold text-2xl"
+      className="tracking-tightest font-semibold text-xl"
       htmlFor={htmlFor}
     >
       {children}
