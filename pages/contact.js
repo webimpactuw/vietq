@@ -35,7 +35,7 @@ export default function Contact() {
           <div className="gradient w-full h-4" />
         </div>
         <Container>
-          <div className="grid grid-cols-2 gap-16">
+          <div className="grid md:grid-cols-2 gap-16 pt-12">
             <ContactForm />
             <Socials />
           </div>
@@ -47,7 +47,7 @@ export default function Contact() {
 
 function Socials() {
   return (
-    <div className="flex flex-col items-start md:items-start justify-start space-y-4">
+    <div className="flex flex-col items-start md:items-start justify-start space-y-4 md:order-last order-first">
       <h1 className="text-xl font-semibold tracking-tightest">Email Us</h1>
       <IconLink
         text="vietqorganization@gmail.com"
