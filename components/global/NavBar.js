@@ -12,13 +12,13 @@ export default function Navbar({}) {
           <NavLink href="">Contact</NavLink>
           <NavLink href="">Community</NavLink>
           <NavLink href="">Contact</NavLink>
-          <Link href="" className="bg-black text-white font-extrabold rounded-full font-sans py-2 px-4 uppercase">Donate</Link>   
+          <Link href="" className="bg-black text-white font-extrabold rounded-full font-sans py-2 px-4 uppercase">Donate</Link>
         </div>
       </div>
     </>
   );
   }
-  
+
   function NavLink({children, href}) {
     return  <Link href={href} className="hover:text-slate-400 text-black font-bold font-sans uppercase">{children}</Link>
   }
