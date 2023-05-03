@@ -12,6 +12,7 @@
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@heroicons/react": "^2.0.17",
     "@next/bundle-analyzer": "^13.3.4",
     "@portabletext/react": "^3.0.0",
