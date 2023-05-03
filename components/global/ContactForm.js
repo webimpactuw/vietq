@@ -15,6 +15,7 @@ import * as Yup from "yup";
 export default function ContactForm() {
 
 // create a state that tracks whether a form is susbmitted
+  const [submit, setSubmit] = useState(false);
 // when sstate is true, hide form and shsow ssuccesssful thing
 
   return (
