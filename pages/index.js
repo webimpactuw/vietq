@@ -47,6 +47,20 @@ function HomePage({ data }) {
     <>
       <Hero data={data} />
       <Container></Container>
+      <div
+      className="bg-green-900 text-white py-2">
+      <Container>
+        <div className="text-center mx-auto space-y-4">
+          <h3 className="tracking-widest uppercase md:text-xl font-semibold text-white/50">
+          LAND ACKNOWLEDGMENT
+          </h3>
+          <h2 className="font-semibold text-medium md:text-large leading-tight tracking-tighter font-display">
+          We would like to acknowledge that we are on the traditional land of the first people of Seattle, the Duwamish People. Many of us are spread across different areas of Washington with that said so we would also acknowledge the Coast Salish people and the tribes, bands, and nations that exist past, present, and future, and in honor with gratitude the land itself and the Duwamish Tribe and Coast Salish people.
+          </h2>
+        </div>
+      </Container>
+    </div>
+    <Container></Container>
     </>
   );
 }
