@@ -28,6 +28,7 @@ const query = groq`*[_type == "aboutPage"][0] {
     name,
     role,
     bio,
+    pronouns,
     image {
       ...,
       "lqip": asset->metadata.lqip,

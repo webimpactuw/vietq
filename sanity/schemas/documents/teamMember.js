@@ -21,6 +21,11 @@ export default {
       type: "string",
     },
     {
+      name: "pronouns",
+      title: "Pronouns",
+      type: "string",
+    },
+    {
       name: "image",
       title: "Image",
       type: "image",

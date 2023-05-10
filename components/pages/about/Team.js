@@ -20,33 +20,34 @@ export default function Team({ data }) {
           {data.map((member, i) => (
             <TeamMemberCard key={i} member={member} />
           ))}
-          {data.map((member, i) => (
+          {/* {data.map((member, i) => (
             <TeamMemberCard key={i} member={member} />
-          ))}
+          ))} */}
         </div>
       </div>
     </Container>
   );
 }
 
-function TeamMemberCard({ member: { name, role, bio, image } }) {
+function TeamMemberCard({ member: { name, role, bio, image, pronouns } }) {
   return (
     <div className="space-y-4">
       <Image
-        // src={urlFor(image).auto("format").width(1080).height(1080).url()}
-        src="/sample/square.png"
+        src={urlFor(image).auto("format").width(1080).height(1080).url()}
+        // src="/sample/square.png"
         className="rounded-2xl shadow-inner border border-champagne-900/10"
         width={1080}
         height={1080}
         alt={name}
         loading="lazy"
+        placeholder="blur"
         blurDataURL={image.lqip}
       />
       <div>
         <h3 className="text-lg font-display tracking-tighter font-semibold">
           {name}
         </h3>
-        <p className="text-sm tracking-tighter font-medium">{role}</p>
+        <p className="text-sm tracking-tighter font-medium">{pronouns}</p>
       </div>
       <p className="text-sm text-gray-600">{bio}</p>
     </div>
