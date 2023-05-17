@@ -1,4 +1,27 @@
+import subscribe from "@/pages/api/subscribe";
+import { useRef } from 'react';
+
 export default function JoinOurCommunity({ footer = false }) {
+  const inputRef = useRef(null);
+
+  const subscribe  = async (e) => {
+    e.preventDefault();
+
+    // this is where your mailchimp request is made
+
+    const res = await fetch('/api/subscribe', {
+      body: JSON.stringify({
+        email: inputRef.current.value,
+      }),
+
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      method: 'POST',
+    });
+  };
+
   return (
     <div
       className={`flex md:flex-row flex-col md:space-x-4 md:items-center ${
@@ -8,6 +31,7 @@ export default function JoinOurCommunity({ footer = false }) {
       <input
         type="email"
         placeholder="Enter your email address"
+        ref={inputRef}
         className={`${
           footer
             ? "placeholder-gray-400 text-white bg-gray-800 border-gray-700 focus:outline-blue-700 hover:bg-gray-900"
@@ -19,6 +43,7 @@ export default function JoinOurCommunity({ footer = false }) {
       />
       <button
         type="submit"
+        formaction={subscribe}
         className={`${
           footer
             ? "text-blue-900 bg-red-100 border-red-200 focus:outline-red-700 hover:bg-red-200 hover:border-red-300"
