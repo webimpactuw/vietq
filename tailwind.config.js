@@ -10,8 +10,10 @@ module.exports = {
     extend: {
       transitionProperty: {
         background: "background",
+        zIndex: "z-index",
       },
       spacing: {
+        76: "19rem",
         112: "30rem",
         128: "32rem",
       },

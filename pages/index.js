@@ -9,6 +9,8 @@ import RootLayout from "@/components/global/RootLayout";
 import Hero from "@/components/pages/home/Hero";
 import AboutSection from "@/components/pages/home/AboutSection";
 import PhotoWall from "@/components/pages/home/PhotoWall";
+import BigQuote from "@/components/pages/home/BigQuote";
+import EventsSection from "@/components/pages/home/EventsSection";
 
 const query = groq`*[_type == "homePage"][0]{
   title,
@@ -49,6 +51,8 @@ function HomePage({ data }) {
       <Hero data={data} />
       <AboutSection />
       <PhotoWall />
+      <BigQuote />
+      <EventsSection />
     </>
   );
 }

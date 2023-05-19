@@ -2,6 +2,7 @@ import Link from "next/link";
 import Container from "@/components/global/Container";
 import urlFor from "@/sanity/lib/urlFor";
 import Image from "next/image";
+import { FilledButton } from "@/components/global/Button";
 
 export default function AboutSection() {
   return (
@@ -21,12 +22,8 @@ export default function AboutSection() {
             quod, voluptate, quia, voluptates quas voluptatibus quibusdam quae
             quidem quos quas voluptatibus quibusdam quae.
           </p>
-          <Link
-            href="/about"
-            as="button"
-            className={`hover:bg-gray-700 hover:border-gray-600 transition-colors cursor-pointer border text-sm rounded-full px-4 pt-1.5 pb-2.5 tracking-tight font-medium bg-gray-900 border-gray-800 text-white`}
-          >
-            Learn more
+          <Link href="/about">
+            <FilledButton>Learn more about VietQ</FilledButton>
           </Link>
         </div>
         <div className="col-span-3 flex flex-col items-start justify-end">
