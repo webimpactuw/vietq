@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: [
@@ -28,6 +29,7 @@ module.exports = {
         "4xl": "2rem",
       },
       colors: {
+        // gray: colors.neutral,
         red: {
           DEFAULT: "#FB2647",
           50: "#FEDFE4",

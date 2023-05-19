@@ -1,5 +1,6 @@
 import Container from "@/components/global/Container";
 import Image from "next/image";
+import CommunityCard from "../home/CommunityCard";
 
 export default function Section({ data }) {
   return (
@@ -11,34 +12,14 @@ export default function Section({ data }) {
               {data.aboutSection.description}
             </p>
           </div>
-          <h1 className="text-5xl font-bold tracking-tighter font-display leading-tight md:text-right order-first md:order-last">
+          <h1 className="text-4xl font-bold tracking-tighter font-display leading-tight md:text-right order-first md:order-last">
             {data.aboutSection.title}
           </h1>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {Array(3)
-            .fill()
-            .map((_, i) => (
-              <div className="space-y-4" key={i}>
-                <Image
-                  src="/sample/landscape.png"
-                  width={1920}
-                  height={1280}
-                  alt="Landscape"
-                  className="rounded-2xl shadow-inner border border-champagne-900/10"
-                />
-                <div className="space-y-2 text-center">
-                  <h3 className="text-2xl font-display tracking-tighter font-semibold">
-                    Title
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-            ))}
+        <div className="grid md:grid-cols-3 gap-4">
+          <CommunityCard section={0} color="text-red-500" scale={false} />
+          <CommunityCard section={1} color="text-blue-500" scale={false} />
+          <CommunityCard section={2} color="text-purple-500" scale={false} />
         </div>
       </div>
     </Container>

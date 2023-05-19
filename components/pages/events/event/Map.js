@@ -30,7 +30,7 @@ export default function Map({ location }) {
           ) : null}
         </div>
       </div>
-      <div className="border-2 border-champagne-900/10 rounded-2xl overflow-hidden box-border">
+      <div className="border-2 border-champagne-700/25/10 rounded-2xl overflow-hidden box-border">
         {isLoaded ? (
           <GoogleMap
             mapContainerStyle={containerStyle}

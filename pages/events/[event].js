@@ -166,7 +166,7 @@ function LinkCard({ link }) {
       href={link.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="p-4 border border-champagne-900/10 rounded-2xl hover:opacity-75 transition-opacity bg-champagne flex items-center space-x-4 justify-start"
+      className="p-4 border border-champagne-700/25 rounded-xl hover:opacity-75 transition-opacity bg-champagne-50 flex items-center space-x-4 justify-start"
     >
       <LinkIcon className="w-6 h-6 mb-2" />
       <div>

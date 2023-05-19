@@ -54,7 +54,7 @@ function Picture({ data }) {
       width={1920}
       height={1080}
       alt=""
-      className="lg:w-96 md:w-80 w-72 object-fit flex-shrink-0 cursor-pointer pointer-events-none border border-gray-900/50 box-border"
+      className="lg:w-96 md:w-80 w-72 object-fit flex-shrink-0 cursor-pointer pointer-events-none"
     />
   );
 }

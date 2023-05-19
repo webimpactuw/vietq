@@ -11,7 +11,7 @@ export default function BlogPostCard({ data }) {
           src={urlFor(data.image).width(1920).height(1280).url()}
           width={1920}
           height={1280}
-          className="w-full h-full object-cover rounded-2xl border border-champagne-900/10"
+          className="w-full h-full object-cover rounded-2xl border border-champagne-700/25/10"
           alt={data.title}
           placeholder="blur"
           blurDataURL={data.image.lqip}
@@ -33,7 +33,7 @@ export default function BlogPostCard({ data }) {
             src={urlFor(data.author.image).auto("format").size(500, 500).url()}
             width={500}
             height={500}
-            className="w-8 h-8 rounded-full border border-champagne-900/10 shadow-inner"
+            className="w-8 h-8 rounded-full border border-champagne-700/25/10 shadow-inner"
             alt={data.author.name}
           />
           <div>

@@ -5,7 +5,7 @@ import urlFor from "@/sanity/lib/urlFor";
 
 export default function Hero({ data }) {
   return (
-    <div className="border-b border-champagne-900/10  text-white overflow-hidden relative">
+    <div className="border-b border-champagne-700/25/10  text-white overflow-hidden relative">
       <div className="absolute top-0 left-0 w-full h-full">
         <Image
           src={urlFor(data.heroImage).auto("format").size(1920, 1080).url()}

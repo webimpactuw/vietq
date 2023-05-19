@@ -35,7 +35,7 @@ function TeamMemberCard({ member: { name, role, bio, image, pronouns } }) {
       <Image
         src={urlFor(image).auto("format").width(1080).height(1080).url()}
         // src="/sample/square.png"
-        className="rounded-2xl shadow-inner border border-champagne-900/10"
+        className="rounded-2xl shadow-inner border border-champagne-700/25/10"
         width={1080}
         height={1080}
         alt={name}

@@ -9,10 +9,10 @@ import RootLayout from "@/components/global/RootLayout";
 import Hero from "@/components/pages/home/Hero";
 import AboutSection from "@/components/pages/home/AboutSection";
 import PhotoWall from "@/components/pages/home/PhotoWall";
-import BigQuote from "@/components/pages/home/BigQuote";
+// import BigQuote from "@/components/pages/home/BigQuote";
 import EventsSection from "@/components/pages/home/EventsSection";
 import CommunitySection from "@/components/pages/home/CommunitySection";
-import CallToAction from "@/components/global/CallToAction";
+import LandAcknowledgement from "@/components/pages/home/LandAcknowledgement";
 
 const query = groq`*[_type == "homePage"][0]{
   title,
@@ -53,9 +53,10 @@ function HomePage({ data }) {
       <Hero data={data} />
       <AboutSection />
       <PhotoWall />
-      <BigQuote />
+      {/* <BigQuote /> */}
       <EventsSection />
       <CommunitySection />
+      <LandAcknowledgement />
     </>
   );
 }
@@ -70,17 +71,3 @@ function PreviewHomePage({ query }) {
     </>
   );
 }
-
-// <div
-// className="bg-green-900 text-white py-2">
-// <Container>
-//   <div className="text-center mx-auto space-y-4">
-//     <h3 className="tracking-widest uppercase md:text-xl font-semibold text-white/50">
-//     LAND ACKNOWLEDGMENT
-//     </h3>
-//     <h2 className="font-semibold text-medium md:text-large leading-tight tracking-tighter font-display">
-//     We would like to acknowledge that we are on the traditional land of the first people of Seattle, the Duwamish People. Many of us are spread across different areas of Washington with that said so we would also acknowledge the Coast Salish people and the tribes, bands, and nations that exist past, present, and future, and in honor with gratitude the land itself and the Duwamish Tribe and Coast Salish people.
-//     </h2>
-//   </div>
-// </Container>
-// </div>

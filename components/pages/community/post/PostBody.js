@@ -25,7 +25,7 @@ export default function PostBody({ data }) {
                 .url()}
               width={500}
               height={500}
-              className="w-10 h-10 rounded-full border border-champagne-900/10 shadow-inner"
+              className="w-10 h-10 rounded-full border border-champagne-700/25/10 shadow-inner"
               alt={data.author.name}
             />
             <div>
@@ -42,7 +42,7 @@ export default function PostBody({ data }) {
           src={urlFor(data.image).size(1920, 1080).auto("format").url()}
           width={1920}
           height={1080}
-          className="pointer-events-none rounded-3xl select-none w-full h-full  border border-champagne-900/10"
+          className="pointer-events-none rounded-3xl select-none w-full h-full  border border-champagne-700/25/10"
           alt={data.title}
           placeholder="blur"
           blurDataURL={data.image.lqip}
