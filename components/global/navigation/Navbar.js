@@ -10,14 +10,16 @@ const MobileNavigation = dynamic(() => import("./MobileNavigation"));
 import vietQWhite from "../../../public/logos/vietq_logo_white.png";
 import vietQBlack from "../../../public/logos/vietq_logo_black.png";
 
-import { useScrollYPosition } from "react-use-scroll-position";
-
 import { useEffect, useState } from "react";
+
+import { useScrollData } from "scroll-data-hook";
 
 import Image from "next/image";
 
 export default function Navbar({ transparent = false, preview = false }) {
-  const past = useScrollYPosition() > 100;
+  const { position } = useScrollData();
+
+  const past = position.y > 100;
 
   const [open, setOpen] = useState(false);
 

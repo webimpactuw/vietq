@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
+    "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "@next/bundle-analyzer": "^13.4.2",
     "@portabletext/react": "^3.0.0",
@@ -39,10 +40,10 @@
     "react-dom": "18.2.0",
     "react-responsive": "^9.0.2",
     "react-text-transition": "^3.1.0",
-    "react-use-scroll-position": "^2.0.0",
     "sanity": "^3.11.1",
     "sanity-plugin-iframe-pane": "^2.3.0",
     "sanity-plugin-media": "^2.0.5",
+    "scroll-data-hook": "^1.0.4",
     "swr": "^2.1.5",
     "tailwindcss": "3.3.2",
     "yup": "^1.1.1"

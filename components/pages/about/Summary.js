@@ -1,6 +1,6 @@
 import Container from "@/components/global/Container";
 import Image from "next/image";
-import CommunityCard from "../home/CommunityCard";
+import CommunityCard from "../../cards/CommunityCard";
 
 export default function Section({ data }) {
   return (

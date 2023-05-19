@@ -1,6 +1,6 @@
 import Container from "@/components/global/Container";
 import { StarIcon } from "@heroicons/react/24/solid";
-import CommunityCard from "./CommunityCard";
+import CommunityCard from "../../cards/CommunityCard";
 
 export default function CommunitySection() {
   return (

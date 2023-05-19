@@ -57,4 +57,28 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .events-red {
+    @apply from-red-900 to-red-800 border-red-900;
+  }
+
+  .events-blue {
+    @apply from-blue-900 to-blue-800 border-blue-900;
+  }
+
+  .events-green {
+    @apply from-green-900 to-green-800 border-green-900;
+  }
+
+  .events-yellow {
+    @apply from-yellow-900 to-yellow-800 border-yellow-900;
+  }
+
+  .events-purple {
+    @apply from-purple-900 to-purple-800 border-purple-900;
+  }
+
+  .events-orange {
+    @apply from-orange-900 to-orange-800 border-orange-900;
+  }
 }
