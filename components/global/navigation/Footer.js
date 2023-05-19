@@ -29,12 +29,12 @@ export default function Footer({ preview = false }) {
               <HorizontalNavigation />
               <VerticalNavigation />
             </div>
-            <div className="space-y-6 md:pt-0 pt-12">
+            {/* <div className="space-y-6 md:pt-0 pt-12">
               <h3 className="tracking-tighter text-3xl font-semibold font-display">
                 Subscribe to our newsletter
               </h3>
               <JoinOurCommunity footer={true} />
-            </div>
+            </div> */}
           </div>
           <div className="pt-8 flex md:flex-row md:items-center md:justify-between md:space-x-16 flex-col-reverse">
             <small className="text-xs uppercase tracking-widest">

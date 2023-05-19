@@ -53,21 +53,21 @@ function CardTrick() {
         setCurrent={setCurrent}
         index={2}
         nextIndex={0}
-        image={"/sample/photo.png"}
+        image={"/sample/card-3.png"}
       ></CardElement>
       <CardElement
         current={current}
         setCurrent={setCurrent}
         index={1}
         nextIndex={2}
-        image={"/sample/photo.png"}
+        image={"/sample/card-2.png"}
       ></CardElement>
       <CardElement
         current={current}
         setCurrent={setCurrent}
         index={0}
         nextIndex={1}
-        image={"/sample/photo.png"}
+        image={"/sample/card-1.png"}
       ></CardElement>
     </div>
   );

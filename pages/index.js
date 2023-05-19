@@ -12,6 +12,7 @@ import PhotoWall from "@/components/pages/home/PhotoWall";
 import BigQuote from "@/components/pages/home/BigQuote";
 import EventsSection from "@/components/pages/home/EventsSection";
 import CommunitySection from "@/components/pages/home/CommunitySection";
+import CallToAction from "@/components/global/CallToAction";
 
 const query = groq`*[_type == "homePage"][0]{
   title,

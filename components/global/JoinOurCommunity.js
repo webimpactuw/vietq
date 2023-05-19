@@ -1,24 +1,24 @@
 import subscribe from "@/pages/api/subscribe";
-import { useRef } from 'react';
+import { useRef } from "react";
 
 export default function JoinOurCommunity({ footer = false }) {
   const inputRef = useRef(null);
 
-  const subscribe  = async (e) => {
+  const subscribe = async (e) => {
     e.preventDefault();
 
     // this is where your mailchimp request is made
 
-    const res = await fetch('/api/subscribe', {
+    const res = await fetch("/api/subscribe", {
       body: JSON.stringify({
         email: inputRef.current.value,
       }),
 
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
 
-      method: 'POST',
+      method: "POST",
     });
   };
 
@@ -46,7 +46,7 @@ export default function JoinOurCommunity({ footer = false }) {
         formaction={subscribe}
         className={`${
           footer
-            ? "text-blue-900 bg-red-100 border-red-200 focus:outline-red-700 hover:bg-red-200 hover:border-red-300"
+            ? "text-gray-900 bg-white border-gray-300 focus:outline-blue-800 hover:bg-gray-300 hover:border-gray-700"
             : "text-white bg-blue-600 border-blue-700 focus:outline-blue-800 hover:bg-blue-700 hover:border-blue-800"
         } uppercase whitespace-nowrap shadow-xl h-12 border text-xs rounded-full py-2 px-6 font-semibold tracking-widest transition-colors`}
       >

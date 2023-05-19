@@ -3,6 +3,7 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 const Footer = dynamic(() => import("./navigation/Footer"));
 const Navbar = dynamic(() => import("./navigation/Navbar"));
+const CallToAction = dynamic(() => import("./CallToAction"));
 
 const defaultTitle = "VietQ";
 const defaultDesc = "This is VietQ's website";
@@ -51,6 +52,7 @@ export default function RootLayout({
       >
         {children}
       </div>
+      <CallToAction />
       <Footer preview={preview} />
     </>
   );
