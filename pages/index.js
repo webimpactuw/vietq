@@ -11,6 +11,7 @@ import AboutSection from "@/components/pages/home/AboutSection";
 import PhotoWall from "@/components/pages/home/PhotoWall";
 import BigQuote from "@/components/pages/home/BigQuote";
 import EventsSection from "@/components/pages/home/EventsSection";
+import CommunitySection from "@/components/pages/home/CommunitySection";
 
 const query = groq`*[_type == "homePage"][0]{
   title,
@@ -53,6 +54,7 @@ function HomePage({ data }) {
       <PhotoWall />
       <BigQuote />
       <EventsSection />
+      <CommunitySection />
     </>
   );
 }

@@ -21,6 +21,18 @@
     );
   }
 
+  .gradient.one {
+    background: linear-gradient(to right, #fb2647, #ff7842, #ffb042);
+  }
+
+  .gradient.two {
+    background: linear-gradient(to right, #ffb042, #35e37c, #1d69d3, #7b59c2);
+  }
+
+  .gradient.three {
+    background: linear-gradient(to right, #7b59c2, #fecbd3, #a1c3f2);
+  }
+
   .contact-gradient {
     background: radial-gradient(
       circle at bottom right,

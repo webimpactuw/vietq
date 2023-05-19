@@ -97,7 +97,7 @@ function CardElement({
         width={1920}
         height={1440}
         alt=""
-        className={`w-full rounded-xl md:rounded-3xl border-2 border-gray-900 w-60 md:w-76`}
+        className={`w-full rounded-xl md:rounded-3xl border-2 border-gray-900 w-56 md:w-76`}
       />
       <div
         className={`${
