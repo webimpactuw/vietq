@@ -26,7 +26,6 @@ const query = groq`*[_type == "aboutPage"][0] {
   aboutSection,
   "members": *[_type == "teamMember"] | order(orderRank) {
     name,
-    role,
     bio,
     pronouns,
     image {

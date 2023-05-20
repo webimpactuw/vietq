@@ -1,6 +1,15 @@
 import { StarIcon } from "@heroicons/react/24/solid";
 
-export default function CommunityCard({ section, color, scale = true }) {
+export default function CommunityCard({
+  section,
+  color,
+  scale = true,
+  data = {
+    title: "Title",
+    description: "Description",
+  },
+  children = <StarIcon className={`w-8 h-8 ${color}`} />,
+}) {
   return (
     <div
       className={`rounded-xl border overflow-hidden bg-champagne-50 border-champagne-700/25 ${
@@ -8,15 +17,9 @@ export default function CommunityCard({ section, color, scale = true }) {
       }`}
     >
       <div className="p-8 space-y-2">
-        <StarIcon className={`w-8 h-8 ${color}`} />
-        <h3 className="text-lg font-semibold font-display">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </h3>
-        <p className="text-sm font-medium text-gray-700">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-          quod, voluptate, quia, voluptates quas voluptatibus quibusdam quae
-          quidem quos quas voluptatibus quibusdam quae.
-        </p>
+        {children}
+        <h3 className="text-lg font-semibold font-display">{data.title}</h3>
+        <p className="text-sm font-medium text-gray-700">{data.description}</p>
       </div>
       <div
         className={`gradient h-2 w-full ${

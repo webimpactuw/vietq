@@ -85,7 +85,6 @@ export async function getStaticProps() {
       "author": author->{
         name,
         image,
-        role
       },
       date,
       image {

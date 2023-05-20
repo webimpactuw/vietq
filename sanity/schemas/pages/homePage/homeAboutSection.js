@@ -1,35 +1,28 @@
 export default {
-  name: "homePage",
-  title: "Home Page",
-  type: "document",
+  name: "homeAboutSection",
+  title: "Home About Section",
+  type: "object",
   fields: [
     {
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "description",
       title: "Description",
       type: "text",
+      validation: (Rule) => Rule.required(),
     },
     {
-      name: "heroImage",
-      title: "Hero Image",
+      name: "image",
+      title: "Image",
       type: "image",
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     },
   ],
-  preview: {
-    select: {
-      title: "title",
-    },
-    prepare() {
-      return {
-        title: "Home",
-      };
-    },
-  },
 };

@@ -15,9 +15,34 @@ import CommunitySection from "@/components/pages/home/CommunitySection";
 import LandAcknowledgement from "@/components/pages/home/LandAcknowledgement";
 
 const query = groq`*[_type == "homePage"][0]{
-  title,
-  description,
-  heroImage
+  hero {
+    ...,
+    heroImage {
+      ...,
+      "lqip": asset->metadata.lqip,
+    }
+  },
+  about {
+    ...,
+    image {
+      ...,
+      "lqip": asset->metadata.lqip,
+    }
+  },
+  photoWall {
+    images [] {
+      ...,
+      "lqip": asset->metadata.lqip,
+    }
+  },
+  events {
+    ...,
+    images [] {
+      ...,
+      "lqip": asset->metadata.lqip,
+    }
+  },
+  community
 }`;
 
 export async function getStaticProps({ preview = false }) {
@@ -50,12 +75,12 @@ export default function Home({ preview, data }) {
 function HomePage({ data }) {
   return (
     <>
-      <Hero data={data} />
-      <AboutSection />
-      <PhotoWall />
+      <Hero data={data.hero} />
+      <AboutSection data={data.about} />
+      <PhotoWall data={data.photoWall} />
       {/* <BigQuote /> */}
-      <EventsSection />
-      <CommunitySection />
+      <EventsSection data={data.events} />
+      <CommunitySection data={data.community} />
       <LandAcknowledgement />
     </>
   );

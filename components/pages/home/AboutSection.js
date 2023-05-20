@@ -4,7 +4,7 @@ import urlFor from "@/sanity/lib/urlFor";
 import Image from "next/image";
 import { FilledButton } from "@/components/global/Button";
 
-export default function AboutSection() {
+export default function AboutSection({ data }) {
   return (
     <Container>
       <div className="pt-24 md:pt-32 pb-4 md:pb-16 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-16">
@@ -14,13 +14,11 @@ export default function AboutSection() {
               About VietQ
             </h3>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tighter font-display leading-tight">
-              Who Are We?
+              {data.title}
             </h2>
           </div>
           <p className="text-base md:text-lg font-medium text-gray-700">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            quod, voluptate, quia, voluptates quas voluptatibus quibusdam quae
-            quidem quos quas voluptatibus quibusdam quae.
+            {data.description}
           </p>
           <Link href="/about">
             <FilledButton>Learn more about VietQ</FilledButton>
@@ -28,11 +26,14 @@ export default function AboutSection() {
         </div>
         <div className="col-span-3 flex flex-col items-start justify-end">
           <Image
-            src="/sample/landscape.png"
+            src={urlFor(data.image).auto("format").size(1920, 1080).url()}
             width={1920}
             height={1080}
-            alt=""
+            alt="About VietQ"
             className="w-full rounded-3xl border-2 border-gray-900"
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL={data.image.lqip}
           />
         </div>
       </div>

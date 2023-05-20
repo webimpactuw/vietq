@@ -1,6 +1,8 @@
 import Container from "@/components/global/Container";
 import urlFor from "@/sanity/lib/urlFor";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Team({ data }) {
   return (
@@ -29,7 +31,9 @@ export default function Team({ data }) {
   );
 }
 
-function TeamMemberCard({ member: { name, role, bio, image, pronouns } }) {
+function TeamMemberCard({ member: { name, bio, image, pronouns } }) {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <div className="space-y-4">
       <Image
@@ -49,7 +53,20 @@ function TeamMemberCard({ member: { name, role, bio, image, pronouns } }) {
         </h3>
         <p className="text-sm tracking-tighter font-medium">{pronouns}</p>
       </div>
-      <p className="text-sm text-gray-600">{bio}</p>
+      <p className={`text-sm text-gray-600 ${showModal ? "line-clamp-6" : ""}`}>
+        {bio}
+      </p>
+      <button
+        className="text-xs font-medium hover:opacity-75 transition-opacity"
+        onClick={() => setShowModal(!showModal)}
+      >
+        Show {showModal < 100 ? "more" : "less"}
+        <ChevronDownIcon
+          className={`w-6 h-6 mx-auto text-gray-600 inline-block -mt-0.5 ${
+            !showModal ? "transform rotate-180" : ""
+          }`}
+        />
+      </button>
     </div>
   );
 }

@@ -41,9 +41,9 @@ export default function BlogPostCard({ data }) {
               <h3 className="font-display text-sm font-semibold tracking-tight">
                 {data.author.name}
               </h3>
-              <p className="text-gray-700 text-xs font-medium">
+              {/* <p className="text-gray-700 text-xs font-medium">
                 {data.author.role}
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -85,9 +85,9 @@ export default function BlogPostCard({ data }) {
             <h3 className="font-display text-sm font-semibold tracking-tight">
               {data.author.name}
             </h3>
-            <p className="text-gray-700 text-xs font-medium">
+            {/* <p className="text-gray-700 text-xs font-medium">
               {data.author.role}
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

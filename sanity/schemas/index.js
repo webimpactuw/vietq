@@ -10,6 +10,12 @@ import location from "./objects/location";
 import blogPost from "./documents/blogPost";
 import link from "./objects/link";
 import eventTag from "./documents/eventTag";
+import homeAboutSection from "./pages/homePage/homeAboutSection";
+import homeHero from "./pages/homePage/homeHero";
+import homePhotoWall from "./pages/homePage/homePhotoWall";
+import homeEventsSection from "./pages/homePage/homeEventsSection";
+import homeCommunitySection from "./pages/homePage/homeCommunitySection";
+import heroCommunityCard from "./pages/homePage/heroCommunityCard";
 
 export const schemaTypes = [
   homePage,
@@ -24,4 +30,10 @@ export const schemaTypes = [
   blogPost,
   link,
   eventTag,
+  homeAboutSection,
+  homeHero,
+  homePhotoWall,
+  homeEventsSection,
+  homeCommunitySection,
+  heroCommunityCard,
 ];

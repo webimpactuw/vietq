@@ -13,6 +13,9 @@ export default function Hero({ data }) {
           height={1080}
           className="w-full h-full object-cover pointer-events-none select-none"
           alt="Home Page Gero Background"
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL={data.heroImage.lqip}
         />
       </div>
       <div className="relative bg-gradient-to-b from-blue-900 to-blue-900/25">
