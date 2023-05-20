@@ -9,7 +9,7 @@ import RootLayout from "@/components/global/RootLayout";
 import Hero from "@/components/pages/home/Hero";
 import AboutSection from "@/components/pages/home/AboutSection";
 import PhotoWall from "@/components/pages/home/PhotoWall";
-// import BigQuote from "@/components/pages/home/BigQuote";
+import BigQuote from "@/components/pages/home/BigQuote";
 import EventsSection from "@/components/pages/home/EventsSection";
 import CommunitySection from "@/components/pages/home/CommunitySection";
 import LandAcknowledgement from "@/components/pages/home/LandAcknowledgement";
@@ -81,7 +81,7 @@ function HomePage({ data }) {
       <Hero data={data.hero} />
       <AboutSection data={data.about} />
       <PhotoWall data={data.photoWall} />
-      {/* <BigQuote /> */}
+      <BigQuote />
       <EventsSection data={data.events} />
       <CommunitySection data={data.community} />
       <LandAcknowledgement />
