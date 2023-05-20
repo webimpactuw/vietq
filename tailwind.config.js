@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "wheat-graphic": "url('/bgs/wheat-background-rgb.svg')",
+      },
       transitionProperty: {
         background: "background",
         zIndex: "z-index",
@@ -17,6 +20,9 @@ module.exports = {
         76: "19rem",
         112: "30rem",
         128: "32rem",
+      },
+      aspectRatio: {
+        "3/2": "3 / 2",
       },
       letterSpacing: {
         tightest: "-.075em",

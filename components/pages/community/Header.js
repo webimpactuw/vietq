@@ -1,16 +1,24 @@
 import Container from "@/components/global/Container";
+import urlFor from "@/sanity/lib/urlFor";
 import Image from "next/image";
 
-export default function Header() {
+export default function Header({ data }) {
   return (
-    <div className="border-b border-blue-900  text-white overflow-hidden relative">
+    <div className="border-b border-gray-900  text-white overflow-hidden relative">
       <div className="absolute top-0 left-0 w-full h-full">
         <Image
-          src="/sample/landscape.png"
+          src={urlFor(data.heroImage)
+            .auto("format")
+            .width(1920)
+            .height(1080)
+            .url()}
           width={1920}
           height={1080}
           className="w-full h-full object-cover pointer-events-none select-none"
           alt="Community"
+          placeholder="blur"
+          blurDataURL={data.heroImage.lqip}
+          priority={true}
         />
       </div>
       <div className="relative bg-gradient-to-b from-blue-900 to-blue-900/25">
@@ -22,14 +30,11 @@ export default function Header() {
                   Community
                 </h3>
                 <h1 className="text-5xl md:text-6xl font-bold tracking-tighter font-display leading-tight">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod
+                  {data.title}
                 </h1>
               </div>
               <p className="text-lg md:text-xl font-medium text-white/75">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua sed
-                do eiusmod tempor.
+                {data.description}
               </p>
               {/* <div className="flex items-center justify-center space-x-2">
                 <button className="hover:opacity-75 transition-opacity cursor-pointer border border-blue-100 bg-blue-50 text-blue-800 text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium">

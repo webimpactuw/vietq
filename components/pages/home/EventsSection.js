@@ -8,7 +8,7 @@ import { CursorArrowRaysIcon } from "@heroicons/react/24/solid";
 
 export default function EventsSection({ data }) {
   return (
-    <div className="bg-gray-900 text-white">
+    <div className="bg-blue-900 text-white bg-wheat-graphic bg-center bg-no-repeat">
       <Container>
         <div className="py-8 md:py-32 md:grid grid-cols-1 md:grid-cols-5 space-y-16 md:space-y-0 md:gap-32">
           <div className="col-span-2 flex items-center justify-center">
@@ -73,14 +73,7 @@ function CardTrick({ data }) {
   );
 }
 
-function CardElement({
-  current,
-  setCurrent,
-  index,
-  nextIndex,
-  data,
-  // children,
-}) {
+function CardElement({ current, setCurrent, index, nextIndex, data }) {
   return (
     <div
       className={`absolute top-0 left-0 transform transition-all space-y-2 cursor-pointer mx-auto w-60 md:w-76 bg-gray-100 border-gray-500 border shadow-xl hover:shadow-2xl p-3 rounded ${
@@ -91,6 +84,9 @@ function CardElement({
           : "rotate-[15deg] z-20 md:hover:rotate-[20deg]"
       }`}
       onClick={() => setCurrent(index)}
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")`,
+      }}
     >
       <Image
         src={urlFor(data.image).auto("format").height(1080).width(1080).url()}
@@ -105,7 +101,7 @@ function CardElement({
       <p
         className={`${
           current === index ? "opacity-100" : "opacity-0"
-        } transition-opacity text-center p-4 text-gray-900 font-display text-base rounded-xl font-medium h-20 flex items-center justify-center`}
+        } transition-opacity text-center p-4 text-gray-900 font-display text-sm md:text-base rounded-xl font-medium h-20 flex items-center justify-center`}
       >
         {data.description}
       </p>

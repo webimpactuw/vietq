@@ -15,4 +15,7 @@ export default {
       type: "date",
     },
   ],
+  options: {
+    columns: 2,
+  },
 };

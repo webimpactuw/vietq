@@ -1,6 +1,6 @@
 export default {
-  name: "eventTag",
-  title: "Event Tag",
+  name: "resourceTag",
+  title: "Resource Tag",
   type: "document",
   fields: [
     {
@@ -17,6 +17,15 @@ export default {
       options: {
         source: "title",
         maxLength: 96,
+      },
+    },
+    {
+      name: "color",
+      title: "Color",
+      type: "color",
+      validation: (Rule) => Rule.required(),
+      options: {
+        disableAlpha: true,
       },
     },
   ],

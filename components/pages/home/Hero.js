@@ -5,17 +5,17 @@ import urlFor from "@/sanity/lib/urlFor";
 
 export default function Hero({ data }) {
   return (
-    <div className="border-b border-champagne-700/25  text-white overflow-hidden relative">
+    <div className="border-b border-gray-900  text-white overflow-hidden relative">
       <div className="absolute top-0 left-0 w-full h-full">
         <Image
           src={urlFor(data.heroImage).auto("format").size(1920, 1080).url()}
           width={1920}
           height={1080}
           className="w-full h-full object-cover pointer-events-none select-none"
-          alt="Home Page Gero Background"
-          loading="lazy"
+          alt="Home Page Hero Background"
           placeholder="blur"
           blurDataURL={data.heroImage.lqip}
+          priority={true}
         />
       </div>
       <div className="relative bg-gradient-to-b from-blue-900 to-blue-900/25">

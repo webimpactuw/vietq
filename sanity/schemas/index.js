@@ -18,6 +18,8 @@ import homeCommunitySection from "./pages/homePage/homeCommunitySection";
 import heroCommunityCard from "./pages/homePage/heroCommunityCard";
 import aboutCard from "./pages/aboutPage/aboutCard";
 import homeEventsCard from "./pages/homePage/homeEventsCard";
+import resource from "./documents/resource";
+import resourceTag from "./documents/resourceTag";
 
 export const schemaTypes = [
   homePage,
@@ -40,4 +42,6 @@ export const schemaTypes = [
   heroCommunityCard,
   aboutCard,
   homeEventsCard,
+  resource,
+  resourceTag,
 ];

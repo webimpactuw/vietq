@@ -14,4 +14,7 @@ export default {
       type: "url",
     },
   ],
+  options: {
+    columns: 2,
+  },
 };

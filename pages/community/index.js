@@ -8,16 +8,145 @@ import { groq } from "next-sanity";
 import Header from "@/components/pages/community/Header";
 import FromTheBlog from "@/components/pages/community/FromTheBlog";
 import { LinkIcon } from "@heroicons/react/20/solid";
+import PreviewLoading from "@/components/sanity/PreviewLoading";
+import { PreviewSuspense } from "next-sanity/preview";
+import ExitPreview from "@/components/sanity/ExitPreview";
+import UniversalResourceCard from "@/components/cards/UniversalResourceCard";
 
-export default function Community({ data }) {
+const query = groq`*[_type == "communityPage"][0] {
+    ...,
+    heroImage {
+      ...,
+      "lqip": asset->metadata.lqip,
+    },
+  "resourceTags": *[_type == "resourceTag"],
+  "resources": *[_type == "resource" || _type == "blogPost"] | order(_updatedAt desc) {
+    _type,
+    _updatedAt,
+    _createdAt,
+    title,
+    description,
+    "slug": slug.current,
+    "author": author->{
+      name,
+      image,
+    },
+    link,
+    date,
+    image {
+      ...,
+      "lqip": asset->metadata.lqip,
+    },
+    tags[]->{
+      title,
+      slug,
+    },
+    content[_type=="block" && style=="normal"]
+  }
+}`;
+
+// export async function getStaticProps() {
+//   const data = await client.fetch(groq`
+//     *[_type == "blogPost"] {
+//       title,
+//       "slug": slug.current,
+//       "author": author->{
+//         name,
+//         image,
+//       },
+//       date,
+//       image {
+//         ...,
+//         "lqip": asset->metadata.lqip
+//       },
+//       content[_type=="block" && style=="normal"]
+//     }`);
+
+//   return {
+//     props: {
+//       data,
+//     },
+//   };
+// }
+
+export async function getStaticProps({ preview = false }) {
+  if (preview) {
+    return { props: { preview } };
+  }
+
+  const data = await client.fetch(query);
+
+  return {
+    props: { preview, data },
+    revalidate: parseInt(process.env.NEXT_PUBLIC_REVALIDATE),
+  };
+}
+
+export default function Community({ preview, data }) {
   return (
-    <RootLayout title="Community" navTransparent={true}>
-      <Header />
-      <Container>
-        <FromTheBlog />
-        <Resources />
-      </Container>
+    <RootLayout title="Community" navTransparent={true} preview={preview}>
+      {preview ? (
+        <PreviewSuspense fallback={<PreviewLoading />}>
+          <PreviewCommunityPage query={query} />
+        </PreviewSuspense>
+      ) : (
+        <CommunityPage data={data} />
+      )}
     </RootLayout>
+  );
+}
+
+function CommunityPage({ data }) {
+  return (
+    <>
+      <Header data={data} />
+      <FromTheBlog />
+      {/* <Container>
+        <Resources />
+        {JSON.stringify(data)}
+      </Container> */}
+      <AllResources data={data} />
+    </>
+  );
+}
+
+function AllResources({ data }) {
+  return (
+    <Container>
+      <div className="pt-24 pb-32 relative z-10 space-y-4">
+        <h2 className="font-display text-6xl tracking-tighter font-semibold ">
+          All Resources
+        </h2>
+        <div>
+          {data.resourceTags.map((tag) => (
+            <div
+              className="text-sm font-medium text-gray-500 px-2 py-1 rounded-full bg-gray-100 inline-flex items-center space-x-2"
+              key={tag.slug}
+            >
+              {tag.title}
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {data.resources.map((resource) => (
+            // <div key={resource.slug}></div>
+            <UniversalResourceCard resource={resource} key={resource.slug} />
+          ))}
+        </div>
+      </div>
+    </Container>
+  );
+}
+
+function PreviewCommunityPage({ query }) {
+  const data = usePreview(null, query);
+
+  return (
+    <>
+      <CommunityPage data={data} />
+      <ExitPreview />
+    </>
   );
 }
 
@@ -75,30 +204,6 @@ function ResourcePill({ red = false }) {
       {red ? "Red Pill" : "Blue Pill"}
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const data = await client.fetch(groq`
-    *[_type == "blogPost"] {
-      title,
-      "slug": slug.current,
-      "author": author->{
-        name,
-        image,
-      },
-      date,
-      image {
-        ...,
-        "lqip": asset->metadata.lqip
-      },
-      content[_type=="block" && style=="normal"]
-    }`);
-
-  return {
-    props: {
-      data,
-    },
-  };
 }
 
 function RecentResources() {

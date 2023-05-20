@@ -30,7 +30,7 @@ export default function Header({ data }) {
           fill="true"
           className="pointer-events-none select-none w-full h-full object-cover"
           blurDataURL={data.teamPicture.lqip}
-          loading="lazy"
+          priority={true}
           placeholder="blur"
           alt={data.teamPicture.altText}
         />

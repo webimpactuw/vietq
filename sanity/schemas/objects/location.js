@@ -35,4 +35,7 @@ export default {
       hidden: ({ parent }) => !parent?.virtual,
     },
   ],
+  options: {
+    columns: 2,
+  },
 };

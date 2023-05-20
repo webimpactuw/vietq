@@ -3,6 +3,7 @@ import { groq } from "next-sanity";
 
 export default async function handler(req, res) {
   const query = groq` *[_type == "blogPost"][0...3] {
+     ...,
       title,
       "slug": slug.current,
       "author": author->{

@@ -6,7 +6,8 @@ const Navbar = dynamic(() => import("./navigation/Navbar"));
 const CallToAction = dynamic(() => import("./CallToAction"));
 
 const defaultTitle = "VietQ";
-const defaultDesc = "This is VietQ's website";
+const defaultDesc =
+  "A LGBTQ Vietnamese led community organization based in Seattle, WA";
 
 export default function RootLayout({
   title = defaultTitle,
@@ -34,6 +35,7 @@ export default function RootLayout({
           content={title != defaultTitle ? title + ` | ${defaultTitle}` : title}
         />
         <meta property="og:description" content={desc} />
+        <meta property="og:image" content="/full.png" />
         <meta name="apple-mobile-web-app-capable" content="no" />
         <meta
           name="apple-mobile-web-app-title"
@@ -45,13 +47,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="114x114" href="/app-icon.png" />
       </Head>
       <Navbar transparent={navTransparent} preview={preview} />
-      <div
-        className={
-          process.env.NODE_ENV === "development" ? "debug-screens" : ""
-        }
-      >
-        {children}
-      </div>
+      {children}
       <CallToAction />
       <Footer preview={preview} />
     </>

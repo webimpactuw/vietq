@@ -1,9 +1,9 @@
-import BlogPostCard from "@/components/cards/BlogPostCard";
+import UniversalResourceCard from "@/components/cards/UniversalResourceCard";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export default function RecentPosts({ ignore = [] }) {
+export default function RecentPosts({ ignore = [], light = false }) {
   const { data, error, isLoading } = useSWR(
     "/api/community/recentPosts",
     fetcher
@@ -15,7 +15,13 @@ export default function RecentPosts({ ignore = [] }) {
   return filtered.length > 0 ? (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {filtered.map((post) => (
-        <BlogPostCard key={post.slug} data={post} />
+        <UniversalResourceCard
+          key={post.slug}
+          resource={post}
+          tags={false}
+          forceBlog={true}
+          light={light}
+        />
       ))}
     </div>
   ) : (
