@@ -18,9 +18,7 @@ export default function Header({ data }) {
           </div>
           <div className="col-span-2 flex flex-col items-start justify-end">
             <p className="text-lg md:text-xl font-medium text-gray-700">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-              quod, voluptate, quia, voluptates quas voluptatibus quibusdam quae
-              quidem quos quas voluptatibus quibusdam quae.
+              {data.description}
             </p>
           </div>
         </div>
@@ -33,6 +31,7 @@ export default function Header({ data }) {
           className="pointer-events-none select-none w-full h-full object-cover"
           blurDataURL={data.teamPicture.lqip}
           loading="lazy"
+          placeholder="blur"
           alt={data.teamPicture.altText}
         />
       </div>

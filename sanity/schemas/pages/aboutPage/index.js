@@ -9,6 +9,11 @@ export default {
       type: "string",
     },
     {
+      name: "description",
+      title: "Description",
+      type: "text",
+    },
+    {
       name: "teamPicture",
       title: "Team Picture",
       type: "image",
@@ -27,6 +32,17 @@ export default {
       name: "aboutSection",
       title: "Section",
       type: "aboutSection",
+    },
+    {
+      name: "cards",
+      title: "Cards",
+      type: "array",
+      of: [{ type: "aboutCard" }],
+      validation: (Rule) => Rule.required().length(3),
+      options: {
+        layout: "grid",
+        sortable: true,
+      },
     },
   ],
   preview: {

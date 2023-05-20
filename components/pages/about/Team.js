@@ -53,20 +53,24 @@ function TeamMemberCard({ member: { name, bio, image, pronouns } }) {
         </h3>
         <p className="text-sm tracking-tighter font-medium">{pronouns}</p>
       </div>
-      <p className={`text-sm text-gray-600 ${showModal ? "line-clamp-6" : ""}`}>
+      <p
+        className={`text-sm text-gray-600 ${!showModal ? "line-clamp-5" : ""}`}
+      >
         {bio}
       </p>
-      <button
-        className="text-xs font-medium hover:opacity-75 transition-opacity"
-        onClick={() => setShowModal(!showModal)}
-      >
-        Show {showModal < 100 ? "more" : "less"}
-        <ChevronDownIcon
-          className={`w-6 h-6 mx-auto text-gray-600 inline-block -mt-0.5 ${
-            !showModal ? "transform rotate-180" : ""
-          }`}
-        />
-      </button>
+      {bio?.length > 0 ? (
+        <button
+          className="text-xs font-medium hover:opacity-75 transition-opacity"
+          onClick={() => setShowModal(!showModal)}
+        >
+          Show {!showModal ? "more" : "less"}
+          <ChevronDownIcon
+            className={`w-6 h-6 mx-auto text-gray-600 inline-block -mt-0.5 ${
+              showModal ? "transform rotate-180" : ""
+            }`}
+          />
+        </button>
+      ) : null}
     </div>
   );
 }

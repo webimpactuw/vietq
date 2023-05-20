@@ -16,11 +16,11 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "images",
-      title: "Images",
+      name: "pictures",
+      title: "Pictures",
       type: "array",
-      description: "3 images",
-      of: [{ type: "image", options: { hotspot: true } }],
+      description: "3 pictures",
+      of: [{ type: "homeEventsCard" }],
       validation: (Rule) => Rule.required().length(3),
       options: {
         sortable: true,

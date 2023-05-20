@@ -10,14 +10,16 @@ export default function EventsSection({ data }) {
   return (
     <div className="bg-gray-900 text-white">
       <Container>
-        <div className="py-8 md:py-32 md:grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-32">
-          <div className="col-span-2 h-full w-full">
-            <CardTrick data={data.images} />
-            <div className="flex items-center justify-center space-x-2 mt-32 text-gray-400">
-              <CursorArrowRaysIcon className="w-5 h-5 text-purple-400" />
-              <p className="text-sm">
-                Click above to see photos from our past events!
-              </p>
+        <div className="py-8 md:py-32 md:grid grid-cols-1 md:grid-cols-5 space-y-16 md:space-y-0 md:gap-32">
+          <div className="col-span-2 flex items-center justify-center">
+            <div className="mx-auto">
+              <CardTrick data={data.pictures} />
+              <div className="flex items-center justify-center space-x-2 mt-32 text-gray-400">
+                <CursorArrowRaysIcon className="w-5 h-5 text-white" />
+                <p className="text-sm">
+                  Click above to see photos from our past events!
+                </p>
+              </div>
             </div>
           </div>
           <div className="space-y-4 col-span-3 flex items-start justify-center flex-col">
@@ -45,28 +47,28 @@ export default function EventsSection({ data }) {
 function CardTrick({ data }) {
   const [current, setCurrent] = useState(0);
   return (
-    <div className="relative h-80 md:h-96">
+    <div className="relative h-64 w-[15rem] mx-auto md:w-auto md:h-96">
       <CardElement
         current={current}
         setCurrent={setCurrent}
         index={2}
         nextIndex={0}
-        image={data[0]}
-      ></CardElement>
+        data={data[0]}
+      />
       <CardElement
         current={current}
         setCurrent={setCurrent}
         index={1}
         nextIndex={2}
-        image={data[1]}
-      ></CardElement>
+        data={data[1]}
+      />
       <CardElement
         current={current}
         setCurrent={setCurrent}
         index={0}
         nextIndex={1}
-        image={data[2]}
-      ></CardElement>
+        data={data[2]}
+      />
     </div>
   );
 }
@@ -76,37 +78,37 @@ function CardElement({
   setCurrent,
   index,
   nextIndex,
-  image,
+  data,
   // children,
 }) {
   return (
     <div
-      className={`transform transition-all space-y-8 cursor-pointer mx-auto ${
+      className={`absolute top-0 left-0 transform transition-all space-y-2 cursor-pointer mx-auto w-60 md:w-76 bg-gray-100 border-gray-500 border shadow-xl hover:shadow-2xl p-3 rounded ${
         current === index
-          ? "absolute top-0 left-0 rotate-0 z-30 hover:scale-105"
+          ? "rotate-0 z-30 hover:scale-105"
           : current === nextIndex
-          ? "absolute top-0 left-4 rotate-[30deg] z-10 hover:rotate-[35deg]"
-          : "absolute top-0 left-8 rotate-[15deg] z-20 hover:rotate-[20deg]"
+          ? "rotate-[30deg] z-10 md:hover:rotate-[35deg]"
+          : "rotate-[15deg] z-20 md:hover:rotate-[20deg]"
       }`}
       onClick={() => setCurrent(index)}
     >
       <Image
-        src={urlFor(image).auto("format").height(1920).width(1440).url()}
-        width={1440}
-        height={1920}
-        alt=""
-        className={`w-full rounded-xl md:rounded-3xl border-2 border-gray-900 w-56 md:w-76`}
+        src={urlFor(data.image).auto("format").height(1080).width(1080).url()}
+        width={1080}
+        height={1080}
+        alt={data.description}
+        className="w-full rounded-sm border border-gray-900"
         loading="lazy"
         placeholder="blur"
-        blurDataURL={image.lqip}
+        blurDataURL={data.image.lqip}
       />
-      {/* <div
+      <p
         className={`${
           current === index ? "opacity-100" : "opacity-0"
-        } transition-opacity`}
+        } transition-opacity text-center p-4 text-gray-900 font-display text-base rounded-xl font-medium h-20 flex items-center justify-center`}
       >
-        <p>Image {index}</p>
-      </div> */}
+        {data.description}
+      </p>
     </div>
   );
 }

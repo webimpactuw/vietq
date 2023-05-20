@@ -17,9 +17,15 @@ export default function Section({ data }) {
           </h1>
         </div>
         <div className="grid md:grid-cols-3 gap-4">
-          <CommunityCard section={0} color="text-red-500" scale={false} />
-          <CommunityCard section={1} color="text-blue-500" scale={false} />
-          <CommunityCard section={2} color="text-purple-500" scale={false} />
+          <CommunityCard section={0} scale={false} data={data.cards[0]}>
+            {null}
+          </CommunityCard>
+          <CommunityCard section={1} scale={false} data={data.cards[1]}>
+            {null}
+          </CommunityCard>
+          <CommunityCard section={2} scale={false} data={data.cards[2]}>
+            {null}
+          </CommunityCard>
         </div>
       </div>
     </Container>

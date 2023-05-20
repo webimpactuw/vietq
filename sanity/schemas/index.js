@@ -16,6 +16,8 @@ import homePhotoWall from "./pages/homePage/homePhotoWall";
 import homeEventsSection from "./pages/homePage/homeEventsSection";
 import homeCommunitySection from "./pages/homePage/homeCommunitySection";
 import heroCommunityCard from "./pages/homePage/heroCommunityCard";
+import aboutCard from "./pages/aboutPage/aboutCard";
+import homeEventsCard from "./pages/homePage/homeEventsCard";
 
 export const schemaTypes = [
   homePage,
@@ -36,4 +38,6 @@ export const schemaTypes = [
   homeEventsSection,
   homeCommunitySection,
   heroCommunityCard,
+  aboutCard,
+  homeEventsCard,
 ];

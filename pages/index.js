@@ -37,9 +37,12 @@ const query = groq`*[_type == "homePage"][0]{
   },
   events {
     ...,
-    images [] {
+    pictures [] {
       ...,
-      "lqip": asset->metadata.lqip,
+      image {
+        ...,
+        "lqip": asset->metadata.lqip,
+      }
     }
   },
   community

@@ -18,12 +18,11 @@ const Summary = dynamic(() => import("@/components/pages/about/Summary"));
 const Header = dynamic(() => import("@/components/pages/about/Header"));
 
 const query = groq`*[_type == "aboutPage"][0] {
-  title,
+  ...,
   teamPicture {
    ...,
   "lqip": asset->metadata.lqip,
   },
-  aboutSection,
   "members": *[_type == "teamMember"] | order(orderRank) {
     name,
     bio,
