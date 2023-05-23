@@ -18,7 +18,7 @@ const query = groq`*[_type == "blogPost" && slug.current==$slug][0] {
   "author": author->{
     name,
     image,
-    role
+    pronouns
   },
   date,
   image {

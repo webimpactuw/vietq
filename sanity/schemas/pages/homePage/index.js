@@ -34,6 +34,16 @@ export default {
       },
     },
     {
+      name: "bigQuote",
+      title: "Big Quote",
+      type: "homeBigQuote",
+      options: {
+        collapsible: true,
+        collapsed: true,
+        columns: 1,
+      },
+    },
+    {
       name: "events",
       title: "Events Section",
       type: "homeEventsSection",

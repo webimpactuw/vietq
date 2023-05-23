@@ -1,10 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
-import urlFor from "@/sanity/lib/urlFor";
 import Container from "@/components/global/Container";
 import { FilledButton } from "@/components/global/Button";
 import { useState } from "react";
 import { CursorArrowRaysIcon } from "@heroicons/react/24/solid";
+import dynamic from "next/dynamic";
+const CardElement = dynamic(() =>
+  import("@/components/pages/home/CardElement")
+);
 
 export default function EventsSection({ data }) {
   return (
@@ -69,42 +71,6 @@ function CardTrick({ data }) {
         nextIndex={1}
         data={data[2]}
       />
-    </div>
-  );
-}
-
-function CardElement({ current, setCurrent, index, nextIndex, data }) {
-  return (
-    <div
-      className={`absolute top-0 left-0 transform transition-all space-y-2 cursor-pointer mx-auto w-60 md:w-76 bg-gray-100 border-gray-500 border shadow-xl hover:shadow-2xl p-3 rounded ${
-        current === index
-          ? "rotate-0 z-30 hover:scale-105"
-          : current === nextIndex
-          ? "rotate-[30deg] z-10 md:hover:rotate-[35deg]"
-          : "rotate-[15deg] z-20 md:hover:rotate-[20deg]"
-      }`}
-      onClick={() => setCurrent(index)}
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")`,
-      }}
-    >
-      <Image
-        src={urlFor(data.image).auto("format").height(1080).width(1080).url()}
-        width={1080}
-        height={1080}
-        alt={data.description}
-        className="w-full rounded-sm border border-gray-900"
-        loading="lazy"
-        placeholder="blur"
-        blurDataURL={data.image.lqip}
-      />
-      <p
-        className={`${
-          current === index ? "opacity-100" : "opacity-0"
-        } transition-opacity text-center p-4 text-gray-900 font-display text-sm md:text-base rounded-xl font-medium h-20 flex items-center justify-center`}
-      >
-        {data.description}
-      </p>
     </div>
   );
 }

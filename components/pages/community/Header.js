@@ -36,14 +36,6 @@ export default function Header({ data }) {
               <p className="text-lg md:text-xl font-medium text-white/75">
                 {data.description}
               </p>
-              {/* <div className="flex items-center justify-center space-x-2">
-                <button className="hover:opacity-75 transition-opacity cursor-pointer border border-blue-100 bg-blue-50 text-blue-800 text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium">
-                  Upcoming events
-                </button>
-                <button className="hover:opacity-75 transition-opacity cursor-pointer text-blue-50 text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium">
-                  Past events
-                </button>
-              </div> */}
             </div>
           </div>
         </Container>

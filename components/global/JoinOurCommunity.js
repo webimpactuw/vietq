@@ -43,7 +43,7 @@ export default function JoinOurCommunity({ footer = false }) {
       />
       <button
         type="submit"
-        formAction={subscribe}
+        onClick={subscribe}
         className={`${
           footer
             ? "text-gray-900 bg-white border-gray-300 focus:outline-blue-800 hover:bg-gray-300 hover:border-gray-700"

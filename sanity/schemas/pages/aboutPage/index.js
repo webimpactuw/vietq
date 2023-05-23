@@ -4,40 +4,28 @@ export default {
   type: "document",
   fields: [
     {
-      name: "title",
-      title: "Title",
-      type: "string",
-    },
-    {
-      name: "description",
-      title: "Description",
-      type: "text",
-    },
-    {
-      name: "teamPicture",
-      title: "Team Picture",
-      type: "image",
+      name: "headerSection",
+      title: "About Header Section",
+      type: "aboutHeaderSection",
       options: {
-        hotspot: true,
+        collapsible: true,
+        collapsed: true,
       },
-      fields: [
-        {
-          name: "altText",
-          title: "Alternate Text",
-          type: "string",
-        },
-      ],
     },
     {
       name: "aboutSection",
-      title: "Section",
+      title: "More Information Section",
       type: "aboutSection",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     },
     {
-      name: "cards",
-      title: "Cards",
+      name: "news",
+      title: "News",
       type: "array",
-      of: [{ type: "aboutCard" }],
+      of: [{ type: "aboutNewsCard" }],
       validation: (Rule) => Rule.required().length(3),
       options: {
         layout: "grid",

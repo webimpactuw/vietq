@@ -2,16 +2,12 @@ import client from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { PreviewSuspense } from "next-sanity/preview";
 import { usePreview } from "@/sanity/lib/preview";
-
-import RootLayout from "@/components/global/RootLayout";
-// import Header from "@/components/pages/about/Header";
-// import Summary from "@/components/pages/about/Summary";
-// import Team from "@/components/pages/about/Team";
-import PreviewLoading from "@/components/sanity/PreviewLoading";
 import ExitPreview from "@/components/sanity/ExitPreview";
+import PreviewLoading from "@/components/sanity/PreviewLoading";
+import RootLayout from "@/components/global/RootLayout";
+
 import Mission from "@/components/pages/about/Mission";
 import News from "@/components/pages/about/News";
-
 import dynamic from "next/dynamic";
 const Team = dynamic(() => import("@/components/pages/about/Team"));
 const Summary = dynamic(() => import("@/components/pages/about/Summary"));
@@ -19,9 +15,12 @@ const Header = dynamic(() => import("@/components/pages/about/Header"));
 
 const query = groq`*[_type == "aboutPage"][0] {
   ...,
-  teamPicture {
+  headerSection {
+    ...,
+    teamPicture {
    ...,
   "lqip": asset->metadata.lqip,
+  },
   },
   "members": *[_type == "teamMember"] | order(orderRank) {
     name,
@@ -64,10 +63,10 @@ export default function About({ preview, data }) {
 function AboutPage({ data }) {
   return (
     <>
-      <Header data={data} />
+      <Header data={data.headerSection} />
       <Mission data={data} />
-      <Summary data={data} />
-      <News />
+      <Summary data={data.aboutSection} />
+      <News data={data.news} />
       <Team data={data.members} />
     </>
   );

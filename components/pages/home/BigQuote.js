@@ -1,8 +1,8 @@
 import Container from "@/components/global/Container";
-import sf from "@/public/media/sf.png";
+import urlFor from "@/sanity/lib/urlFor";
 import Image from "next/image";
 
-export default function BigQuote() {
+export default function BigQuote({ data }) {
   return (
     <div
       style={{
@@ -12,7 +12,7 @@ export default function BigQuote() {
       <Container>
         <div className="md:pt-24 pt-12 md:pb-16 pb-8 space-y-4 md:space-y-12 relative">
           <div
-            className="text-[15rem] md:text-[30rem] absolute -top-20 md:-top-24 left-0 md:-left-16"
+            className="text-[15rem] md:text-[30rem] absolute -top-20 md:-top-24 left-0 md:-left-16 select-none pointer-events-none"
             style={{
               color: "#D8BFA5",
             }}
@@ -20,8 +20,7 @@ export default function BigQuote() {
             &ldquo;
           </div>
           <h2 className="text-5xl md:text-8xl font-display tracking-tighter font-semibold leading-none md:leading-none relative">
-            ...VietQ seeks to normalize what it means to be a queer and
-            transgender Vietnamese person.
+            {data.quote}
           </h2>
           <div>
             <a
@@ -29,9 +28,11 @@ export default function BigQuote() {
               className="hover:opacity-75 transition-opacity inline-block"
             >
               <Image
-                src={sf}
+                src={urlFor(data.image).auto("format").url()}
                 className="h-12 md:h-16 w-auto object-contain "
-                alt="Seattle Foundation"
+                alt={data.title}
+                width={500}
+                height={500}
               />
             </a>
           </div>

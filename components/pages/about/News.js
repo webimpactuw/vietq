@@ -4,8 +4,9 @@ import Image from "next/image";
 import dvv from "@/public/media/dvv.png";
 import sf from "@/public/media/sf.png";
 import sse from "@/public/media/sse.png";
+import urlFor from "@/sanity/lib/urlFor";
 
-export default function News() {
+export default function News({ data }) {
   return (
     <div className=" bg-gradient-to-t from-blue-900 to-gray-900 text-white">
       <Container>
@@ -14,27 +15,9 @@ export default function News() {
             VietQ in the News
           </h1>
           <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-            <Quote
-              src={dvv}
-              title="You Are Loved: Profile of VietQ"
-              href="https://dvan.org/2020/12/you-are-loved-vietq/"
-              source="Diasporic Vietnamese Artists Network"
-              quote="...VietQ has been on a journey grounded in the healing and celebration of our identities..."
-            />
-            <Quote
-              src={sf}
-              title="Asian American and Pacific Islander Heritage Month: VietQ, a Neighbor to Neighbor Grantee"
-              href="https://www.seattlefoundation.org/asian-american-and-pacific-islander-heritage-month-vietq-a-neighbor-to-neighbor-grantee/"
-              source="Seattle Foundation"
-              quote="...VietQ seeks to normalize what it means to be a queer and transgender Vietnamese person..."
-            />
-            <Quote
-              src={sse}
-              title="VietQ Hosts Seattle’s Largest Ever QTBIPOC Market at Seward Park"
-              href="https://southseattleemerald.com/2022/06/02/vietq-hosts-seattles-largest-ever-qtbipoc-market-at-seward-park/"
-              source="South Seattle Emerald"
-              quote="...the founding mission of VietQ — to make community spaces for queer and trans Vietnamese folks..."
-            />
+            {data.map((item, i) => (
+              <Quote key={i} data={item} />
+            ))}
           </div>
         </div>
       </Container>
@@ -42,28 +25,30 @@ export default function News() {
   );
 }
 
-function Quote({ src, href, source, quote }) {
+function Quote({ data }) {
   return (
     <a
-      href={href}
+      href={data.link}
       className="space-y-4 group cursor-pointer transition-all transform md:hover:shadow-xl md:hover:scale-105"
     >
       <blockquote className="p-6 relative bg-white/10 border border-white/10 rounded-2xl overflow-hidden">
         <div className="relative space-y-4">
-          <p className="italic ml-4 font-display font-medium">{quote}</p>
+          <p className="italic ml-4 font-display font-medium">{data.quote}</p>
           <hr className="border-white/10" />
           <div className="flex items-center justify-start space-x-4">
             <Image
-              src={src}
+              src={urlFor(data.image).auto("format").url()}
               className="h-8 w-auto object-contain hover:opacity-75 transition-opacity"
-              alt={source}
+              width={500}
+              height={500}
+              alt={data.source}
             />
             <div className="text-xs font-display font-medium tracking-tight">
-              {source}
+              {data.source}
             </div>
           </div>
         </div>
-        <div className="text-9xl opacity-10 absolute -top-2 left-6">
+        <div className="text-9xl opacity-10 absolute -top-2 left-6 select-none pointer-events-none">
           &ldquo;
         </div>
       </blockquote>

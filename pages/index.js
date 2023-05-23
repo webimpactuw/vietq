@@ -45,7 +45,8 @@ const query = groq`*[_type == "homePage"][0]{
       }
     }
   },
-  community
+  community,
+  bigQuote
 }`;
 
 export async function getStaticProps({ preview = false }) {
@@ -81,7 +82,7 @@ function HomePage({ data }) {
       <Hero data={data.hero} />
       <AboutSection data={data.about} />
       <PhotoWall data={data.photoWall} />
-      <BigQuote />
+      <BigQuote data={data.bigQuote} />
       <EventsSection data={data.events} />
       <CommunitySection data={data.community} />
       <LandAcknowledgement />

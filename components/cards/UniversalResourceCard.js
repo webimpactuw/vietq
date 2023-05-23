@@ -2,10 +2,10 @@ import urlFor from "@/sanity/lib/urlFor";
 import Image from "next/image";
 import Link from "next/link";
 import format from "date-fns/format";
-import { LinkIcon } from "@sanity/icons";
 
-import { generateShades } from "coloring-palette";
 import { rgbToHex } from "@/utils/colors";
+import { LinkIcon } from "@heroicons/react/24/solid";
+import { LinkIcon as LinkIconSmall } from "@heroicons/react/20/solid";
 
 export default function UniversalResourceCard({
   resource,
@@ -20,7 +20,7 @@ export default function UniversalResourceCard({
     );
   } else {
     return (
-      <a href={resource.link}>
+      <a href={resource.link} target="_blank" rel="noopener noreferrer">
         <UniversalResourceCardBody data={resource} tags={tags} light={light} />
       </a>
     );
@@ -28,23 +28,47 @@ export default function UniversalResourceCard({
 }
 
 function UniversalResourceCardBody({ data, tags = true, light = false }) {
+  const color = tagColors(
+    data?.tags && data?.tags.length > 0
+      ? data.tags[0]?.color
+      : { r: 0, g: 0, b: 0 }
+  );
+
   return (
     <div className="space-y-4 hover:opacity-75 transition-opacity">
-      <Image
-        src={
-          data.image
-            ? urlFor(data.image).width(1920).height(1280).url()
-            : "/full-2.png"
-        }
-        width={1920}
-        height={1080}
-        className={`w-full h-full object-cover rounded-2xl border ${
-          light ? "border-gray-700" : "border-champagne-700/25"
-        }`}
-        alt={data.title}
-        placeholder={data.image ? "blur" : "empty"}
-        blurDataURL={data.image?.lqip}
-      />
+      {data._type == "blogPost" ? (
+        <Image
+          src={
+            data.image
+              ? urlFor(data.image).width(1920).height(1280).url()
+              : "/full-2.png"
+          }
+          width={1920}
+          height={1080}
+          className={`w-full h-full object-cover rounded-2xl border ${
+            light ? "border-gray-700" : "border-champagne-700/25"
+          }`}
+          alt={data.title}
+          placeholder={data.image ? "blur" : "empty"}
+          blurDataURL={data.image?.lqip}
+        />
+      ) : (
+        <div
+          className={`w-full h-full aspect-3/2 rounded-2xl border flex items-center justify-center ${
+            light ? "border-gray-700" : "border-champagne-700/25"
+          }`}
+          style={{
+            backgroundColor: color.backgroundColor,
+          }}
+        >
+          <LinkIcon
+            className="mx-auto w-24 h-24 text-current"
+            style={{
+              color: color.color,
+            }}
+          />
+        </div>
+      )}
       <div className="space-y-4">
         <div className="space-y-2">
           {tags ? (
@@ -68,7 +92,7 @@ function UniversalResourceCardBody({ data, tags = true, light = false }) {
             </div>
           ) : null}
           <h3
-            className={`text-lg h-14 font-semibold font-display tracking-tight line-clamp-2 ${
+            className={`text-lg h-full font-semibold font-display tracking-tight line-clamp-1 ${
               light ? "text-white" : ""
             }`}
           >
@@ -117,7 +141,7 @@ function UniversalResourceCardBody({ data, tags = true, light = false }) {
                 light ? "text-gray-400" : "text-gray-700"
               }`}
             >
-              <LinkIcon className="w-6 h-6 shrink-0" />
+              <LinkIconSmall className="w-5 h-5 mr-1 shrink-0" />
               <p className="text-xs font-medium">example.com</p>
             </div>
           )}
@@ -135,6 +159,33 @@ function UniversalResourceCardBody({ data, tags = true, light = false }) {
       </div>
     </div>
   );
+}
+
+function invertColor(rgb) {
+  let hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+
+  if (hex.indexOf("#") === 0) {
+    hex = hex.slice(1);
+  }
+  // convert 3-digit hex to 6-digits.
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  if (hex.length !== 6) {
+    throw new Error("Invalid HEX color.");
+  }
+  // invert color components
+  var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
+    g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
+    b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16);
+  // pad each with zeros and return
+  return "#" + padZero(r) + padZero(g) + padZero(b);
+}
+
+function padZero(str, len) {
+  len = len || 2;
+  var zeros = new Array(len).join("0");
+  return (zeros + str).slice(-len);
 }
 
 function toPlainText(blocks = []) {
@@ -165,37 +216,16 @@ function Tag({ tag }) {
       {tag.title}
     </div>
   );
+}
 
-  function tagColors(color) {
-    let darkText = isDark(color);
-    return {
-      color: !darkText
-        ? newShade(rgbToHex(color.r, color.g, color.b), -100)
-        : newShade(rgbToHex(color.r, color.g, color.b), 100),
-      backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})`,
-    };
-  }
+function tagColors(color) {
+  let darkText = isDark(color);
+  return {
+    color: darkText ? "rgba(255, 255, 255, 0.87)" : "rgba(0, 0, 0, 0.87)",
+    backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})`,
+  };
 }
 
 function isDark(rgb) {
   return !(rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114 > 186);
 }
-
-const newShade = (hexColor, magnitude) => {
-  hexColor = hexColor.replace(`#`, ``);
-  if (hexColor.length === 6) {
-    const decimalColor = parseInt(hexColor, 16);
-    let r = (decimalColor >> 16) + magnitude;
-    r > 255 && (r = 255);
-    r < 0 && (r = 0);
-    let g = (decimalColor & 0x0000ff) + magnitude;
-    g > 255 && (g = 255);
-    g < 0 && (g = 0);
-    let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
-    b > 255 && (b = 255);
-    b < 0 && (b = 0);
-    return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
-  } else {
-    return hexColor;
-  }
-};

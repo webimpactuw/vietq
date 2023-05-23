@@ -9,11 +9,11 @@ export default function Section({ data }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pb-16">
           <div className="flex flex-col items-start justify-center">
             <p className="text-lg font-medium text-gray-600">
-              {data.aboutSection.description}
+              {data.description}
             </p>
           </div>
           <h1 className="text-4xl font-bold tracking-tighter font-display leading-tight md:text-right order-first md:order-last">
-            {data.aboutSection.title}
+            {data.title}
           </h1>
         </div>
         <div className="grid md:grid-cols-3 gap-4">

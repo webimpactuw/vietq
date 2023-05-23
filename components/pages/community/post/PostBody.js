@@ -33,7 +33,7 @@ export default function PostBody({ data }) {
                 {data.author.name}
               </h3>
               <p className="text-gray-700 text-sm font-medium">
-                {data.author.role}
+                {data.author.pronouns}
               </p>
             </div>
           </div>
