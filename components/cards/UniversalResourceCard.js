@@ -5,6 +5,7 @@ import format from "date-fns/format";
 import { LinkIcon } from "@sanity/icons";
 
 import { generateShades } from "coloring-palette";
+import { rgbToHex } from "@/utils/colors";
 
 export default function UniversalResourceCard({
   resource,
@@ -49,7 +50,17 @@ function UniversalResourceCardBody({ data, tags = true, light = false }) {
           {tags ? (
             <div className="flex flex-wrap gap-2">
               {data._type == "blogPost" ? (
-                <ResourcePill color="#007aff">Blog Post</ResourcePill>
+                <Tag
+                  tag={{
+                    title: "Blog Post",
+                    slug: "blog-post",
+                    color: {
+                      r: 53,
+                      g: 126,
+                      b: 227,
+                    },
+                  }}
+                />
               ) : null}
               {data.tags?.map((tag) => (
                 <Tag key={tag.slug} tag={tag} />
@@ -145,38 +156,46 @@ function toPlainText(blocks = []) {
   );
 }
 
-function ResourcePill({ children, color }) {
-  return (
-    <div
-      className="text-xs font-medium tracking-tight px-2.5 pt-1 pb-1.5 rounded-full"
-      style={{
-        backgroundColor: color + "25",
-        color: color,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
 function Tag({ tag }) {
   return (
     <div
       className="text-xs font-medium tracking-tight px-2.5 pt-1 pb-1.5 rounded-full"
       style={tagColors(tag.color)}
     >
-      {JSON.stringify(tag.color)}
+      {tag.title}
     </div>
   );
 
   function tagColors(color) {
+    let darkText = isDark(color);
     return {
-      color: `hsl(${Math.round(color.h)}, ${color.s * 100}%, ${
-        color.l * 100
-      }%)`,
-      backgroundColor: `hsl(${Math.round(color.h)}, ${color.s * 100}%, ${
-        color.l * 100 * 1.8
-      }%)`,
+      color: !darkText
+        ? newShade(rgbToHex(color.r, color.g, color.b), -100)
+        : newShade(rgbToHex(color.r, color.g, color.b), 100),
+      backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})`,
     };
   }
 }
+
+function isDark(rgb) {
+  return !(rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114 > 186);
+}
+
+const newShade = (hexColor, magnitude) => {
+  hexColor = hexColor.replace(`#`, ``);
+  if (hexColor.length === 6) {
+    const decimalColor = parseInt(hexColor, 16);
+    let r = (decimalColor >> 16) + magnitude;
+    r > 255 && (r = 255);
+    r < 0 && (r = 0);
+    let g = (decimalColor & 0x0000ff) + magnitude;
+    g > 255 && (g = 255);
+    g < 0 && (g = 0);
+    let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
+    b > 255 && (b = 255);
+    b < 0 && (b = 0);
+    return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
+  } else {
+    return hexColor;
+  }
+};

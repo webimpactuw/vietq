@@ -32,11 +32,11 @@ export default async function handler(req, res) {
       ...,
       "lqip": asset->metadata.lqip,
     },
-    tags[]->{
+    "tags": coalesce(tags[]->{
       title,
       slug,
-      "color": color.hsl
-    },
+      "color": color.rgb
+    },[]),
     content[_type=="block" && style=="normal"]
   }
     }`;

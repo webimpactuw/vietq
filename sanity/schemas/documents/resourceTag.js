@@ -1,3 +1,5 @@
+import { possibleColors } from "@/utils/colors";
+
 export default {
   name: "resourceTag",
   title: "Resource Tag",
@@ -26,6 +28,7 @@ export default {
       validation: (Rule) => Rule.required(),
       options: {
         disableAlpha: true,
+        colorList: possibleColors,
       },
     },
   ],

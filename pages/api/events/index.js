@@ -38,7 +38,7 @@ export default async function handler(req, res) {
       });
 
       res.status(200).json({
-        totalPages: Math.ceil(data.totalEvents / limit),
+        totalPages: Math.ceil(data.totalEvents / limit) * 8,
         ...data,
       });
     }
