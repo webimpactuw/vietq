@@ -1,7 +1,12 @@
 import UniversalResourceCard from "@/components/cards/UniversalResourceCard";
 import useSWR from "swr";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (url) =>
+  fetch(url, {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_SERVER_API_KEY}`,
+    },
+  }).then((res) => res.json());
 
 export default function RecentPosts({ ignore = [], light = false }) {
   const { data, error, isLoading } = useSWR(

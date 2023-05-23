@@ -4,6 +4,8 @@ import Link from "next/link";
 import format from "date-fns/format";
 import { LinkIcon } from "@sanity/icons";
 
+import { generateShades } from "coloring-palette";
+
 export default function UniversalResourceCard({
   resource,
   tags = true,
@@ -50,9 +52,7 @@ function UniversalResourceCardBody({ data, tags = true, light = false }) {
                 <ResourcePill color="#007aff">Blog Post</ResourcePill>
               ) : null}
               {data.tags?.map((tag) => (
-                <ResourcePill key={tag.slug} color="#007aff">
-                  {tag.title}
-                </ResourcePill>
+                <Tag key={tag.slug} tag={tag} />
               ))}
             </div>
           ) : null}
@@ -157,4 +157,26 @@ function ResourcePill({ children, color }) {
       {children}
     </div>
   );
+}
+
+function Tag({ tag }) {
+  return (
+    <div
+      className="text-xs font-medium tracking-tight px-2.5 pt-1 pb-1.5 rounded-full"
+      style={tagColors(tag.color)}
+    >
+      {JSON.stringify(tag.color)}
+    </div>
+  );
+
+  function tagColors(color) {
+    return {
+      color: `hsl(${Math.round(color.h)}, ${color.s * 100}%, ${
+        color.l * 100
+      }%)`,
+      backgroundColor: `hsl(${Math.round(color.h)}, ${color.s * 100}%, ${
+        color.l * 100 * 1.8
+      }%)`,
+    };
+  }
 }

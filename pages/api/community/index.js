@@ -13,21 +13,32 @@ export default async function handler(req, res) {
       res.status(400).end("Missing one or more parameters");
     } else {
       const query = groq`{
-      "totalEvents": count(*[_type == "event" && dateTime(dateRange.start + 'T00:00:00Z') < dateTime(now())]),
+      "totalEvents": count(*[_type == "resource" || _type == "blogPost"]),
       "page": $page,
-      "events": *[_type == "event" && dateTime(dateRange.start + 'T00:00:00Z') < dateTime(now())] | order(dateRange.start desc)[($page * $limit)...($limit + ($page * $limit))] {
-        title,
-        image {
-          ...,
-          "lqip": asset->metadata.lqip,
-          "colors": asset->metadata.palette,
-        },
-        description,
-        location,
-        dateRange,
-        "slug": slug.current,
-        tags
-      }
+      "resources": *[_type == "resource" || _type == "blogPost"] | order(_updatedAt desc) {
+    _type,
+    _updatedAt,
+    _createdAt,
+    title,
+    description,
+    "slug": slug.current,
+    "author": author->{
+      name,
+      image,
+    },
+    link,
+    date,
+    image {
+      ...,
+      "lqip": asset->metadata.lqip,
+    },
+    tags[]->{
+      title,
+      slug,
+      "color": color.hsl
+    },
+    content[_type=="block" && style=="normal"]
+  }
     }`;
 
       const limit = 5;

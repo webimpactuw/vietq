@@ -12,7 +12,12 @@ const EventCard = dynamic(() => import("@/components/cards/EventCard"));
 
 import useSWR from "swr";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (url) =>
+  fetch(url, {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_SERVER_API_KEY}`,
+    },
+  }).then((res) => res.json());
 
 import Pills from "./Pills";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
