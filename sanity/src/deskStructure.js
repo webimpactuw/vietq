@@ -1,6 +1,16 @@
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import Iframe from "sanity-plugin-iframe-pane";
-import { BlockContentIcon, DocumentsIcon, UsersIcon } from "@sanity/icons";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  BlockContentIcon,
+  CalendarIcon,
+  DocumentsIcon,
+  LaunchIcon,
+  MasterDetailIcon,
+  SparklesIcon,
+  UsersIcon,
+} from "@sanity/icons";
 import { routes } from "../lib/routes";
 
 export default (S, context) => {
@@ -9,7 +19,7 @@ export default (S, context) => {
     .items([
       S.listItem()
         .title("Site Pages")
-        .icon(DocumentsIcon)
+        .icon(MasterDetailIcon)
         .child(
           S.list()
             .title("Site Pages")
@@ -27,14 +37,14 @@ export default (S, context) => {
         ),
       S.listItem()
         .title("Events")
-        .icon(DocumentsIcon)
+        .icon(CalendarIcon)
         .child(
           S.list()
             .title("Events")
             .items([
               S.listItem()
                 .title("Upcoming Events")
-                .icon(DocumentsIcon)
+                .icon(ArrowUpIcon)
                 .child(
                   S.documentTypeList("event")
                     .title("Upcoming Events")
@@ -48,7 +58,7 @@ export default (S, context) => {
                 ),
               S.listItem()
                 .title("Past Events")
-                .icon(DocumentsIcon)
+                .icon(ArrowDownIcon)
                 .child(
                   S.documentTypeList("event")
                     .title("Past Events")
@@ -62,7 +72,7 @@ export default (S, context) => {
                 ),
               S.listItem()
                 .title("All Events")
-                .icon(DocumentsIcon)
+                .icon(CalendarIcon)
                 .child(
                   S.documentTypeList("event")
                     .title("All Events")
@@ -77,7 +87,7 @@ export default (S, context) => {
         ),
       S.listItem()
         .title("Blog Posts")
-        .icon(DocumentsIcon)
+        .icon(BlockContentIcon)
         .child(
           S.documentTypeList("blogPost")
             .title("Blog Posts")
@@ -90,7 +100,7 @@ export default (S, context) => {
         ),
       S.listItem()
         .title("Resources")
-        .icon(DocumentsIcon)
+        .icon(LaunchIcon)
         .child(
           S.documentTypeList("resource")
             .title("Resources")
