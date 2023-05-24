@@ -29,7 +29,7 @@ export function FormField({
       type={type}
       autoComplete={autoComplete}
       placeholder={placeholder}
-      className="placeholder-gray-500 text-blue-900 bg-white border border-gray-300 focus:outline-blue-700 hover:bg-gray-100 transition-colors tracking-tighter block w-full rounded-full pt-2 pb-2.5 px-4 focus:ring-blue-500 focus:border-blue-500"
+      className="placeholder-gray-500 text-blue-900 bg-white border border-white focus:outline-blue-700 hover:bg-gray-100 transition-colors tracking-tighter block w-full rounded-md pt-2 pb-2.5 px-4 focus:ring-blue-500 focus:border-blue-500"
     />
   );
 }
@@ -41,7 +41,7 @@ export function FormSelect({ id, name, children }) {
         id={id}
         name={name}
         component="select"
-        className="placeholder-gray-500  text-blue-900 bg-white border border-gray-300 focus:outline-blue-700 hover:bg-gray-100 transition-colors tracking-tighter block w-full rounded-full pt-2 pb-2.5 px-4 focus:ring-blue-500 focus:border-blue-500"
+        className="placeholder-gray-500 text-blue-900 border border-white focus:outline-blue-700 hover:bg-gray-100 transition-colors tracking-tighter block w-full rounded-md pt-2 pb-2.5 px-4 focus:ring-blue-500 focus:border-blue-500"
       >
         {children}
       </Field>
@@ -60,7 +60,7 @@ export function FormTextArea({ id, name, placeholder = "" }) {
       component="textarea"
       placeholder={placeholder}
       rows="6"
-      className="placeholder-gray-500 text-blue-900 bg-white border border-gray-300 focus:outline-blue-700 hover:bg-gray-100 transition-colors tracking-tighter block w-full rounded-2xl p-4 focus:ring-blue-500 focus:border-blue-500"
+      className="placeholder-gray-500 text-blue-900 bg-white border border-white focus:outline-blue-700 hover:bg-gray-100 transition-colors tracking-tighter block w-full rounded-2xl p-4 focus:ring-blue-500 focus:border-blue-500"
     />
   );
 }
