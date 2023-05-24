@@ -55,18 +55,7 @@ export default function Header({ data, colors, date }) {
                   title={data.location.link.title}
                   daysLeft={date.daysLeft}
                 />
-              ) : (
-                <div
-                  style={{
-                    borderColor: colors["400"].color || "black",
-                    color: colors["800"].color || "black",
-                    backgroundColor: colors["100"].color || "white",
-                  }}
-                  className={` transition-opacity cursor-pointer border text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium`}
-                >
-                  This event is over
-                </div>
-              )}
+              ) : null}
             </div>
           </div>
           <div className="col-span-2 relative">

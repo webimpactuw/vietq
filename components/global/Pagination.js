@@ -5,10 +5,10 @@ export default function Pagination({ pageCount, setPageIndex }) {
   return (
     <ReactPaginate
       previousLabel={
-        <ChevronLeftIcon className="h-6 w-6 text-gray-900 hover:bg-text-900/10" />
+        <ChevronLeftIcon className="h-6 w-6 text-gray-900 hover:text-gray-700 transition-colors" />
       }
       nextLabel={
-        <ChevronRightIcon className="h-6 w-6 text-gray-900 hover:bg-text-900/10" />
+        <ChevronRightIcon className="h-6 w-6 text-gray-900 hover:text-gray-700 transition-colors" />
       }
       breakLabel="..."
       breakClassName="flex justify-center items-center w-8 h-8 rounded-full hover:bg-gray-900/10 cursor-pointer transition-colors"
