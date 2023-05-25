@@ -22,7 +22,7 @@ export default function AllResources() {
 
   return (
     <Container>
-      <div className="pt-24 pb-32 relative z-10 space-y-4">
+      <div className="pt-16 pb-0 relative space-y-16">
         <h2 className="font-display text-6xl tracking-tighter font-semibold ">
           All Resources
         </h2>

@@ -14,7 +14,7 @@ export default function Contact() {
   return (
     <RootLayout title="Contact Us" navTransparent={true}>
       <div className="pb-4 md:pb-16">
-        <div className="contact-gradient text-white pt-24 md:pt-32">
+        <div className="text-white pt-24 md:pt-32 pb-12">
           <Container>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
               <div className="space-y-2">
@@ -32,12 +32,16 @@ export default function Contact() {
               </div>
             </div>
           </Container>
-          <div className="gradient w-full h-4" />
         </div>
+        <div className="gradient w-full h-4" />
         <Container>
-          <div className="grid md:grid-cols-2 gap-16 pt-12">
-            <ContactForm />
-            <Socials />
+          <div className="grid md:grid-cols-5 gap-32 pt-12">
+            <div className="col-span-3">
+              <ContactForm />
+            </div>
+            <div className="col-span-2">
+              <Socials />
+            </div>
           </div>
         </Container>
       </div>
@@ -61,11 +65,17 @@ function Socials() {
       
       <h1 className="text-xl font-semibold tracking-tightest">Follow Us</h1>
       <div className="flex flex-row items-start gap-x-2">
-        <h1>f</h1>
         <IconLink
           text="@vietqseattle"
           href="https://www.instagram.com/vietqseattle/?hl=en"
         >
+          <Image 
+            src="/socials/facebook.svg"
+            alt="Facebook"
+            width={24}
+            height={24}
+            className="w-6 h-6"
+          />
           <Image
             src="/socials/instagram.svg"
             alt="Instagram"

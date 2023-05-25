@@ -25,23 +25,31 @@ export default function PastEvents() {
 
   return (
     <Container>
-      <div className="space-y-16">
-        <div className="grid grid-cols-3 gap-4">
-          {data && !error
-            ? data.events.map((event) => (
-                <EventCard
-                  key={event.slug}
-                  data={event}
-                  colors={generateColors(
-                    event?.image?.colors.dominant.background || "#007aff",
-                    event?.image?.colors.darkVibrant.background || "#007aff"
-                  )}
-                  date={generateDates(event?.dateRange, event?.date)}
-                />
-              ))
-            : null}
+      <div className="pt-16 pb-0 relative space-y-16">
+        <h2 className="font-display text-6xl tracking-tighter font-semibold ">
+          Past Events
+        </h2>
+        <div className="space-y-16">
+          <div className="grid grid-cols-4 gap-4">
+            {data && !error
+              ? data.events.map((event) => (
+                  <EventCard
+                    key={event.slug}
+                    data={event}
+                    colors={generateColors(
+                      event?.image?.colors.dominant.background || "#007aff",
+                      event?.image?.colors.darkVibrant.background || "#007aff"
+                    )}
+                    date={generateDates(event?.dateRange, event?.date)}
+                  />
+                ))
+              : null}
+          </div>
+          <Pagination
+            pageCount={data?.totalPages}
+            setPageIndex={setPageIndex}
+          />
         </div>
-        <Pagination pageCount={data?.totalPages} setPageIndex={setPageIndex} />
       </div>
     </Container>
   );
