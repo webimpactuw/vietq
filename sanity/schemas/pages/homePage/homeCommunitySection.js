@@ -6,18 +6,21 @@ export default {
     {
       name: "title",
       title: "Title",
+      description: "The title of the community section, display under the Event section.",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "description",
       title: "Description",
+      description: "Provide information of the community in description here.",
       type: "text",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "cards",
       title: "Cards",
+      description: "Add Cards in community section here.",
       type: "array",
       of: [{ type: "heroCommunityCard" }],
       validation: (Rule) => Rule.required().length(3),
