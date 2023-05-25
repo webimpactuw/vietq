@@ -13,7 +13,7 @@ export default {
     {
       name: "source",
       title: "Source",
-      description: "Please provide the source where the quote from.",
+      description: "Provide the source where the quote from.",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
