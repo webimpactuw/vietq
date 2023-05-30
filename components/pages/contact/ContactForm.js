@@ -104,12 +104,13 @@ export default function ContactForm() {
               <FormLabel htmlFor="subject">Subject</FormLabel>
               <FormSelect id="subject" name="subject">
                 <option value="" disabled selected>
-                  Choose a country
+                  Choose a subject
                 </option>
-                <option value="US">Volunteering</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
+                <option value="Volunteering">Volunteering</option>
+                <option value="Events">Events</option>
+                <option value="Community">Community</option>
+                <option value="Leadership">Leadership</option>
+                <option value="Other">Other</option>
               </FormSelect>
               <FormErrorMessage name="subject" />
             </div>
