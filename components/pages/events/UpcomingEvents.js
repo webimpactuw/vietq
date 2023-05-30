@@ -132,7 +132,7 @@ export default function UpcomingEvents({ ignore = [] }) {
         }}
       >
         {data && !error ? (
-          data.length > 0 ? (
+          data.filter((e) => !ignore.includes(e.slug)).length > 0 ? (
             data
               .filter((e) => !ignore.includes(e.slug))
               .map((event, i) => (
@@ -145,7 +145,9 @@ export default function UpcomingEvents({ ignore = [] }) {
                 />
               ))
           ) : (
-            <p>There are no upcoming events.</p>
+            <p className="text-white pb-32">
+              There are no upcoming events. Check back later!
+            </p>
           )
         ) : (
           Array(8)

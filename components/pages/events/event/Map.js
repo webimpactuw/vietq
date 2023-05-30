@@ -20,7 +20,7 @@ export default function Map({ location }) {
       <div className="flex items-center justify-start space-x-2">
         <MapPinIcon className="w-6 h-6" />
         <div>
-          <h3 className="text-lg font-semibold font-display tracking-tighter">
+          <h3 className="text-lg font-semibold tracking-tighter">
             {location.name}
           </h3>
           {location.address ? (
@@ -30,7 +30,7 @@ export default function Map({ location }) {
           ) : null}
         </div>
       </div>
-      <div className="border-2 border-champagne-700/25 rounded-2xl overflow-hidden box-border">
+      <div className="border border-champagne-700/25 rounded-2xl overflow-hidden box-border">
         {isLoaded ? (
           <GoogleMap
             mapContainerStyle={containerStyle}

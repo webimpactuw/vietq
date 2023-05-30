@@ -55,6 +55,13 @@ export default function Header({ data, colors, date }) {
                   title={data.location.link.title}
                   daysLeft={date.daysLeft}
                 />
+              ) : data.relatedLinks && data.relatedLinks.length > 0 ? (
+                <PrimaryButton
+                  href={data.relatedLinks[0].url}
+                  colors={colors}
+                  title={"Related: " + data.relatedLinks[0].title}
+                  daysLeft={date.daysLeft}
+                />
               ) : null}
             </div>
           </div>
@@ -83,15 +90,17 @@ export default function Header({ data, colors, date }) {
 function PrimaryButton({ href, colors, title, daysLeft }) {
   return (
     <a
-      href={href}
+      href={daysLeft > 0 ? href : null}
       style={{
         borderColor: colors["400"].color || "black",
         color: colors["800"].color || "black",
         backgroundColor: colors["100"].color || "white",
       }}
       className={`${
-        daysLeft < 0 ? "hover:opacity-75" : ""
-      } transition-opacity cursor-pointer border text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium`}
+        daysLeft > 0
+          ? "hover:opacity-75 cursor-pointer"
+          : "cursor-not-allowed opacity-50"
+      } transition-opacity border text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium`}
     >
       {daysLeft > 0 ? title : `This event is over`}
     </a>
