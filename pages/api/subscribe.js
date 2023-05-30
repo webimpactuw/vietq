@@ -1,45 +1,48 @@
-import fetch from 'isomorphic-unfetch';
+const mailchimp = require("@mailchimp/mailchimp_marketing");
 
 export default async (req, res) => {
   const { email } = req.body;
 
-  console.log({ email });
-
   if (!email) {
-    return res.status(400).json({ error: 'Email is required' });
+    return res.status(400).json({ error: "Email is required" });
   }
 
+  mailchimp.setConfig({
+    apiKey: process.env.MAILCHIMP_API_KEY,
+    server: process.env.MAILCHIMP_API_SERVER,
+  });
+
+  const listId = process.env.MAILCHIMP_AUDIENCE_ID;
+
+  const subscribingUser = {
+    email_address: email,
+    status: "subscribed",
+  };
+
   try {
-    const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID;
-    const API_KEY = process.env.MAILCHIMP_API_KEY;
-    const DATACENTER = process.env.MAILCHIMP_API_SERVER;
-    const data = {
-      email_address: email,
-      status: 'subscribed',
-    };
+    const response = await mailchimp.lists.getListMember(listId, email);
 
-    const response = await fetch(
-      `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members`,
+    if (response.status === 404) {
+      try {
+        const response = await mailchimp.lists.addListMember(
+          listId,
+          subscribingUser
+        );
 
-      {
-        body: JSON.stringify(data),
-        headers: {
-          Authorization: `apikey ${API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
+        return res.status(201).json({ error: "" });
+      } catch (error) {
+        return res.status(500).json({
+          error: error.message || error.toString(),
+        });
       }
-    );
-
-    if (response.status >= 400) {
+    } else {
       return res.status(400).json({
-        error: `There was an error subscribing to the newsletter.
-        Hit me up peter@peterlunch.com and I'll add you the old fashioned way :(.`,
+        error: `You're already subscribed to our newsletter`,
       });
     }
-
-    return res.status(201).json({ error: '' });
   } catch (error) {
-    return res.status(500).json({ error: error.message || error.toString() });
+    return res.status(500).json({
+      error: error.message || error.toString(),
+    });
   }
 };
