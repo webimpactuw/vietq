@@ -118,9 +118,15 @@ const beVietnamText = localFont({
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <div
-        className={`${beVietnamDisplay.variable} ${beVietnamText.variable} font-sans`}
-      >
+      <div className={`font-sans`}>
+        <style jsx global>
+          {`
+            :root {
+              --font-be-vietnam-display: ${beVietnamDisplay.style.fontFamily};
+              --font-be-vietnam-text: ${beVietnamText.style.fontFamily};
+            }
+          `}
+        </style>
         <Component {...pageProps} />
       </div>
       <Analytics />

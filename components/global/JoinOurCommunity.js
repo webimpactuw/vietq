@@ -75,8 +75,7 @@ export default function JoinOurCommunity({ footer = false }) {
       {confirm ? (
         <div>
           <p className="text-sm font-medium font-display text-white/75 mt-4">
-            Thanks for subscribing! Please check your inbox for a confirmation
-            email.
+            Thanks for subscribing! Be on the lookout for our emails.
           </p>
         </div>
       ) : null}
@@ -92,15 +91,4 @@ function validateEmail(email) {
   } catch (error) {
     return false; // Email is invalid
   }
-}
-
-{
-  /* <div className="flex items-center justify-center space-x-2">
-                <button className="hover:opacity-75 transition-opacity cursor-pointer border border-blue-100 bg-blue-50 text-blue-800 text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium">
-                  Upcoming events
-                </button>
-                <button className="hover:opacity-75 transition-opacity cursor-pointer text-blue-50 text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium">
-                  Past events
-                </button>
-              </div> */
 }
