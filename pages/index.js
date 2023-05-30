@@ -6,13 +6,23 @@ import ExitPreview from "@/components/sanity/ExitPreview";
 import PreviewLoading from "@/components/sanity/PreviewLoading";
 import RootLayout from "@/components/global/RootLayout";
 
-import Hero from "@/components/pages/home/Hero";
-import AboutSection from "@/components/pages/home/AboutSection";
-import PhotoWall from "@/components/pages/home/PhotoWall";
-import BigQuote from "@/components/pages/home/BigQuote";
-import EventsSection from "@/components/pages/home/EventsSection";
-import CommunitySection from "@/components/pages/home/CommunitySection";
-import LandAcknowledgement from "@/components/pages/home/LandAcknowledgement";
+import dynamic from "next/dynamic";
+const PhotoWall = dynamic(() => import("@/components/pages/home/PhotoWall"));
+const EventsSection = dynamic(() =>
+  import("@/components/pages/home/EventsSection")
+);
+const Hero = dynamic(() => import("@/components/pages/home/Hero"));
+const LandAcknowledgement = dynamic(() =>
+  import("@/components/pages/home/LandAcknowledgement")
+);
+const BigQuote = dynamic(() => import("@/components/pages/home/BigQuote"));
+const CommunitySection = dynamic(() =>
+  import("@/components/pages/home/CommunitySection")
+);
+
+const AboutSection = dynamic(() =>
+  import("@/components/pages/home/AboutSection")
+);
 
 const query = groq`*[_type == "homePage"][0]{
   hero {

@@ -9,8 +9,14 @@ import Container from "@/components/global/Container";
 import RootLayout from "@/components/global/RootLayout";
 
 import PostBar from "@/components/pages/community/post/PostBar";
-import PostBody from "@/components/pages/community/post/PostBody";
-import RecentPosts from "@/components/pages/community/post/RecentPosts";
+
+import dynamic from "next/dynamic";
+const RecentPosts = dynamic(() =>
+  import("@/components/pages/community/post/RecentPosts")
+);
+const PostBody = dynamic(() =>
+  import("@/components/pages/community/post/PostBody")
+);
 
 const query = groq`*[_type == "blogPost" && slug.current==$slug][0] {
   title,

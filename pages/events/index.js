@@ -7,12 +7,16 @@ import PreviewLoading from "@/components/sanity/PreviewLoading";
 import RootLayout from "@/components/global/RootLayout";
 
 import EventTypes from "@/components/pages/events/EventTypes";
-import Header from "@/components/pages/events/Header";
-import PastEvents from "@/components/pages/events/PastEvents";
 
 import dynamic from "next/dynamic";
 const UpcomingEvents = dynamic(() =>
   import("@/components/pages/events/UpcomingEvents")
+);
+
+const Header = dynamic(() => import("@/components/pages/events/Header"));
+
+const PastEvents = dynamic(() =>
+  import("@/components/pages/events/PastEvents")
 );
 
 const query = groq`*[_type == "eventsPage"][0] {

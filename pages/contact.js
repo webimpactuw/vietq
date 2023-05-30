@@ -6,10 +6,14 @@ import ExitPreview from "@/components/sanity/ExitPreview";
 import PreviewLoading from "@/components/sanity/PreviewLoading";
 import RootLayout from "@/components/global/RootLayout";
 
-import ContactForm from "@/components/pages/contact/ContactForm";
 import Container from "@/components/global/Container";
-import Header from "@/components/pages/contact/Header";
 import Socials from "@/components/pages/contact/Socials";
+
+import dynamic from "next/dynamic";
+const Header = dynamic(() => import("@/components/pages/contact/Header"));
+const ContactForm = dynamic(() =>
+  import("@/components/pages/contact/ContactForm")
+);
 
 const query = groq`*[_type == "contactPage"][0] {
  heroImage {

@@ -1,18 +1,20 @@
 import RootLayout from "@/components/global/RootLayout";
 
-import Image from "next/image";
-
 import client from "@/sanity/lib/client";
 import { groq } from "next-sanity";
-import Header from "@/components/pages/community/Header";
-import FromTheBlog from "@/components/pages/community/FromTheBlog";
-import { LinkIcon } from "@heroicons/react/20/solid";
 import PreviewLoading from "@/components/sanity/PreviewLoading";
 import { PreviewSuspense } from "next-sanity/preview";
 import ExitPreview from "@/components/sanity/ExitPreview";
-import AllResources from "@/components/pages/community/AllResources";
+import { usePreview } from "@/sanity/lib/preview";
 
-import { usePreview } from "next-sanity/preview";
+import dynamic from "next/dynamic";
+const AllResources = dynamic(() =>
+  import("@/components/pages/community/AllResources")
+);
+const FromTheBlog = dynamic(() =>
+  import("@/components/pages/community/FromTheBlog")
+);
+const Header = dynamic(() => import("@/components/pages/community/Header"));
 
 const query = groq`*[_type == "communityPage"][0] {
     ...,
