@@ -142,7 +142,9 @@ function UniversalResourceCardBody({ data, tags = true, light = false }) {
               }`}
             >
               <LinkIconSmall className="w-5 h-5 mr-1 shrink-0" />
-              <p className="text-xs font-medium">example.com</p>
+              <p className="text-xs font-medium">
+                {new URL(data.link).hostname}
+              </p>
             </div>
           )}
           <p

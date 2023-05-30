@@ -5,10 +5,8 @@ import {
   ArrowUpIcon,
   BlockContentIcon,
   CalendarIcon,
-  DocumentsIcon,
   LaunchIcon,
   MasterDetailIcon,
-  SparklesIcon,
   UsersIcon,
 } from "@sanity/icons";
 import { routes } from "../lib/routes";

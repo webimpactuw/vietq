@@ -1,5 +1,6 @@
 import {
   CalendarIcon,
+  CommentIcon,
   ComponentIcon,
   HomeIcon,
   UsersIcon,
@@ -35,5 +36,12 @@ export const routes = [
     location: "/community",
     schemaType: "communityPage",
     icon: ComponentIcon,
+  },
+  {
+    title: "Contact",
+    slug: "contact",
+    location: "/contact",
+    schemaType: "contactPage",
+    icon: CommentIcon,
   },
 ];

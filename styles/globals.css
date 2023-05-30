@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer utilities {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
   body {
     @apply bg-champagne text-blue-900;
   }

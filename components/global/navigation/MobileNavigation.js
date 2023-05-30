@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { navigationData } from "./Navigation";
 
-export default function MobileNavigation({ open }) {
+export default function MobileNavigation({ open, setShowDonate }) {
   if (open) {
     return (
       <div className="md:hidden px-4 pb-6 space-y-8 flex flex-col items-center justify-start">
@@ -14,12 +14,12 @@ export default function MobileNavigation({ open }) {
             {item.name}
           </Link>
         ))}
-        <Link
-          href="/donate"
-          className={`text-white bg-blue-800 uppercase tracking-widest text-sm hover:bg-blue-700 rounded-full px-3.5 py-1.5 transition-colors font-semibold`}
+        <button
+          onClick={() => setShowDonate(true)}
+          className={`text-white bg-gray-900 uppercase tracking-widest text-sm hover:bg-blue-800 rounded-full px-3.5 py-2 transition-colors font-semibold`}
         >
           Donate
-        </Link>
+        </button>
       </div>
     );
   }

@@ -1,111 +1,75 @@
-import ContactForm from "@/components/global/ContactForm";
-import Container from "@/components/global/Container";
+import client from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+import { PreviewSuspense } from "next-sanity/preview";
+import { usePreview } from "@/sanity/lib/preview";
+import ExitPreview from "@/components/sanity/ExitPreview";
+import PreviewLoading from "@/components/sanity/PreviewLoading";
 import RootLayout from "@/components/global/RootLayout";
 
-import Image from "next/image";
+import ContactForm from "@/components/pages/contact/ContactForm";
+import Container from "@/components/global/Container";
+import Header from "@/components/pages/contact/Header";
+import Socials from "@/components/pages/contact/Socials";
 
-import { EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
+const query = groq`*[_type == "contactPage"][0] {
+ heroImage {
+    ...,
+    "lqip": asset->metadata.lqip,
+ }
+}`;
 
-import { useState } from "react";
+export async function getStaticProps({ preview = false }) {
+  if (preview) {
+    return { props: { preview } };
+  }
 
-export default function Contact() {
-  const [error, setError] = useState(null);
+  const data = await client.fetch(query);
 
+  return {
+    props: { preview, data },
+    revalidate: parseInt(process.env.NEXT_PUBLIC_REVALIDATE),
+  };
+}
+
+export default function About({ preview, data }) {
   return (
-    <RootLayout title="Contact Us" navTransparent={true}>
-      <div className="pb-4 md:pb-16">
-        <div className="text-white pt-24 md:pt-32 pb-12">
-          <Container>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tighter font-display">
-                  Contact VietQ
-                </h3>
-                <h1 className="text-5xl font-bold tracking-tighter font-display leading-tight">
-                  Have a question?
-                  <br />
-                  Let&apos;s get in touch!
-                </h1>
-                <p>
-                  If you have inquries about our events or organization, please fill out this form and we'll get back to you soon!
-                </p>
-              </div>
-            </div>
-          </Container>
-        </div>
-        <div className="gradient w-full h-4" />
-        <Container>
-          <div className="grid md:grid-cols-5 gap-32 pt-12">
-            <div className="col-span-3">
-              <ContactForm />
-            </div>
-            <div className="col-span-2">
-              <Socials />
-            </div>
-          </div>
-        </Container>
-      </div>
+    <RootLayout title="Contact" preview={preview} navTransparent={true}>
+      {preview ? (
+        <PreviewSuspense fallback={<PreviewLoading />}>
+          <PreviewContactPage query={query} />
+        </PreviewSuspense>
+      ) : (
+        <ContactPage data={data} />
+      )}
     </RootLayout>
   );
 }
 
-function Socials() {
+function ContactPage({ data }) {
   return (
-    <div className="flex flex-col items-start md:items-start justify-start space-y-4 md:order-last order-first">
-      <h1 className="text-xl font-semibold tracking-tightest">Email Us</h1>
-      <IconLink
-        text="vietqorganization@gmail.com"
-        href="@mailto:vietqorganization@gmail.com"
-      >
-        <EnvelopeIcon className="w-6 h-6" />
-      </IconLink>
-      <IconLink text="Seattle, WA">
-        <MapPinIcon className="w-6 h-6" />
-      </IconLink>
-      
-      <h1 className="text-xl font-semibold tracking-tightest">Follow Us</h1>
-      <div className="flex flex-row items-start gap-x-2">
-        <IconLink
-          text="@vietqseattle"
-          href="https://www.instagram.com/vietqseattle/?hl=en"
-        >
-          <Image 
-            src="/socials/facebook.svg"
-            alt="Facebook"
-            width={24}
-            height={24}
-            className="w-6 h-6"
-          />
-          <Image
-            src="/socials/instagram.svg"
-            alt="Instagram"
-            width={24}
-            height={24}
-            className="w-6 h-6"
-          />
-        </IconLink>
-      </div>
-    </div>
+    <>
+      <Header data={data} />
+      <Container>
+        <div className="grid md:grid-cols-5 gap-32 pt-12">
+          <div className="col-span-3">
+            <ContactForm />
+          </div>
+          <div className="col-span-2">
+            <Socials />
+          </div>
+        </div>
+      </Container>
+    </>
   );
 }
 
-function IconLink({ children, text, href = "" }) {
+function PreviewContactPage({ query }) {
+  const data = usePreview(null, query);
+
   return (
-    <div
-      className={`${
-        href.length > 0
-          ? " hover:opacity-75 transition-opacity cursor-pointer"
-          : ""
-      } flex space-x-2 items-center md:justify-end md:text-right uppercase tracking-widest font-semibold`}
-    >
-      {children}
-      {href.length > 0 ? (
-        <a href={href} className="text-sm -mt-0.5">
-          {text}
-        </a>
-      ) : (
-        <p className="text-sm -mt-0.5">{text}</p>
-      )}
-    </div>
+    <>
+      <ContactPage data={data} />
+      <ExitPreview />
+    </>
   );
 }

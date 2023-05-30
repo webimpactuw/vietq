@@ -50,6 +50,7 @@ export default function UpcomingEvents({ ignore = [] }) {
 
   return (
     <div
+      id="upcoming-events"
       className={`space-y-0 pt-24  overflow-hidden transition-background bg-blue-900`}
       style={{
         background: selected.colors ? selected.colors.dark : "#040D1B",

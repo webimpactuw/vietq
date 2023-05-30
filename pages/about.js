@@ -18,9 +18,9 @@ const query = groq`*[_type == "aboutPage"][0] {
   headerSection {
     ...,
     teamPicture {
-   ...,
-  "lqip": asset->metadata.lqip,
-  },
+      ...,
+    "lqip": asset->metadata.lqip,
+    },
   },
   "members": *[_type == "teamMember"] | order(orderRank) {
     name,

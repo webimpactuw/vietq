@@ -15,7 +15,16 @@ const UpcomingEvents = dynamic(() =>
   import("@/components/pages/events/UpcomingEvents")
 );
 
-const query = groq`*[_type == "eventPage"][0]`;
+const query = groq`*[_type == "eventsPage"][0] {
+  headerSection {
+    ...,
+    featuredPicture {
+      ...,
+      "lqip": asset->metadata.lqip,
+    },
+  },
+  eventTypes
+}`;
 
 export async function getStaticProps({ preview = false }) {
   if (preview) {
@@ -47,8 +56,8 @@ export default function Events({ preview, data }) {
 function EventsPage({ data }) {
   return (
     <>
-      <Header />
-      <EventTypes />
+      <Header data={data.headerSection} />
+      <EventTypes data={data.eventTypes} />
       <UpcomingEvents />
       <PastEvents />
     </>

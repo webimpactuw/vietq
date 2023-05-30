@@ -23,12 +23,16 @@ import resourceTag from "./documents/resourceTag";
 import aboutNewsCard from "./pages/aboutPage/aboutNewsCard";
 import aboutHeaderSection from "./pages/aboutPage/aboutHeaderSection";
 import homeBigQuote from "./pages/homePage/homeBigQuote";
+import eventsHeaderSection from "./pages/eventsPage/eventsHeaderSection";
+import eventsTypeCard from "./pages/eventsPage/eventsTypeCard";
+import contactPage from "./pages/contactPage";
 
 export const schemaTypes = [
   homePage,
   aboutPage,
   eventsPage,
   communityPage,
+  contactPage,
   aboutSection,
   teamMember,
   event,
@@ -50,4 +54,6 @@ export const schemaTypes = [
   resourceTag,
   aboutNewsCard,
   aboutHeaderSection,
+  eventsHeaderSection,
+  eventsTypeCard,
 ];

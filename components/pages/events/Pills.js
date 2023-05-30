@@ -3,8 +3,8 @@ import { VideoCameraIcon } from "@heroicons/react/20/solid";
 export default function Pills({ tags, virtual, bg, text }) {
   return (
     <div className="flex gap-2 flex-wrap">
-      {tags?.map((tag) => (
-        <Pill key={tag.slug} bg={bg} text={text}>
+      {tags?.map((tag, i) => (
+        <Pill key={i} bg={bg} text={text}>
           Workshop
         </Pill>
       ))}

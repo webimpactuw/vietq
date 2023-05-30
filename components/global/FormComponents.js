@@ -6,10 +6,7 @@ import { Field, ErrorMessage } from "formik";
 
 export function FormLabel({ htmlFor, children }) {
   return (
-    <label
-      className="tracking-tightest font-semibold text-xl"
-      htmlFor={htmlFor}
-    >
+    <label className="tracking-tightest font-semibold" htmlFor={htmlFor}>
       {children}
     </label>
   );
@@ -29,7 +26,7 @@ export function FormField({
       type={type}
       autoComplete={autoComplete}
       placeholder={placeholder}
-      className="placeholder-gray-500 text-blue-900 bg-white border border-white focus:outline-blue-700 hover:bg-gray-100 transition-colors tracking-tighter block w-full rounded-md pt-2 pb-2.5 px-4 focus:ring-blue-500 focus:border-blue-500"
+      className="placeholder-gray-500 text-blue-900 bg-champagne-50 border border-champagne-700/25 focus:outline-blue-700 transition-colors tracking-tighter block w-full rounded-xl pt-2 pb-2.5 px-4 focus:ring-blue-500 focus:border-blue-500"
     />
   );
 }
@@ -41,13 +38,13 @@ export function FormSelect({ id, name, children }) {
         id={id}
         name={name}
         component="select"
-        className="placeholder-gray-500 text-blue-900 border border-white focus:outline-blue-700 hover:bg-gray-100 transition-colors tracking-tighter block w-full rounded-md pt-2 pb-2.5 px-4 focus:ring-blue-500 focus:border-blue-500"
+        className="placeholder-gray-500 text-blue-900 bg-champagne-50 border border-champagne-700/25 focus:outline-blue-700 transition-colors tracking-tighter block w-full rounded-xl pt-2 pb-2.5 px-4 focus:ring-blue-500 focus:border-blue-500"
       >
         {children}
       </Field>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+      {/* <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
         <ChevronDownIcon className="h-5 w-5" />
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -60,7 +57,7 @@ export function FormTextArea({ id, name, placeholder = "" }) {
       component="textarea"
       placeholder={placeholder}
       rows="6"
-      className="placeholder-gray-500 text-blue-900 bg-white border border-white focus:outline-blue-700 hover:bg-gray-100 transition-colors tracking-tighter block w-full rounded-2xl p-4 focus:ring-blue-500 focus:border-blue-500"
+      className="placeholder-gray-500 text-blue-900 bg-champagne-50 border border-champagne-700/25 focus:outline-blue-700 transition-colors tracking-tighter block w-full rounded-2xl p-4 focus:ring-blue-500 focus:border-blue-500"
     />
   );
 }

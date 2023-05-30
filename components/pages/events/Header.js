@@ -1,14 +1,13 @@
 import { FilledButton, OutlinedButton } from "@/components/global/Button";
 import Container from "@/components/global/Container";
+import urlFor from "@/sanity/lib/urlFor";
 
 import Image from "next/image";
 
-export default function Header() {
-  const color = randomColorSpec();
-
+export default function Header({ data }) {
   return (
     <div
-      className={`border-b ${color} bg-gradient-to-b text-white pb-4 md:pb-16 overflow-hidden`}
+      className={`border-b events-blue bg-gradient-to-b text-white pb-4 md:pb-16 overflow-hidden`}
     >
       <Container>
         <div className="pt-24 md:pt-32 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-16">
@@ -18,60 +17,39 @@ export default function Header() {
                 Events
               </h3>
               <h1 className="text-5xl md:text-6xl font-bold tracking-tighter font-display leading-tight">
-                Here's what's coming up
+                {data.title}
               </h1>
             </div>
             <p className="text-lg font-medium text-white/75">
-              At VietQ, we host a variety of events throughout the year. From
-              networking events to workshops, we have something for everyone.
+              {data.description}
             </p>
             <div className="flex items-center justify-start space-x-2">
-              <FilledButton dark={false}>Upcoming events</FilledButton>
-              <OutlinedButton dark={false}>Past events</OutlinedButton>
+              <a href="#upcoming-events">
+                <FilledButton dark={false}>Upcoming events</FilledButton>
+              </a>
+              <a href="#past-events">
+                <OutlinedButton dark={false}>Past events</OutlinedButton>
+              </a>
             </div>
           </div>
-          <div className="col-span-3 relative">
+          <div className="col-span-3 relative text-center space-y-4">
             <Image
-              src="/sample/photo.png"
-              width={1440}
-              height={1920}
-              className="absolute h-80 w-auto rounded-lg z-30"
-            />
-            <Image
-              src="/sample/square.png"
-              width={1000}
-              height={1000}
-              className="absolute w-48 -bottom-8 -left-8 rounded-lg z-20"
-            />
-            <Image
-              src="/sample/landscape.png"
+              src={urlFor(data.featuredPicture)
+                .auto("format")
+                .width(1920)
+                .height(1080)
+                .url()}
               width={1920}
               height={1080}
-              className="absolute h-64 w-auto bottom-4 left-48 rounded-lg z-0"
+              className="rounded-xl border border-white/25"
+              alt={data.featuredPicture.title}
+              blurDataURL={data.featuredPicture.lqip}
+              placeholder="blur"
             />
-            <Image
-              src="/sample/square.png"
-              width={1000}
-              height={1000}
-              className="absolute w-64 -top-8 right-8 rounded-lg z-10"
-            />
+            <p className="text-sm">{data.featuredPicture.title}</p>
           </div>
         </div>
       </Container>
     </div>
   );
-}
-
-function randomColorSpec() {
-  const colors = [
-    "events-blue",
-    "events-red",
-    "events-purple",
-    "events-green",
-    "events-yellow",
-    "events-orange",
-  ];
-  const color = colors[Math.floor(Math.random() * colors.length)];
-
-  return color;
 }

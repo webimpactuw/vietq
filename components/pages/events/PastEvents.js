@@ -24,7 +24,7 @@ export default function PastEvents() {
   );
 
   return (
-    <Container>
+    <Container id="past-events">
       <div className="pt-16 pb-0 relative space-y-16">
         <h2 className="font-display text-6xl tracking-tighter font-semibold ">
           Past Events

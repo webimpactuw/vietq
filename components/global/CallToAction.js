@@ -20,8 +20,7 @@ export default function CallToAction({ preview = false }) {
                 Subscribe to our newsletter
               </h2>
               <p className="md:text-lg text-gray-300">
-                Nostrud amet eu ullamco nisi aute in ad minim nostrud
-                adipisicing velit quis. Duis tempor incididunt dolore.
+                Stay up to date with the latest news and events from VietQ.
               </p>
             </div>
             <div className="mt-6">
@@ -36,8 +35,8 @@ export default function CallToAction({ preview = false }) {
                   Upcoming Events
                 </dt>
                 <dd className="text-gray-300">
-                  Officia excepteur ullamco ut sint duis proident non
-                  adipisicing. Voluptate incididunt anim.
+                  Find out about our upcoming events and how you can get
+                  involved.
                 </dd>
               </div>
             </div>
@@ -48,8 +47,8 @@ export default function CallToAction({ preview = false }) {
                   Stay in the know
                 </dt>
                 <dd className="text-gray-300">
-                  Officia excepteur ullamco ut sint duis proident non
-                  adipisicing. Voluptate incididunt anim.
+                  Keep in touch with our community and stay up to date with the
+                  latest news and events.
                 </dd>
               </div>
             </div>

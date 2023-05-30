@@ -1,7 +1,7 @@
 import Container from "@/components/global/Container";
 import CommunityCard from "../../cards/CommunityCard";
 
-export default function EventTypes() {
+export default function EventTypes({ data }) {
   return (
     <Container>
       <div className="py-8 md:py-16 space-y-8 md:space-y-16 relative">
@@ -14,9 +14,19 @@ export default function EventTypes() {
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-4 md:gap-8 relative">
-          <CommunityCard section={0} color="text-red-500" scale={false} />
-          <CommunityCard section={1} color="text-blue-500" scale={false} />
-          <CommunityCard section={2} color="text-purple-500" scale={false} />
+          {data.map((item, index) => (
+            <CommunityCard
+              data={{
+                title: item.title,
+                description: item.description,
+              }}
+              key={index}
+              section={index}
+              scale={false}
+            >
+              {null}
+            </CommunityCard>
+          ))}
         </div>
       </div>
     </Container>

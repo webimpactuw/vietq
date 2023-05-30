@@ -123,9 +123,6 @@ function EventPage({ data }) {
           </div>
         </div>
       </Container>
-      {/* <pre>
-        <code>{JSON.stringify(data, null, 2)}</code>
-      </pre> */}
       <UpcomingEvents ignore={[data.slug]} />
     </>
   );
@@ -150,10 +147,7 @@ function RelatedLinks({ links }) {
       </h2>
       <div className="grid md:grid-cols-3 gap-4">
         {links.map((link, i) => (
-          <>
-            <LinkCard key={i} link={link} />
-            <LinkCard key={i} link={link} />
-          </>
+          <LinkCard key={i} link={link} />
         ))}
       </div>
     </div>
@@ -168,10 +162,10 @@ function LinkCard({ link }) {
       rel="noopener noreferrer"
       className="p-4 border border-champagne-700/25 rounded-xl hover:opacity-75 transition-opacity bg-champagne-50 flex items-center space-x-4 justify-start"
     >
-      <LinkIcon className="w-6 h-6 mb-2" />
-      <div>
-        <h4 className="text-lg font-bold font-display">{link.title}</h4>
-        <p className="text-sm text-gray-700 underline">
+      <LinkIcon className="w-6 h-6" />
+      <div className="space-y-1">
+        <h4 className="font-bold font-display">{link.title}</h4>
+        <p className="text-xs text-gray-700">
           {new URL(link.url).hostname.split("www.")[1]}
         </p>
       </div>
