@@ -14,7 +14,7 @@ export default function Contact() {
   return (
     <RootLayout title="Contact Us" navTransparent={true}>
       <div className="pb-4 md:pb-16">
-        <div className="contact-gradient text-white pt-24 md:pt-32 pb-12">
+        <div className="text-white pt-24 md:pt-32 pb-12">
           <Container>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
               <div className="space-y-2">
@@ -35,9 +35,13 @@ export default function Contact() {
         </div>
         <div className="gradient w-full h-4" />
         <Container>
-          <div className="grid md:grid-cols-2 gap-12 pt-12">
-            <ContactForm />
-            <Socials />
+          <div className="grid md:grid-cols-5 gap-32 pt-12">
+            <div className="col-span-3">
+              <ContactForm />
+            </div>
+            <div className="col-span-2">
+              <Socials />
+            </div>
           </div>
         </Container>
       </div>

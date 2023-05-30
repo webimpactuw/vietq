@@ -12,6 +12,8 @@ import { PreviewSuspense } from "next-sanity/preview";
 import ExitPreview from "@/components/sanity/ExitPreview";
 import AllResources from "@/components/pages/community/AllResources";
 
+import { usePreview } from "next-sanity/preview";
+
 const query = groq`*[_type == "communityPage"][0] {
     ...,
     heroImage {
