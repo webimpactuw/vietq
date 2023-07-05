@@ -19,7 +19,7 @@ const EventBar = dynamic(() =>
   import("@/components/pages/events/event/EventBar")
 );
 
-const Header = dynamic(() => import("@/components/pages/events/Header"));
+const Header = dynamic(() => import("@/components/pages/events/event/Header"));
 const UpcomingEvents = dynamic(() =>
   import("@/components/pages/events/UpcomingEvents")
 );

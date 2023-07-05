@@ -10,9 +10,9 @@ export default function PortableImage({ value }) {
       src={urlFor(value).fit("max").auto("format").url()}
       width={width}
       height={height}
-      placeholder="blur"
+      // placeholder="blur"
       loading="lazy"
-      blurDataURL={value.lqip}
+      // blurDataURL={value.lqip}
       style={{
         aspectRatio: width / height,
       }}
