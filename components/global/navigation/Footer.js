@@ -39,7 +39,7 @@ export default function Footer({ preview = false }) {
           <div className="pt-8 flex md:flex-row md:items-center md:justify-between md:space-x-16 flex-col-reverse">
             <small className="text-xs uppercase tracking-widest">
               Copyright @ {new Date().getFullYear()} VietQ <br /> Made by
-              Dubvelopers with{" "}
+              Web Impact UW with{" "}
               <span className="hover:text-red-200 transition-colors">love</span>{" "}
               and support
             </small>
