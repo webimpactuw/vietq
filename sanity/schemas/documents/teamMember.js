@@ -33,6 +33,12 @@ export default {
       title: "Bio",
       type: "text",
     },
+    {
+      name: "previous",
+      title: "Previous",
+      type: "boolean",
+      description: "Check this box if the team member is no longer active",
+    },
   ],
   preview: {
     select: {

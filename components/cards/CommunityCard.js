@@ -12,7 +12,7 @@ export default function CommunityCard({
 }) {
   return (
     <div
-      className={`rounded-xl border overflow-hidden bg-champagne-50 border-champagne-700/25 ${
+      className={`rounded-xl border overflow-hidden relative bg-champagne-50 border-champagne-700/25 ${
         section === 1 && scale ? "md:scale-110" : "md:scale-95"
       }`}
     >
@@ -22,7 +22,7 @@ export default function CommunityCard({
         <p className="text-sm font-medium text-gray-700">{data.description}</p>
       </div>
       <div
-        className={`gradient h-2 w-full ${
+        className={`gradient h-2 w-full absolute bottom-0 ${
           section === 0 ? "one" : section === 1 ? "two" : "three"
         }`}
       />

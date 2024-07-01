@@ -1,5 +1,5 @@
 import { getImageDimensions } from "@sanity/asset-utils";
-import urlFor from "@/sanity/lib/urlFor";
+import { urlFor } from "@/sanity/lib/urlFor";
 import Image from "next/image";
 
 export default function PortableImage({ value }) {
