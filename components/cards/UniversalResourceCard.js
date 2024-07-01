@@ -1,4 +1,4 @@
-import urlFor from "@/sanity/lib/urlFor";
+import { urlFor } from "@/sanity/lib/urlFor";
 import Image from "next/image";
 import Link from "next/link";
 import format from "date-fns/format";

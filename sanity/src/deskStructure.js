@@ -1,5 +1,4 @@
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import Iframe from "sanity-plugin-iframe-pane";
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -119,25 +118,12 @@ export default (S, context) => {
     ]);
 };
 
-function singlePage(S, title, type, previewSlug = "", icon = BlockContentIcon) {
+function singlePage(S, title, type, icon = BlockContentIcon) {
   return S.listItem()
     .title(title)
     .id(type)
     .icon(icon)
     .child(
-      S.document()
-        .schemaType(type)
-        .documentId(type)
-        .views([
-          S.view.form(),
-          S.view
-            .component(Iframe)
-            .options({
-              url: `${process.env.NEXT_PUBLIC_HOST}/api/preview${
-                previewSlug.length > 0 ? `?slug=${previewSlug}` : ""
-              }`,
-            })
-            .title("Preview"),
-        ])
+      S.document().schemaType(type).documentId(type).views([S.view.form()])
     );
 }

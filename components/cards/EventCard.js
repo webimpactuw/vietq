@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import urlFor from "@/sanity/lib/urlFor";
+import { urlFor } from "@/sanity/lib/urlFor";
 import Link from "next/link";
 import { VideoCameraIcon } from "@heroicons/react/20/solid";
 
@@ -38,20 +38,20 @@ export default function EventCard({ data = null, colors, date }) {
                 {date.daysLeft > 0
                   ? `${date.daysLeft} days left`
                   : date.daysLeft == 0
-                  ? "Today"
-                  : "Past"}
+                    ? "Today"
+                    : "Past"}
               </span>
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="font-bold text-9/2xl tracking-tightest">
+            <h2 className="font-bold text-4xl tracking-tightest">
               {date.short}
               {date.end ? (
                 <span className="text-2xl tracking-tight">{date.end}</span>
               ) : null}
             </h2>
             <div className="space-y-1">
-              <h3 className="font-semibold">
+              <h3 className="font-semibold line-clamp-2 h-12">
                 {data?.title || "This is the title of the event"}
               </h3>
               <p
@@ -70,8 +70,8 @@ export default function EventCard({ data = null, colors, date }) {
             {data?.location?.virtual
               ? " • Virtual"
               : data?.location?.name
-              ? ` • ${data.location.name}`
-              : ""}
+                ? ` • ${data.location.name}`
+                : ""}
           </p>
         </div>
         <div
@@ -97,7 +97,7 @@ export default function EventCard({ data = null, colors, date }) {
               color: colors["800"].color || "black",
               backgroundColor: colors["100"].color || "white",
             }}
-            className="hover:bg-gray-200 cursor-pointer transition-colors absolute bottom-2 right-2 border border-gray-300 bg-white text-gray-500 text-xs rounded-full px-4 pt-2.5 pb-3 tracking-tight font-medium"
+            className="hover:bg-gray-200 font-semibold cursor-pointer transition-colors absolute bottom-2 right-2 border border-gray-300 bg-white text-gray-500 text-sm rounded-full px-4 pt-2.5 pb-3 tracking-tight"
           >
             Learn more
           </div>

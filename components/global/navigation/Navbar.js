@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
@@ -8,16 +10,17 @@ import dynamic from "next/dynamic";
 const MobileNavigation = dynamic(() => import("./MobileNavigation"));
 const DonateModal = dynamic(() => import("./DonateModal"));
 
-import vietQWhite from "../../../public/logos/vietq_logo_white.png";
-import vietQBlack from "../../../public/logos/vietq_logo_black.png";
+import vietQWhite from "@/public/logos/vietq_logo_white.png";
+import vietQBlack from "@/public/logos/vietq_logo_black.png";
 
 import { useEffect, useState } from "react";
 
 import { useScrollData } from "scroll-data-hook";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
-export default function Navbar({ transparent = false, preview = false }) {
+export default function Navbar({ transparent = false }) {
   const { position } = useScrollData();
 
   const past = position.y > 100;
@@ -33,6 +36,13 @@ export default function Navbar({ transparent = false, preview = false }) {
     }
   }, [open]);
 
+  const pathname = usePathname();
+  const transparentPaths = ["/", "/events", "/community", "/contact"];
+
+  if (pathname.includes("/admin")) {
+    return null;
+  }
+
   return (
     <>
       {open ? (
@@ -42,10 +52,8 @@ export default function Navbar({ transparent = false, preview = false }) {
         />
       ) : null}
       <nav
-        className={`${
-          preview ? "pointer-events-none" : ""
-        } fixed top-0 w-full transition-colors border-b z-50 ${
-          transparent && !open
+        className={`fixed top-0 w-full transition-colors border-b z-50 ${
+          transparentPaths.includes(pathname) && !open
             ? past
               ? "text-blue-800 bg-champagne border-blue-900"
               : "text-white bg-champagne/0 border-transparent"
@@ -58,7 +66,7 @@ export default function Navbar({ transparent = false, preview = false }) {
             <Link href="/">
               <Image
                 src={
-                  transparent && !open
+                  transparentPaths.includes(pathname) && !open
                     ? past
                       ? vietQBlack
                       : vietQWhite
@@ -73,7 +81,7 @@ export default function Navbar({ transparent = false, preview = false }) {
               <button
                 onClick={() => setShowDonate(true)}
                 className={`${
-                  transparent
+                  transparentPaths.includes(pathname)
                     ? past
                       ? "text-white bg-gray-900 hover:bg-gray-800"
                       : "text-gray-900 bg-white hover:bg-gray-300"

@@ -5,13 +5,9 @@ import {
   InboxArrowDownIcon,
 } from "@heroicons/react/24/outline";
 
-export default function CallToAction({ preview = false }) {
+export default function CallToAction() {
   return (
-    <div
-      className={`relative isolate overflow-hidden bg-blue-900 py-8 sm:py-12 lg:py-16 ${
-        preview ? "pointer-events-none" : ""
-      }`}
-    >
+    <div className="relative isolate overflow-hidden bg-blue-900 py-8 sm:py-12 lg:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
