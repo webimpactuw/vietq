@@ -28,7 +28,7 @@ export default function Team({ data }) {
             <TeamMemberCard key={member.name} member={member} />
           ))}
         </div>
-        {previousMembers > 0 ? (
+        {previousMembers.length > 0 ? (
           <div className="space-y-8">
             <h2 className="text-3xl font-bold tracking-tighter font-display leading-tight">
               Previous members

@@ -29,7 +29,12 @@ import contactPage from "./pages/contactPage";
 
 import { routes } from "../lib/routes";
 
-const singletonTypes = new Set(routes.map((route) => route.schemaType));
+export const singletonTypes = new Set(routes.map((route) => route.schemaType));
+export const singletonActions = new Set([
+  "publish",
+  "discardChanges",
+  "restore",
+]);
 
 export const schema = {
   types: [

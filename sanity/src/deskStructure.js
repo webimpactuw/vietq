@@ -108,13 +108,55 @@ export default (S, context) => {
                 .views([S.view.form()])
             )
         ),
-      orderableDocumentListDeskItem({
-        type: "teamMember",
-        title: "Team Members",
-        icon: UsersIcon,
-        S,
-        context,
-      }),
+      S.listItem()
+        .title("Team Members")
+        .icon(UsersIcon)
+        .child(
+          S.list()
+            .title("Team Members")
+            .items([
+              S.listItem()
+                .title("Current Team Members")
+
+                .child(
+                  S.documentTypeList("teamMember")
+                    .title("Current Team Members")
+                    .filter('_type == "teamMember" && previous != true')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType("teamMember")
+                        .views([S.view.form()])
+                    )
+                ),
+              S.listItem()
+                .title("Past Team Members")
+
+                .child(
+                  S.documentTypeList("teamMember")
+                    .title("Past Team Members")
+                    .filter('_type == "teamMember" && previous == true')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType("teamMember")
+                        .views([S.view.form()])
+                    )
+                ),
+              S.listItem()
+                .title("All Team Members")
+                .child(
+                  S.documentTypeList("teamMember")
+                    .title("All Team Members")
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType("teamMember")
+                        .views([S.view.form()])
+                    )
+                ),
+            ])
+        ),
     ]);
 };
 
