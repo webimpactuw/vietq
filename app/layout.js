@@ -6,6 +6,7 @@ import localFont from "next/font/local";
 import "@/styles/globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   metadataBase: new URL("https://vietq.org"),
@@ -147,6 +148,7 @@ export default function RootLayout({ children }) {
 
         <Footer />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
