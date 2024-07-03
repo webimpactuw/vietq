@@ -13,7 +13,7 @@ import { colorInput } from "@sanity/color-input";
 export default defineConfig({
   basePath: "/admin",
   name: "default",
-  title: "CMS",
+  title: "VietQ Studio",
   projectId,
   dataset,
   apiVersion,

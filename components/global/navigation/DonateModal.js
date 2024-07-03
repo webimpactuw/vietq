@@ -58,12 +58,11 @@ export default function DonateModal({ showDonate, setShowDonate }) {
                 />
                 <h3 className="text-xl font-semibold text-gray-900">
                   Our donations are handled by the
-                  <br className="hidden md:block" /> API Chaya organization.
+                  <br className="hidden md:block" /> White Center CDA.
                 </h3>
                 <p className=" text-gray-700 font-medium">
-                  When donating, make sure you mention{" "}
-                  <span className="text-gray-900 font-bold">"VietQ"</span> in
-                  the Comments section.
+                  When donating, make sure you select{" "}
+                  <span className="text-gray-900 font-bold">"VietQ"</span>.
                   <br /> <br />
                   If you have any questions, please{" "}
                   <Link href="/contact" className="underline">
