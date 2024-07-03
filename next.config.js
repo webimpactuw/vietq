@@ -14,7 +14,7 @@ const nextConfig = {
     return [
       {
         source: "/donate",
-        destination: "https://www.apichaya.org/give",
+        destination: "https://www.wccda.org/donate",
         permanent: false,
       },
     ];
