@@ -1,23 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   images: {
-    domains: ["cdn.sanity.io"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
-  compiler: {
-    removeConsole: true,
+  async redirects() {
+    return [
+      {
+        source: "/donate",
+        destination: "https://www.wccda.org/donate",
+        permanent: false,
+      },
+    ];
   },
 };
-
-// const withBundleAnalyzer = require("@next/bundle-analyzer")({
-//   enabled: process.env.ANALYZE === "true",
-// });
-
-// module.exports = withBundleAnalyzer({
-//   env: {
-//     NEXT_PUBLIC_ENV: "PRODUCTION", //your next configs goes here
-//   },
-//   ...nextConfig,
-// });
 
 module.exports = nextConfig;

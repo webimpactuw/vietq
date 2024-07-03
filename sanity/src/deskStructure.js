@@ -1,5 +1,4 @@
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import Iframe from "sanity-plugin-iframe-pane";
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -109,35 +108,64 @@ export default (S, context) => {
                 .views([S.view.form()])
             )
         ),
-      orderableDocumentListDeskItem({
-        type: "teamMember",
-        title: "Team Members",
-        icon: UsersIcon,
-        S,
-        context,
-      }),
+      S.listItem()
+        .title("Team Members")
+        .icon(UsersIcon)
+        .child(
+          S.list()
+            .title("Team Members")
+            .items([
+              S.listItem()
+                .title("Current Team Members")
+
+                .child(
+                  S.documentTypeList("teamMember")
+                    .title("Current Team Members")
+                    .filter('_type == "teamMember" && previous != true')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType("teamMember")
+                        .views([S.view.form()])
+                    )
+                ),
+              S.listItem()
+                .title("Past Team Members")
+
+                .child(
+                  S.documentTypeList("teamMember")
+                    .title("Past Team Members")
+                    .filter('_type == "teamMember" && previous == true')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType("teamMember")
+                        .views([S.view.form()])
+                    )
+                ),
+              S.listItem()
+                .title("All Team Members")
+                .child(
+                  S.documentTypeList("teamMember")
+                    .title("All Team Members")
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType("teamMember")
+                        .views([S.view.form()])
+                    )
+                ),
+            ])
+        ),
     ]);
 };
 
-function singlePage(S, title, type, previewSlug = "", icon = BlockContentIcon) {
+function singlePage(S, title, type, icon = BlockContentIcon) {
   return S.listItem()
     .title(title)
     .id(type)
     .icon(icon)
     .child(
-      S.document()
-        .schemaType(type)
-        .documentId(type)
-        .views([
-          S.view.form(),
-          S.view
-            .component(Iframe)
-            .options({
-              url: `${process.env.NEXT_PUBLIC_HOST}/api/preview${
-                previewSlug.length > 0 ? `?slug=${previewSlug}` : ""
-              }`,
-            })
-            .title("Preview"),
-        ])
+      S.document().schemaType(type).documentId(type).views([S.view.form()])
     );
 }

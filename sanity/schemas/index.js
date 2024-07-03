@@ -27,33 +27,46 @@ import eventsHeaderSection from "./pages/eventsPage/eventsHeaderSection";
 import eventsTypeCard from "./pages/eventsPage/eventsTypeCard";
 import contactPage from "./pages/contactPage";
 
-export const schemaTypes = [
-  homePage,
-  aboutPage,
-  eventsPage,
-  communityPage,
-  contactPage,
-  aboutSection,
-  teamMember,
-  event,
-  dateRange,
-  location,
-  blogPost,
-  link,
-  eventTag,
-  homeAboutSection,
-  homeHero,
-  homePhotoWall,
-  homeEventsSection,
-  homeCommunitySection,
-  heroCommunityCard,
-  homeBigQuote,
-  aboutCard,
-  homeEventsCard,
-  resource,
-  resourceTag,
-  aboutNewsCard,
-  aboutHeaderSection,
-  eventsHeaderSection,
-  eventsTypeCard,
-];
+import { routes } from "../lib/routes";
+
+export const singletonTypes = new Set(routes.map((route) => route.schemaType));
+export const singletonActions = new Set([
+  "publish",
+  "discardChanges",
+  "restore",
+]);
+
+export const schema = {
+  types: [
+    homePage,
+    aboutPage,
+    eventsPage,
+    communityPage,
+    contactPage,
+    aboutSection,
+    teamMember,
+    event,
+    dateRange,
+    location,
+    blogPost,
+    link,
+    eventTag,
+    homeAboutSection,
+    homeHero,
+    homePhotoWall,
+    homeEventsSection,
+    homeCommunitySection,
+    heroCommunityCard,
+    homeBigQuote,
+    aboutCard,
+    homeEventsCard,
+    resource,
+    resourceTag,
+    aboutNewsCard,
+    aboutHeaderSection,
+    eventsHeaderSection,
+    eventsTypeCard,
+  ],
+  templates: (templates) =>
+    templates.filter(({ schemaType }) => !singletonTypes.has(schemaType)),
+};

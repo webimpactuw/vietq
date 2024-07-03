@@ -1,9 +1,16 @@
+"use client";
+
 import { FilledButton, OutlinedButton } from "../Button";
-import { Dialog, Transition } from "@headlessui/react";
+import {
+  Dialog,
+  DialogPanel,
+  Transition,
+  TransitionChild,
+} from "@headlessui/react";
 import { Fragment } from "react";
 import Link from "next/link";
 
-import vietQBlack from "../../../public/logos/vietq_logo_black.png";
+import vietQBlack from "@/public/logos/vietq_logo_black.png";
 
 import Image from "next/image";
 
@@ -19,7 +26,7 @@ export default function DonateModal({ showDonate, setShowDonate }) {
   return (
     <Transition appear show={showDonate} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={closeModal}>
-        <Transition.Child
+        <TransitionChild
           as={Fragment}
           enter="ease-out duration-300"
           enterFrom="opacity-0"
@@ -29,11 +36,11 @@ export default function DonateModal({ showDonate, setShowDonate }) {
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-black bg-opacity-25" />
-        </Transition.Child>
+        </TransitionChild>
 
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter="ease-out duration-300"
               enterFrom="opacity-0 scale-95"
@@ -42,7 +49,7 @@ export default function DonateModal({ showDonate, setShowDonate }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="space-y-4 w-full max-w-md text-center transform overflow-hidden font-sans rounded-3xl bg-champagne-50 px-6 py-12 border-champagne-700/25 align-middle shadow-xl transition-all">
+              <DialogPanel className="space-y-4 w-full max-w-md text-center transform overflow-hidden font-sans rounded-3xl bg-champagne-50 px-6 py-12 border-champagne-700/25 align-middle shadow-xl transition-all">
                 <Image
                   src={vietQBlack}
                   alt="VietQ Logo"
@@ -51,12 +58,11 @@ export default function DonateModal({ showDonate, setShowDonate }) {
                 />
                 <h3 className="text-xl font-semibold text-gray-900">
                   Our donations are handled by the
-                  <br className="hidden md:block" /> API Chaya organization.
+                  <br className="hidden md:block" /> White Center CDA.
                 </h3>
                 <p className=" text-gray-700 font-medium">
-                  When donating, make sure you mention{" "}
-                  <span className="text-gray-900 font-bold">"VietQ"</span> in
-                  the Comments section.
+                  When donating, make sure you select{" "}
+                  <span className="text-gray-900 font-bold">"VietQ"</span>.
                   <br /> <br />
                   If you have any questions, please{" "}
                   <Link href="/contact" className="underline">
@@ -65,15 +71,15 @@ export default function DonateModal({ showDonate, setShowDonate }) {
                   .
                 </p>
                 <div className="space-x-2">
-                  <a href="https://www.apichaya.org/give">
+                  <a href="/donate">
                     <FilledButton>Donate to VietQ</FilledButton>
                   </a>
                   <button onClick={() => setShowDonate(false)}>
                     <OutlinedButton>Go back</OutlinedButton>
                   </button>
                 </div>
-              </Dialog.Panel>
-            </Transition.Child>
+              </DialogPanel>
+            </TransitionChild>
           </div>
         </div>
       </Dialog>

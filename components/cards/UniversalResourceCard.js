@@ -1,4 +1,4 @@
-import urlFor from "@/sanity/lib/urlFor";
+import { urlFor } from "@/sanity/lib/urlFor";
 import Image from "next/image";
 import Link from "next/link";
 import format from "date-fns/format";
@@ -36,7 +36,7 @@ function UniversalResourceCardBody({ data, tags = true, light = false }) {
 
   return (
     <div className="space-y-4 hover:opacity-75 transition-opacity">
-      {data._type == "blogPost" ? (
+      {data._type == "blogPost" || data.image != null ? (
         <Image
           src={
             data.image

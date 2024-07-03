@@ -1,10 +1,12 @@
-import client from "./client";
-import imageUrlBuilder from "@sanity/image-url";
+import createImageUrlBuilder from "@sanity/image-url";
 
-const builder = imageUrlBuilder(client);
+import { dataset, projectId } from "../env";
 
-function urlFor(source) {
-  return builder.image(source);
-}
+const imageBuilder = createImageUrlBuilder({
+  projectId: projectId || "",
+  dataset: dataset || "",
+});
 
-export default urlFor;
+export const urlFor = (source) => {
+  return imageBuilder?.image(source).auto("format").fit("max");
+};
