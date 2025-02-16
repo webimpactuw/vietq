@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import { client } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import Header from "./components/Header";
